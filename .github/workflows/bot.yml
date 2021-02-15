@@ -1,4 +1,4 @@
-name: Python bot test
+name: Bot CI
 
 on:
   push:
