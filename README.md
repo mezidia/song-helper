@@ -8,6 +8,8 @@
   <img alt="GitHub closed pull requests" src="https://img.shields.io/github/issues-pr-closed/mezgoodle/Templates?style=flat-square" />
   <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/mezgoodle/Templates?style=flat-square" />
   <img alt="Latest Github release" src="https://img.shields.io/github/release/mezgoodle/Templates?style=flat-square" />
+  <img alt="Codacy" src="https://app.codacy.com/project/badge/Grade/b1f4285457634589a2703fc159f2f0ee" />
+
 </h1>
 
 <p align="center">
