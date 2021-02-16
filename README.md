@@ -1,5 +1,5 @@
 <h1 id="project-title" align="center">
-  Project title <img alt="logo" width="40" height="40" src="https://raw.githubusercontent.com/mezgoodle/images/master/MezidiaLogoTransparent.png" /><br>
+  Song Helper <img alt="logo" width="40" height="40" src="https://raw.githubusercontent.com/mezgoodle/images/master/MezidiaLogoTransparent.png" /><br>
   <img alt="language" src="https://img.shields.io/badge/language-python-brightgreen?style=flat-square" />
   <img alt="language" src="https://img.shields.io/github/issues/mezgoodle/Templates?style=flat-square" />
   <img alt="GitHub closed issues" src="https://img.shields.io/github/issues-closed/mezgoodle/Templates?style=flat-square" />
@@ -33,6 +33,7 @@
 - [Tests :microscope:](#tests-microscope)
 - [Contribute :running:](#contribute-running)
 - [Credits :cat::handshake:](#credits-cathandshake)
+- [FAQ :speech_balloon:](#faq)
 - [License :bookmark:](#license-bookmark)
 
 ## The README Checklist
@@ -129,4 +130,4 @@ Give proper credits. This could be a link to any repo which inspired you to buil
 
 ## License :bookmark:
 
-MIT © [Yourname]()
+MIT © [Mezidia](https://github.com/mezidia)
