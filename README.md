@@ -126,9 +126,9 @@ Let people know how they can contribute into your project. A contributing guidel
 
 ## Credits :cat::handshake:
 
-| <a href="https://github.com/VsIG-official" target="_blank">**VsIG**</a> | <a href="https://github.com/VsIG-official" target="_blank">**VsIG**</a> | <a href="https://github.com/VsIG-official" target="_blank">**VsIG**</a> | <a href="https://github.com/VsIG-official" target="_blank">**VsIG**</a> |
+| <a href="https://github.com/mezgoodle" target="_blank">**Mezgoodle**</a> | <a href="https://github.com/Dmytrenko-Roman" target="_blank">**Dmytrenko-Roman**</a> | <a href="https://github.com/fhrr-sht" target="_blank">**fhrr-sht**</a> | <a href="https://github.com/VsIG-official" target="_blank">**VsIG**</a> |
 | :---: |:---:| :---:| :---: |
-| [![VsIG](https://avatars0.githubusercontent.com/u/50269023?s=400&u=522283a8fce57866b73427f94a742fb83e0b1b40&v=4)](https://github.com/VsIG-official)    | [![VsIG](https://avatars0.githubusercontent.com/u/50269023?s=400&u=522283a8fce57866b73427f94a742fb83e0b1b40&v=4)](https://github.com/VsIG-official) | [![VsIG](https://avatars0.githubusercontent.com/u/50269023?s=400&u=522283a8fce57866b73427f94a742fb83e0b1b40&v=4)](https://github.com/VsIG-official)  | [![VsIG](https://avatars0.githubusercontent.com/u/50269023?s=400&u=522283a8fce57866b73427f94a742fb83e0b1b40&v=4)](https://github.com/VsIG-official)  |
+| [![Mezgoodle](https://avatars.githubusercontent.com/u/41520940?s=400&u=530e013f3714e81792fc6b99399c7a6eda6ea63d&v=4)](https://github.com/mezgoodle) | [![Dmytrenko-Roman](https://avatars.githubusercontent.com/u/54878089?s=400&u=075796965fc5db27cc5b6b179b9325bf312ce0b9&v=4)](https://github.com/Dmytrenko-Roman) | [![Fhrr-Sht](https://avatars.githubusercontent.com/u/54956154?s=400&v=4)](https://github.com/fhrr-sht) | [![VsIG](https://avatars0.githubusercontent.com/u/50269023?s=400&u=522283a8fce57866b73427f94a742fb83e0b1b40&v=4)](https://github.com/VsIG-official)  |
 | <a href="https://github.com/VsIG-official" target="_blank">`github.com/VsIG-official`</a> | <a href="https://github.com/VsIG-official" target="_blank">`github.com/VsIG-official`</a> | <a href="https://github.com/VsIG-official" target="_blank">`github.com/VsIG-official`</a> | <a href="https://github.com/VsIG-official" target="_blank">`github.com/VsIG-official`</a> |
 
 ## License :bookmark:
