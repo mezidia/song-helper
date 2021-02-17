@@ -27,7 +27,6 @@
 - [Code style :scroll:](#code-style-scroll)
 - [Screenshots :camera:](#screenshots-camera)
 - [Tech/framework used :wrench:](#techframework-used-wrench)
-- [Features :muscle:](#features-muscle)
 - [Code Example :pushpin:](#code-example-pushpin)
 - [Installation :computer:](#installation-computer)
 - [Fast usage :dash:](#fast-usage-dash)
@@ -40,7 +39,7 @@
 
 ## Specification
 
-1. Контекст
+1. Context
 -----------
 
 -   Хто і з якою метою пише цей проект?
@@ -61,7 +60,7 @@
 > -   Флеш — працює генератором енергії
 > -   Супермен — тягає важкі предмети
 
-2. Задачі
+2. Tasks
 ---------
 
 -   Які задачі вирішує проект?
@@ -80,7 +79,7 @@
 > Оскільки технологія телепорту ще недосконала, реалізовувати його не
 > будемо.
 
-3. Функціональні вимоги
+3. Functional requirements
 -----------------------
 
 Тут список функціональних вимог до вашого проекту.
@@ -98,7 +97,7 @@
 > 7.  У випадку, якщо інцидент відбувся у Ґотем-Сіті, необхідно спершу
 >     отримати дозвід Бетмена на втручання
 
-4. Сценарії
+4. Scenarios
 -----------
 
 Не забудьте описати сценарії використання вашої системи.
@@ -137,11 +136,11 @@ Build status of continus integration i.e. travis, appveyor etc.
 
 Other badges
 
-[![Build Status](https://img.shields.io/badge/Theme-Template-brightgreen?style=flat-square)](https://www.google.com.ua/)
+[![Build Status](https://img.shields.io/badge/Theme-AI-brightgreen?style=flat-square)](https://www.google.com.ua/)
 
 ## Code style :scroll:
 
-  <img alt="Codacy" src="https://app.codacy.com/project/badge/Grade/b1f4285457634589a2703fc159f2f0ee" />
+<img alt="Codacy" src="https://app.codacy.com/project/badge/Grade/b1f4285457634589a2703fc159f2f0ee" />
 
 > We are using [Codacy](https://www.codacy.com/) to automate Our code quality.
 
@@ -155,13 +154,7 @@ Include logo/demo screenshot etc.
 
 **Built with**
 
-- [Electron](https://electron.atom.io)
-
-## Features :muscle:
-
-What makes your project stand out?
-
-> With my package you can **sync** two folders, **manage** logs files, **delete** empty folders and old files, read and create **zip-archives**.
+- [DJango](https://www.djangoproject.com/)
 
 ## Code Example :pushpin:
 
@@ -189,8 +182,6 @@ Describe and show how to run the tests with code examples.
 
 ## Contribute :running:
 
-Let people know how they can contribute into your project. A contributing guideline will be a big plus.
-
 > Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change. Also look at the [CONTRIBUTING.md](link).
 
 ## Credits :cat::handshake:
@@ -201,6 +192,8 @@ Let people know how they can contribute into your project. A contributing guidel
 | <a href="https://github.com/mezgoodle" target="_blank">`github.com/mezgoodle`</a> | <a href="https://github.com/Dmytrenko-Roman" target="_blank">`github.com/Dmytrenko-Roman`</a> | <a href="https://github.com/fhrr-sht" target="_blank">`github.com/fhrr-sht`</a> | <a href="https://github.com/VsIG-official" target="_blank">`github.com/VsIG-official`</a> |
 
 ## FAQ
+
+> *Nothing to answer*
 
 ## License :bookmark:
 
