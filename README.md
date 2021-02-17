@@ -8,6 +8,7 @@
   <img alt="GitHub closed pull requests" src="https://img.shields.io/github/issues-pr-closed/mezgoodle/song-helper?style=flat-square" />
   <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/mezgoodle/song-helper?style=flat-square" />
   <img alt="Latest Github release" src="https://img.shields.io/github/release/mezgoodle/song-helper?style=flat-square" />
+  <img alt="Theme" src="https://img.shields.io/badge/Theme-AI-brightgreen?style=flat-square" />
 </h1>
 
 <p align="center">
@@ -23,7 +24,6 @@
 - [Specification](#specification)
 - [Motivation :exclamation:](#motivation-exclamation)
 - [Build status :hammer:](#build-status-hammer)
-- [Badges :mega:](#badges-mega)
 - [Code style :scroll:](#code-style-scroll)
 - [Screenshots :camera:](#screenshots-camera)
 - [Tech/framework used :wrench:](#techframework-used-wrench)
@@ -132,12 +132,6 @@ Build status of continus integration i.e. travis, appveyor etc.
 [![Build Status](https://travis-ci.org/akashnimare/foco.svg?branch=master)](https://travis-ci.org/akashnimare/foco)
 [![Windows Build Status](https://ci.appveyor.com/api/projects/status/github/akashnimare/foco?branch=master&svg=true)](https://ci.appveyor.com/project/akashnimare/foco/branch/master)
 
-## Badges :mega:
-
-Other badges
-
-[![Build Status](https://img.shields.io/badge/Theme-AI-brightgreen?style=flat-square)](https://www.google.com.ua/)
-
 ## Code style :scroll:
 
 <img alt="Codacy" src="https://app.codacy.com/project/badge/Grade/b1f4285457634589a2703fc159f2f0ee" />
@@ -178,7 +172,7 @@ Depending on the size of the project, if it is small and simple enough the refer
 
 Describe and show how to run the tests with code examples.
 
-> As screenshot or :smile:I give you the [link](https://github.com/mezgoodle/sync-folders/actions?query=workflow%3A%22Python+package%22) to [GitHub Actions](https://github.com/features/actions), where you can see all my tests.
+> As screenshot or :smile:I give you the [link](https://github.com/mezgoodle/song-helper/actions?query=workflow%3A%22Python+package%22) to [GitHub Actions](https://github.com/features/actions), where you can see all my tests.
 
 ## Contribute :running:
 
