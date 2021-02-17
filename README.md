@@ -22,7 +22,6 @@
 
 - [Project title](#project-title)
 - [Specification](#specification)
-- [Motivation :exclamation:](#motivation-exclamation)
 - [Build status :hammer:](#build-status-hammer)
 - [Code style :scroll:](#code-style-scroll)
 - [Screenshots :camera:](#screenshots-camera)
@@ -118,10 +117,6 @@
 > >     2.  Система слідкує за перебігом інциденту і у разі необхідності
 > >         направляє додаткових учасників для його вирішення
 > >
-
-## Motivation :exclamation:
-
-A short description of the motivation behind the creation and maintenance of the project. This should explain **why** the project exists.
 
 ## Build status :hammer:
 
