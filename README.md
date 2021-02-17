@@ -2,14 +2,12 @@
   Song Helper <img alt="logo" width="40" height="40" src="https://raw.githubusercontent.com/mezgoodle/images/master/MezidiaLogoTransparent.png" /><br>
   <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/mezidia/song-helper.svg?style=flat-square&logo=github&logoColor=white">
   <img alt="language" src="https://img.shields.io/badge/language-python-brightgreen?style=flat-square" />
-  <img alt="language" src="https://img.shields.io/github/issues/mezgoodle/Templates?style=flat-square" />
-  <img alt="GitHub closed issues" src="https://img.shields.io/github/issues-closed/mezgoodle/Templates?style=flat-square" />
-  <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/mezgoodle/Templates?style=flat-square" />
-  <img alt="GitHub closed pull requests" src="https://img.shields.io/github/issues-pr-closed/mezgoodle/Templates?style=flat-square" />
-  <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/mezgoodle/Templates?style=flat-square" />
-  <img alt="Latest Github release" src="https://img.shields.io/github/release/mezgoodle/Templates?style=flat-square" />
-  <img alt="Codacy" src="https://app.codacy.com/project/badge/Grade/b1f4285457634589a2703fc159f2f0ee" />
-
+  <img alt="language" src="https://img.shields.io/github/issues/mezgoodle/song-helper?style=flat-square" />
+  <img alt="GitHub closed issues" src="https://img.shields.io/github/issues-closed/mezgoodle/song-helper?style=flat-square" />
+  <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/mezgoodle/song-helper?style=flat-square" />
+  <img alt="GitHub closed pull requests" src="https://img.shields.io/github/issues-pr-closed/mezgoodle/song-helper?style=flat-square" />
+  <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/mezgoodle/song-helper?style=flat-square" />
+  <img alt="Latest Github release" src="https://img.shields.io/github/release/mezgoodle/song-helper?style=flat-square" />
 </h1>
 
 <p align="center">
@@ -76,9 +74,9 @@ Other badges
 
 ## Code style :scroll:
 
-If you're using any code style like xo, standard etc. That will help others while contributing to your project.
+  <img alt="Codacy" src="https://app.codacy.com/project/badge/Grade/b1f4285457634589a2703fc159f2f0ee" />
 
-> I'm using [Codacy](https://www.codacy.com/) to automate my code quality.
+> We are using [Codacy](https://www.codacy.com/) to automate Our code quality.
 
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard)
  
