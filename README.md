@@ -37,7 +37,7 @@
 
 ## Specification
 
-# Context
+### Context
 -----------
 
 This project is developing by 4 members of Mezidia: 
@@ -47,7 +47,7 @@ This project is developing by 4 members of Mezidia:
 
 It is planned to deploy the project in the form of a server on the Django web framework
 
-# Tasks
+### Tasks
 ---------
 
 -   Які задачі вирішує проект?
@@ -58,15 +58,15 @@ It is planned to deploy the project in the form of a server on the Django web fr
 
 > В рамках проекту будуть вирішені такі задачі:
 >
-> -   Спостереження за катаклізмами на планеті Земля
-> -   Своєчасне повідомлення найближчих членів Ліги Справедливості про
->     необхідніть втручання
-> -   ...
+> - Спостереження за катаклізмами на планеті Земля
+> - Своєчасне повідомлення найближчих членів Ліги Справедливості про
+>   необхідніть втручання
+> - ...
 >
 > Оскільки технологія телепорту ще недосконала, реалізовувати його не
 > будемо.
 
-# Functional requirements
+### Functional requirements
 -----------------------
 
 Тут список функціональних вимог до вашого проекту.
@@ -84,7 +84,7 @@ It is planned to deploy the project in the form of a server on the Django web fr
 > 7.  У випадку, якщо інцидент відбувся у Ґотем-Сіті, необхідно спершу
 >     отримати дозвід Бетмена на втручання
 
-# Scenarios
+### Scenarios
 -----------
 
 Не забудьте описати сценарії використання вашої системи.
