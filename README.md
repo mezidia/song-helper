@@ -121,22 +121,19 @@
 
 Build status of continus integration i.e. travis, appveyor etc.
 
-> Here you can see build status of [continuous integration](https://en.wikipedia.org/wiki/Continuous_integration)/[continuous deployment](https://en.wikipedia.org/wiki/Continuous_deployment):
-
-[![Build Status](https://travis-ci.org/akashnimare/foco.svg?branch=master)](https://travis-ci.org/akashnimare/foco)
-[![Windows Build Status](https://ci.appveyor.com/api/projects/status/github/akashnimare/foco?branch=master&svg=true)](https://ci.appveyor.com/project/akashnimare/foco/branch/master)
+> Currently in progress
 
 ## Code style :scroll:
 
-<img alt="Codacy" src="https://app.codacy.com/project/badge/Grade/b1f4285457634589a2703fc159f2f0ee" />
+We are using [Codacy](https://www.codacy.com/) to automate Our code quality.
 
-> We are using [Codacy](https://www.codacy.com/) to automate Our code quality.
+<img alt="Codacy" src="https://app.codacy.com/project/badge/Grade/b1f4285457634589a2703fc159f2f0ee" />
 
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard)
  
 ## Screenshots :camera:
 
-Include logo/demo screenshot etc.
+> Currently in progress
 
 ## Tech/framework used :wrench:
 
@@ -146,31 +143,29 @@ Include logo/demo screenshot etc.
 
 ## Code Example :pushpin:
 
-Show what the library does as concisely as possible, developers should be able to figure out **how** your project solves their problem by looking at the code example. Make sure the API you are showing off is obvious, and that your code is short and concise.
+> Currently in progress
 
 ## Installation :computer:
 
-Provide step by step series of examples and explanations about how to get a development env running.
+> Currently in progress
 
 ## Fast usage :dash:
 
-If people like your project they’ll want to learn how they can use it. To do so include step by step guide to use your project.
+> Currently in progress
 
 ## API Reference :fireworks:
 
-Depending on the size of the project, if it is small and simple enough the reference docs can be added to the README. For medium size to larger projects it is important to at least provide a link to where the API reference docs live.
+> Currently in progress
 
 > As tables
 
 ## Tests :microscope:
 
-Describe and show how to run the tests with code examples.
-
-> As screenshot or :smile:I give you the [link](https://github.com/mezgoodle/song-helper/actions?query=workflow%3A%22Python+package%22) to [GitHub Actions](https://github.com/features/actions), where you can see all my tests.
+> Currently in progress
 
 ## Contribute :running:
 
-> Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change. Also look at the [CONTRIBUTING.md](link).
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change. Also look at the [CONTRIBUTING.md](link).
 
 ## Credits :cat::handshake:
 
@@ -182,6 +177,7 @@ Describe and show how to run the tests with code examples.
 ## FAQ
 
 > *Nothing to answer*
+> Currently in progress
 
 ## License :bookmark:
 
