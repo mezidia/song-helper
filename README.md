@@ -12,8 +12,7 @@
 </h1>
 
 <p align="center">
- A little info about your project and/ or overview that explains <strong>what</strong> the project is about.
- <blockquote>🌟Hello everyone! This is the repository of my package on Python "sync-folders".🌟</blockquote>
+ 🌟Hello everyone! This is Our repository about AI on Python "Song-Helper"🌟
 </p>
 
 <h2 align="center">
