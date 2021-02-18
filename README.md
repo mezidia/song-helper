@@ -157,8 +157,6 @@ We are using [Codacy](https://www.codacy.com/) to automate Our code quality.
 
 > Currently in progress
 
-> As tables
-
 ## Tests :microscope:
 
 > Currently in progress
