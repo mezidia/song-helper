@@ -50,21 +50,9 @@ It is planned to deploy the project in the form of a server on the Django web fr
 ### Tasks
 ---------
 
--   Які задачі вирішує проект?
--   Які задачі поза скоупом даного проекту?
--   Якщо є вимоги до відмовостійкості, абощо — теж вказати.
+This project will give You some music depending on Your mood, which will be represented by You as a words.
 
-Наприклад:
-
-> В рамках проекту будуть вирішені такі задачі:
->
-> - Спостереження за катаклізмами на планеті Земля
-> - Своєчасне повідомлення найближчих членів Ліги Справедливості про
->   необхідніть втручання
-> - ...
->
-> Оскільки технологія телепорту ще недосконала, реалізовувати його не
-> будемо.
+AI won't create any sort of music depending on Your mood
 
 ### Functional requirements
 -----------------------
@@ -107,8 +95,6 @@ It is planned to deploy the project in the form of a server on the Django web fr
 > >
 
 ## Build status :hammer:
-
-Build status of continus integration i.e. travis, appveyor etc.
 
 > Currently in progress
 
