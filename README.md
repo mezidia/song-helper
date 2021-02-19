@@ -84,7 +84,7 @@ We are using [Codacy](https://www.codacy.com/) to automate Our code quality.
 
 **Built with**
 
-- [DJango](https://www.djangoproject.com/)
+- [Django](https://www.djangoproject.com/)
 
 ## Code Example :pushpin:
 
