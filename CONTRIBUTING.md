@@ -21,13 +21,13 @@
 
 ### **Do you intend to add a new feature or change an existing one?**
 
-* Suggest your change in the [mail to `Mezgoodle`](mailto:mezgoodle@gmail.com) and start writing code.
+* Suggest your change in the [mail to `mezgoodle`](mailto:mezgoodle@gmail.com) and start writing code.
 
 * Do not open an issue on GitHub until you have collected positive feedback about the change. GitHub issues are primarily intended for bug reports and fixes.
 
 ### **Do you have questions about the source code?**
 
-* Ask any question about how to use song-helper in the [mail to `Mezgoodle`](mailto:mezgoodle@gmail.com).
+* Ask any question about how to use song-helper in the [mail to `mezgoodle`](mailto:mezgoodle@gmail.com).
 
 Thanks! :heart: :heart: :heart:
 
