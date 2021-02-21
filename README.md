@@ -66,15 +66,16 @@ The only scenario is to get a mood description from the user and issue a song
 
 ## Build status :hammer:
 
-> Currently in progress
+[![Bot CI](https://github.com/mezidia/song-helper/actions/workflows/bot.yml/badge.svg)](https://github.com/mezidia/song-helper/actions/workflows/bot.yml)
+[![Formate Code](https://github.com/mezidia/song-helper/actions/workflows/formatter.yml/badge.svg)](https://github.com/mezidia/song-helper/actions/workflows/formatter.yml)
+[![song-helper CI](https://github.com/mezidia/song-helper/actions/workflows/song-helper.yml/badge.svg)](https://github.com/mezidia/song-helper/actions/workflows/song-helper.yml)
+[![Django CI](https://github.com/mezidia/song-helper/actions/workflows/django.yml/badge.svg)](https://github.com/mezidia/song-helper/actions/workflows/django.yml)
 
 ## Code style :scroll:
 
 We are using [Codacy](https://www.codacy.com/) to automate Our code quality.
 
 <img alt="Codacy" src="https://app.codacy.com/project/badge/Grade/b1f4285457634589a2703fc159f2f0ee" />
-
-[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard)
  
 ## Screenshots :camera:
 
@@ -85,6 +86,10 @@ We are using [Codacy](https://www.codacy.com/) to automate Our code quality.
 **Built with**
 
 - [Django](https://www.djangoproject.com/)
+- [NumPy](https://numpy.org/)
+- [TensorFlow](https://www.tensorflow.org/)
+- [aiogram](https://github.com/aiogram/aiogram)
+- [python-dotenv](https://pypi.org/project/python-dotenv/)
 
 ## Code Example :pushpin:
 
@@ -104,7 +109,7 @@ We are using [Codacy](https://www.codacy.com/) to automate Our code quality.
 
 ## Tests :microscope:
 
-> Currently in progress
+We use [unittest](https://docs.python.org/3/library/unittest.html) as framework for testing. All results you can see [here](https://github.com/mezidia/song-helper/actions). For tests look in folders of each part of this project.
 
 ## Contribute :running:
 
