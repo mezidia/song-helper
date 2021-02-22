@@ -62,7 +62,8 @@ The only functional requirement is to give a song
 ### Scenarios
 -----------
 
-The only scenario is to get a mood description from the user and issue a song
+- We get a description of the mood in _two different ways_: through a **bot** (Telegram) in the form of a text message and through a form on the **site** (Django). Next, the text is converted to a vector, compared with the song vectors in the database, and the result is returned as a song reference (in both cases).
+- The site will have only one page with a form for entering a description. No other pages are planned yet.
 
 ## Build status :hammer:
 
