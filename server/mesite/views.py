@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.shortcuts import render
 
 def index(request):
-    return HttpResponse('<h4>Hello world</h4>')
+    return render(request, 'mesite/index.html')
