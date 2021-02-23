@@ -2,8 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\server",
+    "\\server\\mesite",
     "\\server\\server"
   ],
-  "SelectedNode": "\\server\\manage.py",
+  "SelectedNode": "\\server\\mesite\\views.py",
   "PreviewInSolutionExplorer": false
 }
