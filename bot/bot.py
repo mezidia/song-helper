@@ -8,12 +8,14 @@ load_dotenv()
 logging.basicConfig(level=logging.INFO)
 
 Token = os.getenv('TOKEN')
-bot = Bot(token = Token)
+bot = Bot(token=Token)
 dp = Dispatcher(bot)
+
 
 @dp.message_handler()
 async def echo(message: types.Message):
-  await message.answer(message.text)
+    await message.answer(message.text)
+
 
 if __name__ == '__main__':
-  executor.start_polling(dp, skip_updates=True)
+    executor.start_polling(dp, skip_updates=True)
