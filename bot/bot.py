@@ -20,5 +20,10 @@ async def send_welcome(message: types.Message):
     await message.reply("Hi!\nI'm SongHelperBot!\nTo get started, send your mood with a text message.")
 
 
+@dp.message_handler()
+async def echo(message: types.Message):
+    await message.answer(message.text)
+
+
 if __name__ == '__main__':
     executor.start_polling(dp, skip_updates=True)
