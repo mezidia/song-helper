@@ -9,6 +9,5 @@ def audio_downloader(url):
         if 'm4a' in str(audiostreams[i]):
             audiostreams[i].download(filepath = './bot/')
             return f'bot/{video.title}.{audiostreams[i].extension}'
-    print(audiostreams)
 
 audio_downloader('https://www.youtube.com/watch?v=YAZGKbAp36E')
