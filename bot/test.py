@@ -10,7 +10,7 @@ class Parent:
     token = os.getenv('TOKEN')
     url = f'https://api.telegram.org/bot{token}/'
     ok_status_code = 200
-    bot_name = 'Song Helper'
+    bot_name = 'Song helper'
     test_text = 'test'
     chat_id = os.getenv('CHAT_ID')
 
