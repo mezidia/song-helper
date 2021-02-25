@@ -4,7 +4,7 @@ import unittest
 
 import requests
 
-from audiodownloader import audio_downloader
+from . import audiodownloader
 
 class Parent:
     """Parent class with need variables"""
@@ -52,5 +52,5 @@ class TelegramTest(unittest.TestCase, Parent):
 class AudioDownloaderTest(unittest.TestCase, Parent):
     def test_dowbload(self):
         for i in range(len(self.urls)):
-            path = audio_downloader(self.urls[i])
+            path = audiodownloader.audio_downloader(self.urls[i])
             self.assertEqual(path, self.urls_name[i])
