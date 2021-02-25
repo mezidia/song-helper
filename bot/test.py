@@ -4,6 +4,7 @@ import unittest
 
 import requests
 
+from audiodownloader import audio_downloader
 
 class Parent:
     """Parent class with need variables"""
@@ -13,6 +14,8 @@ class Parent:
     bot_name = 'Song helper'
     test_text = 'test'
     chat_id = os.getenv('CHAT_ID')
+    urls = ['https://www.youtube.com/watch?v=_CC7IfGm_f8', 'https://www.youtube.com/watch?v=nG9TC8F2hqE', 'https://www.youtube.com/watch?v=jdGe4w4LADM']
+    urls_name = ['Как сатурн пожирает своих детей.m4a', 'Я приду к тебе с клубникой в декабре.m4a', 'pyrokinesis - море волнуется два.m4a']
 
 
 class TelegramTest(unittest.TestCase, Parent):
@@ -44,3 +47,10 @@ class TelegramTest(unittest.TestCase, Parent):
         self.assertEqual(
             self.sendMessage.json()["result"]["text"],
             self.test_text)
+
+
+class AudioDownloaderTest(unittest.TestCase, Parent):
+    def test_dowbload(self):
+        for i in range(len(self.urls)):
+            path = audio_downloader(self.urls[i])
+            self.assertEqual(path, self.urls_name[i])

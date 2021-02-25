@@ -25,10 +25,10 @@ async def send_welcome(message: types.Message):
 
 @dp.message_handler()
 async def echo(message: types.Message):
-    path = audio_downloader('https://www.youtube.com/watch?v=kmxPFKIe4Zs')
+    path = audio_downloader('https://www.youtube.com/watch?v=jdGe4w4LADM')
     audio = open(path, 'rb')
     message = await bot.send_audio(message['chat']['id'], audio)
-    os.remove(path)
+    #os.remove(path)
 
 
 if __name__ == '__main__':
