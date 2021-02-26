@@ -55,9 +55,9 @@ class AudioDownloaderTest(unittest.TestCase, Parent):
             path = audiodownloader.audio_downloader(self.urls[i])
             self.assertEqual(path, f'bot/{self.urls_name[i]}')
     def test_download(self):
-        files = os.listdir('./bot')
         for k in range(len(self.urls)):
             audiodownloader.audio_downloader(self.urls[k])
+        files = os.listdir('./bot')
         for i in range(len(files)):
             for j in range(len(self.urls_name)):
                 self.assertEqual(files[i], self.urls_name[j])
