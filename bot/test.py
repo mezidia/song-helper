@@ -60,8 +60,8 @@ class AudioDownloaderTest(unittest.TestCase, Parent):
         files = os.listdir('./bot')
         for i in range(len(files)):
             for j in range(len(self.urls_name)):
-                self.assertTrue(files[i] in self.urls_name[j])
-                if files[i] in self.urls_name[j]:
+                self.assertTrue(self.urls_name[j] in files[i])
+                if self.urls_name[j] in files[i]:
                     print('true')
 
             
