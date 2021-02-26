@@ -62,6 +62,6 @@ class AudioDownloaderTest(unittest.TestCase, Parent):
             for j in range(len(self.urls_name)):
                 self.assertTrue(files[i] in self.urls_name[j])
                 if files[i] in self.urls_name[j]:
-                    print(true)
+                    print('true')
 
             
