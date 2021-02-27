@@ -15,7 +15,7 @@ class Parent:
     test_text = 'test'
     chat_id = os.getenv('CHAT_ID')
     urls = ['https://www.youtube.com/watch?v=_CC7IfGm_f8', 'https://www.youtube.com/watch?v=nG9TC8F2hqE', 'https://www.youtube.com/watch?v=jdGe4w4LADM']
-    urls_name = ['bot/Как сатурн пожирает своих детей.m4a', 'bot/Я приду к тебе с клубникой в декабре.m4a', 'bot/pyrokinesis - море волнуется два.m4a']
+    urls_name = ['Как сатурн пожирает своих детей.m4a', 'Я приду к тебе с клубникой в декабре.m4a', 'pyrokinesis - море волнуется два.m4a']
 
 
 class TelegramTest(unittest.TestCase, Parent):
@@ -50,7 +50,15 @@ class TelegramTest(unittest.TestCase, Parent):
 
 
 class AudioDownloaderTest(unittest.TestCase, Parent):
-    def test_dowbload(self):
+    def test_path(self):
         for i in range(len(self.urls)):
             path = audiodownloader.audio_downloader(self.urls[i])
-            self.assertEqual(path, self.urls_name[i])
+            self.assertEqual(path, f'bot/{self.urls_name[i]}')
+    def test_download(self):
+        for k in range(len(self.urls)):
+            audiodownloader.audio_downloader(self.urls[k])
+        files = os.listdir('./bot')
+        for i in range(len(self.urls_name)):
+            self.assertTrue(self.urls_name[i] in files)
+
+            
