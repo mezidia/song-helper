@@ -2,7 +2,7 @@ import pafy
 import os
 
 
-def audio_downloader(url): 
+def audio_downloader(url: str) -> str:
     video = pafy.new(url)
     audiostreams = video.audiostreams
     for i in range(len(audiostreams)):
