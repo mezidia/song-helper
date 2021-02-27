@@ -1,5 +1,4 @@
 import pafy
-import os
 
 
 def audio_downloader(url: str) -> str:

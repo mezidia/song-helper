@@ -1,6 +1,5 @@
 import logging
 import os
-import pafy
 from audiodownloader import audio_downloader
 
 from aiogram import Bot, Dispatcher, executor, types
