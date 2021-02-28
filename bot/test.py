@@ -9,7 +9,7 @@ from . import audiodownloader
 
 class Parent:
     """Parent class with need variables"""
-    token = os.getenv('TOKEN')
+    token = os.getenv('TG_TOKEN')
     url = f'https://api.telegram.org/bot{token}/'
     ok_status_code = 200
     bot_name = 'Song helper'
