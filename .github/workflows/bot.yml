@@ -32,5 +32,5 @@ jobs:
       run: |
         python -m unittest -v bot/test.py
       env:
-        TOKEN: ${{ secrets.TG_TOKEN }}
+        TG_TOKEN: ${{ secrets.TG_TOKEN }}
         CHAT_ID: ${{ secrets.CHAT_ID }}
