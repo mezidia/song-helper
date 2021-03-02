@@ -1,8 +1,13 @@
 ﻿{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Song helper
+{% endblock %}
 {% block content %}
     <main class="form-signin text-center">
         <form>
-            <img class="mb-4" src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+            <img class="mb-4" src="{% static 'img/MezidiaLogoTransparent.png' %}"
+                 alt="Logo image" width="72" height="72">
             <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
             <label for="inputEmail" class="visually-hidden">Email address</label>
             <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
