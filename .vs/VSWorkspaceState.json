@@ -3,8 +3,11 @@
     "",
     "\\server",
     "\\server\\mesite",
-    "\\server\\server"
+    "\\server\\server",
+    "\\server\\templates",
+    "\\server\\templates\\includes",
+    "\\server\\templates\\mesite"
   ],
-  "SelectedNode": "\\server\\mesite\\views.py",
+  "SelectedNode": "\\server\\templates\\base.html",
   "PreviewInSolutionExplorer": false
 }
