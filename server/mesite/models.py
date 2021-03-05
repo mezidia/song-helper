@@ -14,7 +14,7 @@ class Mood(models.Model):
     )
     mood = models.CharField(max_length=1, choices=MOODS, blank=False)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.mood
 
     class Meta:
