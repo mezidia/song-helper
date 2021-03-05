@@ -30,7 +30,7 @@ class Song(models.Model):
     """
     name = models.CharField('Name', blank=False, max_length=40)
     artist = models.CharField('Artists', blank=False, max_length=20)
-    id = models.CharField('Id', unique=True)
+    song_id = models.CharField('Id', max_length=100, unique=True)
     acousticness = models.FloatField()
     danceability = models.FloatField()
     energy = models.FloatField()
