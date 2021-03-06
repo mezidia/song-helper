@@ -3,7 +3,9 @@
     "",
     "\\server",
     "\\server\\mesite",
-    "\\server\\server",
+    "\\server\\mesite\\migrations",
+    "\\server\\static",
+    "\\server\\static\\css",
     "\\server\\templates",
     "\\server\\templates\\includes",
     "\\server\\templates\\mesite"
