@@ -1,6 +1,8 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 from django.contrib import admin
+from .models import Mood, Song
 
-# Register your models here.
+@admin.register(Mood)
+class MoodAdmin(admin.ModelAdmin):
+    list_display = ('mood',)
+    list_filter = ('mood',)
+    search_fields = ['mood',]
