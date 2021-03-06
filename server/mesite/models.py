@@ -51,4 +51,3 @@ class Song(models.Model):
         verbose_name = 'Song'
         verbose_name_plural = 'Songs'
         ordering = ['-name']
-
