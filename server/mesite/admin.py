@@ -8,7 +8,7 @@ class MoodAdmin(admin.ModelAdmin):
     search_fields = ['mood',]
 
 @admin.register(Song)
-class MoodAdmin(admin.ModelAdmin):
+class SongAdmin(admin.ModelAdmin):
     list_display = ('name', 'artist', 'song_id', 'mood')
     list_filter = ('mood',)
     search_fields = ['name', 'artist']
