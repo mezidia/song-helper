@@ -1,16 +1,34 @@
-# This is a sample Python script.
+import numpy as np
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import MinMaxScaler, LabelEncoder
+from keras.wrappers.scikit_learn import KerasClassifier
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+from .utils import get_songs_features
+from .model import base_model
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+def predict_mood(id_song):
+    # Encodethe categories
+    encoder = LabelEncoder()
+    encoder.fit(Y)
+    encoded_y = encoder.transform(Y)
+    # Join the model and the scaler in a Pipeline
+    pip = Pipeline([('minmaxscaler',MinMaxScaler()),('keras',KerasClassifier(build_fn=base_model,epochs=300,
+                                                                             batch_size=200,verbose=0))])
+    # Fit the Pipeline
+    pip.fit(X2,encoded_y)
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    # Obtain the features of the song
+    preds = get_songs_features(id_song)
+    # Pre-process the features to input the Model
+    preds_features = np.array(preds[0][6:-2]).reshape(-1,1).T
+
+    # Predict the features of the song
+    results = pip.predict(preds_features)
+
+    mood = np.array(target['mood'][target['encode']==int(results)])
+    name_song = preds[0][0]
+    artist = preds[0][2]
+
+    return print("{0} by {1} is a {2} song".format(name_song,artist,mood[0].upper()))
+    # print(f"{name_song} by {artist} is a {mood[0].upper()} song")
