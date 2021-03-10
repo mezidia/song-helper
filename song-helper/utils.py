@@ -1,25 +1,16 @@
-import spotipy
 import time
-from spotipy import SpotifyClientCredentials, util
-
-client_id = 'your_spotify_client_id'
-client_secret = 'your_spotify_client_secret'
-redirect_uri = 'your_url_to_redirect'
-username = 'your_username_spotify_code'
-scope = 'playlist-modify-public'
+import spotipy
+from spotipy.oauth2 import SpotifyOAuth
+from .config import Config
 
 # Credentials to access the Spotify Music Data
-manager = SpotifyClientCredentials(client_id, client_secret)
-sp = spotipy.Spotify(client_credentials_manager=manager)
-
-# Credentials to access to  the Spotify User's Playlist, Favorite Songs, etc.
-token = util.prompt_for_user_token(username, scope, client_id, client_secret, redirect_uri)
-spt = spotipy.Spotify(auth=token)
+spt = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=Config.client_id, client_secret=Config.client_secret,
+                                                redirect_uri=Config.redirect_uri))
 
 
 def get_albums_id(ids):
     album_ids = []
-    results = sp.artist_albums(ids)
+    results = spt.artist_albums(ids)
     for album in results['items']:
         album_ids.append(album['id'])
     return album_ids
@@ -27,15 +18,15 @@ def get_albums_id(ids):
 
 def get_album_songs_id(ids):
     song_ids = []
-    results = sp.album_tracks(ids, offset=0)
+    results = spt.album_tracks(ids, offset=0)
     for songs in results['items']:
         song_ids.append(songs['id'])
     return song_ids
 
 
 def get_songs_features(ids):
-    meta = sp.track(ids)
-    features = sp.audio_features(ids)
+    meta = spt.track(ids)
+    features = spt.audio_features(ids)
 
     # meta
     name = meta['name']
