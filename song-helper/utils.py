@@ -15,15 +15,15 @@ class SpotifyUtils:
         self.app_token = tk.request_client_token(self.client_id, self.client_secret)
         self.spt = tk.Spotify(self.app_token)
 
-    def get_albums_id(self, ids):
+    def get_albums_id(self, ids: str):
         """Get albums id"""
         pass
 
-    def get_album_songs_id(self, ids):
+    def get_album_songs_id(self, ids: str):
         """Get id of song in album"""
         pass
 
-    def get_song_meta(self, ids):
+    def get_song_meta(self, ids: str) -> dict:
         info = self.spt.track(ids)
         return {
             'name': info.name,
@@ -35,10 +35,10 @@ class SpotifyUtils:
             'id': info.id,
         }
 
-    def get_song_analise(self, ids):
+    def get_song_analise(self, ids: str):
         pass
 
-    def get_song_features(self, ids):
+    def get_song_features(self, ids: str) -> dict:
         features = self.spt.track_audio_features(ids)
         return {
             'acousticness': features.acousticness,
@@ -54,7 +54,7 @@ class SpotifyUtils:
             'time_signature': features.time_signature,
         }
 
-    def get_song(self, ids):
+    def get_song(self, ids: str) -> list:
         """Get features of song"""
         meta = self.get_song_meta(ids)
         features = self.get_song_features(ids)
