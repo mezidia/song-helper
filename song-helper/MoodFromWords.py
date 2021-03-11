@@ -1,12 +1,3 @@
-# for Accurate (main)
-# pip install -U pip setuptools wheel
-# pip install -U spacy
-# python -m spacy download en_core_web_trf
-# for faster
-# pip install -U pip setuptools wheel
-# pip install -U spacy
-# python -m spacy download en_core_web_sm
-
 import spacy
 
 # Load the spacy model that you have installed
