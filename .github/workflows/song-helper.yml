@@ -31,3 +31,9 @@ jobs:
     - name: Test with unittests
       run: |
         python -m unittest -v song-helper/test_utils.py
+      env:
+        CLIENT_ID: ${{ secrets.CLIENT_ID }}
+        CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+        USERNAME: ${{ secrets.USERNAME }}
+        REDIRECT_URI: ${{ secrets.REDIRECT_URI }}
+        
