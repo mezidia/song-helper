@@ -3,11 +3,11 @@ import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 from .config import Config
 
-# spt = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=Config.client_id, client_secret=Config.client_secret,
-#                                                 redirect_uri=Config.redirect_uri))
 
-
-class SpotifyUtils():
+class SpotifyUtils:
+    """
+    Class for making requests to Spotify API
+    """
     def __init__(self, client_id=Config.client_id, client_secret=Config.client_secret,
                  redirect_uri=Config.redirect_uri):
         self.client_id = client_id
@@ -18,6 +18,7 @@ class SpotifyUtils():
                                                              redirect_uri=self.redirect_uri))
 
     def get_albums_id(self, ids):
+        """Get albums id"""
         album_ids = []
         results = self.spt.artist_albums(ids)
         for album in results['items']:
@@ -25,6 +26,7 @@ class SpotifyUtils():
         return album_ids
 
     def get_album_songs_id(self, ids):
+        """Get id of song in album"""
         song_ids = []
         results = self.spt.album_tracks(ids, offset=0)
         for songs in results['items']:
@@ -32,6 +34,7 @@ class SpotifyUtils():
         return song_ids
 
     def get_songs_features(self, ids):
+        """Get features of song"""
         meta = self.spt.track(ids)
         features = self.spt.audio_features(ids)
 
@@ -66,6 +69,7 @@ class SpotifyUtils():
         return track, columns
 
     def download_albums(self, music_id, artist=False):
+        """Download albums"""
         if artist:
             ids_album = self.get_albums_id(music_id)
         else:
@@ -94,6 +98,7 @@ class SpotifyUtils():
         return tracks, columns
 
     def download_playlist(self, id_playlist, n_songs):
+        """Download playlist"""
         songs_id = []
         tracks = columns = []
 
