@@ -28,7 +28,7 @@ def predict_mood(id_song):
     pip.fit(X2, encoded_y)
 
     # Obtain the features of the song
-    preds = sp_utils.get_songs_features(id_song)
+    preds = sp_utils.get_song(id_song)
     # Pre-process the features to input the Model
     preds_features = np.array(preds[0][6:-2]).reshape(-1, 1).T
 

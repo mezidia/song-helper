@@ -1,6 +1,4 @@
-import time
-import spotipy
-from spotipy.oauth2 import SpotifyOAuth
+import tekore as tk
 from .config import Config
 
 
@@ -14,108 +12,66 @@ class SpotifyUtils:
         self.client_secret = client_secret
         self.redirect_uri = redirect_uri
         # Credentials to access the Spotify Music Data
-        self.spt = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=self.client_id, client_secret=self.client_secret,
-                                                             redirect_uri=self.redirect_uri))
+        self.app_token = tk.request_client_token(self.client_id, self.client_secret)
+        self.spt = tk.Spotify(self.app_token)
 
     def get_albums_id(self, ids):
         """Get albums id"""
-        album_ids = []
-        results = self.spt.artist_albums(ids)
-        for album in results['items']:
-            album_ids.append(album['id'])
-        return album_ids
+        pass
 
     def get_album_songs_id(self, ids):
         """Get id of song in album"""
-        song_ids = []
-        results = self.spt.album_tracks(ids, offset=0)
-        for songs in results['items']:
-            song_ids.append(songs['id'])
-        return song_ids
+        pass
 
-    def get_songs_features(self, ids):
+    def get_song_meta(self, ids):
+        info = self.spt.track(ids)
+        return {
+            'name': info.name,
+            'album': info.album.name,
+            'artists': [artist.name for artist in info.artists],
+            'release_date': info.album.release_date,
+            'length': info.duration_ms,
+            'popularity': info.popularity,
+            'id': info.id,
+        }
+
+    def get_song_analise(self, ids):
+        pass
+
+    def get_song_features(self, ids):
+        features = self.spt.track_audio_features(ids)
+        return {
+            'acousticness': features.acousticness,
+            'danceability': features.danceability,
+            'energy': features.energy,
+            'instrumentalness': features.instrumentalness,
+            'liveness': features.liveness,
+            'valence': features.valence,
+            'loudness': features.loudness,
+            'speechiness': features.speechiness,
+            'tempo': features.tempo,
+            'key': features.key,
+            'time_signature': features.time_signature,
+        }
+
+    def get_song(self, ids):
         """Get features of song"""
-        meta = self.spt.track(ids)
-        features = self.spt.audio_features(ids)
+        meta = self.get_song_meta(ids)
+        features = self.get_song_features(ids)
 
-        # meta
-        name = meta['name']
-        album = meta['album']['name']
-        artist = meta['album']['artists'][0]['name']
-        release_date = meta['album']['release_date']
-        length = meta['duration_ms']
-        popularity = meta['popularity']
-        ids = meta['id']
-
-        # features
-        acousticness = features[0]['acousticness']
-        danceability = features[0]['danceability']
-        energy = features[0]['energy']
-        instrumentalness = features[0]['instrumentalness']
-        liveness = features[0]['liveness']
-        valence = features[0]['valence']
-        loudness = features[0]['loudness']
-        speechiness = features[0]['speechiness']
-        tempo = features[0]['tempo']
-        key = features[0]['key']
-        time_signature = features[0]['time_signature']
-
-        track = [name, album, artist, ids, release_date, popularity, length, danceability, acousticness,
-                 energy, instrumentalness, liveness, valence, loudness, speechiness, tempo, key, time_signature]
-        columns = ['name', 'album', 'artist', 'id', 'release_date', 'popularity', 'length', 'danceability',
-                   'acousticness',
-                   'energy', 'instrumentalness',
-                   'liveness', 'valence', 'loudness', 'speechiness', 'tempo', 'key', 'time_signature']
-        return track, columns
+        # track = [name, album, artist, ids, release_date, popularity, length, danceability, acousticness,
+        #          energy, instrumentalness, liveness, valence, loudness, speechiness, tempo, key, time_signature]
+        # columns = ['name', 'album', 'artist', 'id', 'release_date', 'popularity', 'length', 'danceability',
+        #            'acousticness',
+        #            'energy', 'instrumentalness',
+        #            'liveness', 'valence', 'loudness', 'speechiness', 'tempo', 'key', 'time_signature']
+        # return track, columns
+        return [*meta.items(), *features.items()]
 
     def download_albums(self, music_id, artist=False):
         """Download albums"""
-        if artist:
-            ids_album = self.get_albums_id(music_id)
-        else:
-            if type(music_id) == list:
-                ids_album = music_id
-            elif type(music_id) == str:
-                ids_album = list([music_id])
-
-        tracks = columns = []
-        for ids in ids_album:
-            # Obtener Ids de canciones en album
-            song_ids = self.get_album_songs_id(ids=ids)
-            # Obtener feautres de canciones en album
-            ids2 = song_ids
-
-            print(f'Album Length: {len(song_ids)}')
-
-            time.sleep(.6)
-            track, columns = self.get_songs_features(ids2)
-            tracks.append(track)
-
-            print(f'Song Added: {track[0]} By {track[2]} from the album {track[1]}')
-
-        print('Music Downloaded!')
-
-        return tracks, columns
+        pass
 
     def download_playlist(self, id_playlist, n_songs):
         """Download playlist"""
-        songs_id = []
-        tracks = columns = []
-
-        for i in range(0, n_songs, 100):
-            playlist = self.spt.playlist_items(id_playlist, limit=100, offset=i)
-
-            for songs in playlist['items']:
-                songs_id.append(songs['track']['id'])
-
-        counter = 1
-        for ids in songs_id:
-            time.sleep(.6)
-            track, columns = self.get_songs_features(ids)
-            tracks.append(track)
-
-            print(f'Song {counter} Added:')
-            print(f'{track[0]} By {track[2]} from the album {track[1]}')
-            counter += 1
-
-        return tracks, columns
+        pass
