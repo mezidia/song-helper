@@ -8,10 +8,12 @@ from .utils import SpotifyUtils
 class TestSpotifyUtils(TestCase):
     def setUp(self) -> None:
         self.util_obj = SpotifyUtils()
+        self.util_obj_1 = SpotifyUtils('test_id', 'test_secret', 'test_uri')
 
     def test_creation(self):
         """Our object must be an instance of SpotifyUtils class"""
         self.assertIsInstance(self.util_obj, SpotifyUtils)
+        self.assertIsInstance(self.util_obj_1, SpotifyUtils)
 
     def test_default_fields(self):
         """If we do not set params in constructor, they must be set as default. And test their types"""
@@ -23,6 +25,20 @@ class TestSpotifyUtils(TestCase):
         self.assertIsInstance(self.util_obj.client_secret, str)
         self.assertIsNotNone(self.util_obj.client_id)
         self.assertIsInstance(self.util_obj.client_id, str)
+
+    def test_custom_fields(self):
+        """If we set params in constructor, they must not be set as default. And test their types and values"""
+        self.assertIsNotNone(self.util_obj_1.spt)
+        self.assertIsInstance(self.util_obj_1.spt, spotipy.Spotify)
+        self.assertIsNotNone(self.util_obj_1.redirect_uri)
+        self.assertIsInstance(self.util_obj_1.redirect_uri, str)
+        self.assertEqual(self.util_obj_1.redirect_uri, 'test_uri')
+        self.assertIsNotNone(self.util_obj_1.client_secret)
+        self.assertIsInstance(self.util_obj_1.client_secret, str)
+        self.assertEqual(self.util_obj_1.client_secret, 'test_secret')
+        self.assertIsNotNone(self.util_obj_1.client_id)
+        self.assertIsInstance(self.util_obj_1.client_id, str)
+        self.assertEqual(self.util_obj_1.client_id, 'test_id')
 
 
     # def test_get_albums_id(self):
