@@ -40,6 +40,15 @@ class TestSpotifyUtils(TestCase):
         self.assertIsInstance(self.util_obj_1.client_id, str)
         self.assertEqual(self.util_obj_1.client_id, 'test_id')
 
+    def test_get_song_features_method(self):
+        """Test getting features from the song"""
+        self.assertIsNotNone(self.util_obj.get_songs_features('4iLqG9SeJSnt0cSPICSjxv'))
+        self.assertIsNotNone(self.util_obj_1.get_songs_features('4iLqG9SeJSnt0cSPICSjxv'))
+        self.assertEqual(len(self.util_obj.get_songs_features('4iLqG9SeJSnt0cSPICSjxv')), 2)
+        self.assertIsInstance(self.util_obj.get_songs_features('4iLqG9SeJSnt0cSPICSjxv'), tuple)
+        self.assertIsInstance(self.util_obj.get_songs_features('4iLqG9SeJSnt0cSPICSjxv')[0], list)
+        self.assertIsInstance(self.util_obj.get_songs_features('4iLqG9SeJSnt0cSPICSjxv')[1], list)
+
 
     # def test_get_albums_id(self):
     #     self.fail()
