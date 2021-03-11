@@ -298,3 +298,4 @@ modules.xml
 # pytype static type analyzer
 
 # profiling data
+.vscode/settings.json
