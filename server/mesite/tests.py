@@ -59,5 +59,5 @@ class SongModelTest(TestCase):
         self.assertEquals(song.name, 'Test name')
         self.assertIsInstance(song.energy, float)
         self.assertEquals(song.liveness, 1.)
-        self.assertIsInstance(song.key, int)
-        self.assertEquals(song.time_signature, 0)
+    self.assertIsInstance(song.key, float)
+    self.assertEquals(song.time_signature, 0)
