@@ -93,6 +93,7 @@ class TestSpotifyUtils(TestCase):
         self.skipTest('Not ready')
 
     def test_get_song_analise(self):
+        """Test analysing the song"""
         song_analise = self.util_obj.get_song_analise('6l7lX8hJXVIUyPrTaabpqk')
         song_analise_1 = self.util_obj_1.get_song_analise('1fipvP2zmef6vN2IwXfJhY')
         self.assertIsNotNone(song_analise)
@@ -113,6 +114,7 @@ class TestSpotifyUtils(TestCase):
         self.assertIsInstance(song_analise_1['segments'], tk.model.ModelList)
 
     def test_get_song(self):
+        """Test getting the song"""
         song = self.util_obj.get_song('6l7lX8hJXVIUyPrTaabpqk')
         song_1 = self.util_obj_1.get_song('1fipvP2zmef6vN2IwXfJhY')
         self.assertIsNotNone(song)
@@ -135,6 +137,7 @@ class TestSpotifyUtils(TestCase):
         self.skipTest('Not ready')
 
     def test_get_album_songs(self):
+        """Test get songs from album"""
         songs = self.util_obj.get_album_songs('4GRRGsQBwwd2kKaEXZqVNd')
         songs_1 = self.util_obj_1.get_album_songs('5f6Eu9QtujgGggq5qbbycV')
         self.assertIsNotNone(songs)
@@ -153,6 +156,7 @@ class TestSpotifyUtils(TestCase):
         self.assertIsInstance(songs_1['total'], int)
 
     def test_get_artist(self):
+        """Test getting the artist"""
         artist = self.util_obj.get_artist('4dwdTW1Lfiq0cM8nBAqIIz')
         artist_1 = self.util_obj_1.get_artist('10exVja0key0uqUkk6LJRT')
         self.assertIsNotNone(artist)
