@@ -139,6 +139,26 @@ class TestSpotifyUtils(TestCase):
         self.assertIsNotNone(songs_1['total'])
         self.assertIsInstance(songs_1['total'], int)
 
+    def test_get_artist(self):
+        artist = self.util_obj.get_artist('4dwdTW1Lfiq0cM8nBAqIIz')
+        artist_1 = self.util_obj_1.get_artist('10exVja0key0uqUkk6LJRT')
+        self.assertIsNotNone(artist)
+        self.assertIsNotNone(artist_1)
+        self.assertEqual(len(artist), 4)
+        self.assertEqual(len(artist_1), 4)
+        self.assertIsInstance(artist, dict)
+        self.assertIsInstance(artist_1, dict)
+        self.assertIsNotNone(artist['id'])
+        self.assertIsInstance(artist['id'], str)
+        self.assertIsNotNone(artist['popularity'])
+        self.assertIsInstance(artist['popularity'], int)
+        self.assertIsNotNone(artist_1['name'])
+        self.assertIsInstance(artist_1['name'], str)
+        self.assertIsNotNone(artist_1['genres'])
+        self.assertIsInstance(artist_1['genres'], list)
+        self.assertIsNotNone(artist['genres'][0])
+        self.assertIsInstance(artist_1['genres'][0], str)
+
     def tearDown(self) -> None:
         del self.util_obj
         del self.util_obj_1
