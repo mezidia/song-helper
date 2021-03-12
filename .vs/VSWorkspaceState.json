@@ -4,12 +4,13 @@
     "\\server",
     "\\server\\mesite",
     "\\server\\mesite\\migrations",
+    "\\server\\server",
     "\\server\\static",
     "\\server\\static\\css",
     "\\server\\templates",
     "\\server\\templates\\includes",
     "\\server\\templates\\mesite"
   ],
-  "SelectedNode": "\\server\\templates\\base.html",
+  "SelectedNode": "\\server\\mesite\\models.py",
   "PreviewInSolutionExplorer": false
 }

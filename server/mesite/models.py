@@ -28,8 +28,8 @@ class Song(models.Model):
     fields: name, artist, id, acousticness, danceability, energy, instrumentalness,
     liveness, valence, loudness, speechiness, tempo, key, time_signature, mood
     """
-    name = models.CharField('Name', blank=False, max_length=40)
-    artist = models.CharField('Artists', blank=False, max_length=20)
+    name = models.CharField('Name', blank=False, max_length=50)
+    artists = models.CharField('Artists', blank=False, max_length=50)
     song_id = models.CharField('Id', max_length=100, unique=True)
     acousticness = models.FloatField()
     danceability = models.FloatField()
@@ -40,8 +40,8 @@ class Song(models.Model):
     loudness = models.FloatField()
     speechiness = models.FloatField()
     tempo = models.FloatField()
-    key = models.IntegerField()
-    time_signature = models.IntegerField()
+    key = models.FloatField()
+    time_signature = models.FloatField()
     mood = models.ForeignKey(Mood, on_delete=models.CASCADE)
 
     def __str__(self) -> str:
