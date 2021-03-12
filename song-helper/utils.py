@@ -6,6 +6,7 @@ class SpotifyUtils:
     """
     Class for making requests to Spotify API
     """
+
     def __init__(self, client_id=Config.client_id, client_secret=Config.client_secret,
                  redirect_uri=Config.redirect_uri):
         self.client_id = client_id
@@ -111,6 +112,11 @@ class SpotifyUtils:
         #            'liveness', 'valence', 'loudness', 'speechiness', 'tempo', 'key', 'time_signature']
         # return track, columns
         return [*meta.items(), *features.items()]
+        # [('name', 'I’m Ready (with Demi Lovato)'), ('album', 'I’m Ready (with Demi Lovato)'),
+        #  ('artists', "['Sam Smith', 'Demi Lovato']"), ('release_date', '2020-04-16'), ('length', 200838.0),
+        #  ('popularity', 74.0), ('id', '1fipvP2zmef6vN2IwXfJhY'), ('acousticness', 0.00346), ('danceability', 0.501),
+        #  ('energy', 0.674), ('instrumentalness', 3.56e-05), ('liveness', 0.282), ('valence', 0.152),
+        #  ('loudness', -6.363), ('speechiness', 0.0408), ('tempo', 155.051), ('key', 5.0), ('time_signature', 4.0)]
 
     def download_albums(self, music_id, artist=False):
         """Download albums"""

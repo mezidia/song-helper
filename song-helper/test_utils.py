@@ -113,7 +113,20 @@ class TestSpotifyUtils(TestCase):
         self.assertIsInstance(song_analise_1['segments'], tk.model.ModelList)
 
     def test_get_song(self):
-        self.skipTest('Not ready')
+        song = self.util_obj.get_song('6l7lX8hJXVIUyPrTaabpqk')
+        song_1 = self.util_obj_1.get_song('1fipvP2zmef6vN2IwXfJhY')
+        self.assertIsNotNone(song)
+        self.assertIsNotNone(song_1)
+        self.assertEqual(len(song), 18)
+        self.assertEqual(len(song_1), 18)
+        self.assertIsInstance(song, list)
+        self.assertIsInstance(song_1, list)
+        self.assertIsNotNone(song[0])
+        self.assertIsInstance(song[0], tuple)
+        self.assertIsNotNone(song_1[-1])
+        self.assertIsInstance(song_1[-1], tuple)
+        self.assertEqual(song[0][0], 'name')
+        self.assertEqual(song_1[-1][0], 'time_signature')
 
     def test_download_albums(self):
         self.skipTest('Not ready')
