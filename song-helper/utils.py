@@ -28,10 +28,10 @@ class SpotifyUtils:
         return {
             'name': info.name,
             'album': info.album.name,
-            'artists': [artist.name for artist in info.artists],
+            'artists': str([artist.name for artist in info.artists]),
             'release_date': info.album.release_date,
-            'length': info.duration_ms,
-            'popularity': info.popularity,
+            'length': float(info.duration_ms),
+            'popularity': float(info.popularity),
             'id': info.id,
         }
 
@@ -41,17 +41,17 @@ class SpotifyUtils:
     def get_song_features(self, ids: str) -> dict:
         features = self.spt.track_audio_features(ids)
         return {
-            'acousticness': features.acousticness,
-            'danceability': features.danceability,
-            'energy': features.energy,
-            'instrumentalness': features.instrumentalness,
-            'liveness': features.liveness,
-            'valence': features.valence,
-            'loudness': features.loudness,
-            'speechiness': features.speechiness,
-            'tempo': features.tempo,
-            'key': features.key,
-            'time_signature': features.time_signature,
+            'acousticness': float(features.acousticness),
+            'danceability': float(features.danceability),
+            'energy': float(features.energy),
+            'instrumentalness': float(features.instrumentalness),
+            'liveness': float(features.liveness),
+            'valence': float(features.valence),
+            'loudness': float(features.loudness),
+            'speechiness': float(features.speechiness),
+            'tempo': float(features.tempo),
+            'key': float(features.key),
+            'time_signature': float(features.time_signature),
         }
 
     def get_song(self, ids: str) -> list:
