@@ -33,7 +33,7 @@ class SongModelTest(TestCase):
 
         Song.objects.create(
             name='Test name',
-            artist='Test artist',
+            artists='Test artist',
             song_id='12312dadav!231',
             acousticness=1.1,
             danceability=3123.321,
@@ -44,8 +44,8 @@ class SongModelTest(TestCase):
             loudness=123.3,
             speechiness=3123.123,
             tempo=123.1,
-            key=3123,
-            time_signature=0,
+            key=3123.0,
+            time_signature=0.0,
             mood=mood,
         )
 
