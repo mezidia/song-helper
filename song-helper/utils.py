@@ -35,8 +35,15 @@ class SpotifyUtils:
             'id': info.id,
         }
 
-    def get_song_analise(self, ids: str):
-        pass
+    def get_song_analise(self, ids: str) -> dict:
+        analise = self.spt.track_audio_analysis(ids)
+        return {
+            'bars': analise.bars,
+            'beats': analise.beats,
+            'sections': analise.sections,
+            'segments': analise.segments,
+            'tatums': analise.tatums,
+        }
 
     def get_song_features(self, ids: str) -> dict:
         features = self.spt.track_audio_features(ids)

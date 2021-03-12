@@ -93,7 +93,24 @@ class TestSpotifyUtils(TestCase):
         self.skipTest('Not ready')
 
     def test_get_song_analise(self):
-        self.skipTest('Not ready')
+        song_analise = self.util_obj.get_song_analise('6l7lX8hJXVIUyPrTaabpqk')
+        song_analise_1 = self.util_obj_1.get_song_analise('1fipvP2zmef6vN2IwXfJhY')
+        self.assertIsNotNone(song_analise)
+        self.assertIsNotNone(song_analise_1)
+        self.assertEqual(len(song_analise), 5)
+        self.assertEqual(len(song_analise_1), 5)
+        self.assertIsInstance(song_analise, dict)
+        self.assertIsInstance(song_analise_1, dict)
+        self.assertIsNotNone(song_analise['bars'])
+        self.assertIsInstance(song_analise['bars'], tk.model.ModelList)
+        self.assertIsNotNone(song_analise['sections'])
+        self.assertIsInstance(song_analise['sections'], tk.model.ModelList)
+        self.assertIsNotNone(song_analise['tatums'])
+        self.assertIsInstance(song_analise['tatums'], tk.model.ModelList)
+        self.assertIsNotNone(song_analise_1['beats'])
+        self.assertIsInstance(song_analise_1['beats'], tk.model.ModelList)
+        self.assertIsNotNone(song_analise_1['segments'])
+        self.assertIsInstance(song_analise_1['segments'], tk.model.ModelList)
 
     def test_get_song(self):
         self.skipTest('Not ready')
