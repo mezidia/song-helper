@@ -121,6 +121,24 @@ class TestSpotifyUtils(TestCase):
     def test_download_playlist(self):
         self.skipTest('Not ready')
 
+    def test_get_album_songs(self):
+        songs = self.util_obj.get_album_songs('4GRRGsQBwwd2kKaEXZqVNd')
+        songs_1 = self.util_obj_1.get_album_songs('5f6Eu9QtujgGggq5qbbycV')
+        self.assertIsNotNone(songs)
+        self.assertIsNotNone(songs_1)
+        self.assertEqual(len(songs), 2)
+        self.assertEqual(len(songs_1), 2)
+        self.assertIsInstance(songs, dict)
+        self.assertIsInstance(songs_1, dict)
+        self.assertIsNotNone(songs['tracks'])
+        self.assertIsInstance(songs['tracks'], tk.model.ModelList)
+        self.assertIsNotNone(songs_1['tracks'])
+        self.assertIsInstance(songs_1['tracks'], tk.model.ModelList)
+        self.assertIsNotNone(songs['total'])
+        self.assertIsInstance(songs['total'], int)
+        self.assertIsNotNone(songs_1['total'])
+        self.assertIsInstance(songs_1['total'], int)
+
     def tearDown(self) -> None:
         del self.util_obj
         del self.util_obj_1

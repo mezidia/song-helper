@@ -15,13 +15,18 @@ class SpotifyUtils:
         self.app_token = tk.request_client_token(self.client_id, self.client_secret)
         self.spt = tk.Spotify(self.app_token)
 
-    def get_albums_id(self, ids: str):
+    def get_artist_albums(self, ids: str):
         """Get albums id"""
+        albums = self.spt.artist_albums(ids)
         pass
 
-    def get_album_songs_id(self, ids: str):
-        """Get id of song in album"""
-        pass
+    def get_album_songs(self, ids: str):
+        """Get songs of an album"""
+        tracks = self.spt.album_tracks(ids, limit=50)
+        return {
+            'tracks': tracks.items,
+            'total': tracks.total,
+        }
 
     def get_song_meta(self, ids: str) -> dict:
         info = self.spt.track(ids)
