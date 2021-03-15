@@ -10,62 +10,61 @@ from .model import base_model
 sp_utils = SpotifyUtils()
 
 
-def prepare_data(data: list) -> list:
-    """
-    Prepare data from custom to NumPy
-    :param data: some song features
-    :return: song features without keys
-    """
-    result = []
-    for element in data:
-        result.append(element[1])
-    return result
+class PredictMood:
+    def prepare_data(self, data: list) -> list:
+        """
+        Prepare data from custom to NumPy
+        :param data: some song features
+        :return: song features without keys
+        """
+        result = []
+        for element in data:
+            result.append(element[1])
+        return result
 
+    def prepare_artists(self, string: str) -> str:
+        """
+        Prepare string from custom to readable
+        :param string: custom artists string
+        :return: string without elements of lists
+        """
+        result = ''
+        bad_chars = ['"', '[', ']']
+        for char in string:
+            if char not in bad_chars:
+                result += char
+            else:
+                continue
+        return result
 
-def prepare_artists(string: str) -> str:
-    """
-    Prepare string from custom to readable
-    :param string: custom artists string
-    :return: string without elements of lists
-    """
-    result = ''
-    bad_chars = ['"', '[', ']']
-    for char in string:
-        if char not in bad_chars:
-            result += char
-        else:
-            continue
-    return result
+    def predict_mood(self, id_song: str) -> str:
+        df = pd.read_csv('data/data_moods.csv')
+        col_features = df.columns[6:-3]
+        X2 = np.array(df[col_features])
+        Y = df['mood']
+        # Encodethe categories
+        encoder = LabelEncoder()
+        encoder.fit(Y)
+        encoded_y = encoder.transform(Y)
+        target = pd.DataFrame({'mood': df['mood'].tolist(), 'encode': encoded_y}).drop_duplicates().sort_values(['encode'],
+                                                                                                                ascending=True)
+        # Join the model and the scaler in a Pipeline
+        pip = Pipeline([('minmaxscaler', MinMaxScaler()), ('keras', KerasClassifier(build_fn=base_model, epochs=300,
+                                                                                    batch_size=200, verbose=0))])
+        # Fit the Pipeline
+        pip.fit(X2, encoded_y)
 
+        # Obtain the features of the song
+        preds = sp_utils.get_song(id_song)
+        # Pre-process the features to input the Model
+        preds_features = np.array(self.prepare_data(preds[6:-2])).reshape(-1, 1).T
 
-def predict_mood(id_song):
-    df = pd.read_csv('data/data_moods.csv')
-    col_features = df.columns[6:-3]
-    X2 = np.array(df[col_features])
-    Y = df['mood']
-    # Encodethe categories
-    encoder = LabelEncoder()
-    encoder.fit(Y)
-    encoded_y = encoder.transform(Y)
-    target = pd.DataFrame({'mood': df['mood'].tolist(), 'encode': encoded_y}).drop_duplicates().sort_values(['encode'],
-                                                                                                            ascending=True)
-    # Join the model and the scaler in a Pipeline
-    pip = Pipeline([('minmaxscaler', MinMaxScaler()), ('keras', KerasClassifier(build_fn=base_model, epochs=300,
-                                                                                batch_size=200, verbose=0))])
-    # Fit the Pipeline
-    pip.fit(X2, encoded_y)
+        # Predict the features of the song
+        results = pip.predict(preds_features)
 
-    # Obtain the features of the song
-    preds = sp_utils.get_song(id_song)
-    # Pre-process the features to input the Model
-    preds_features = np.array(prepare_data(preds[6:-2])).reshape(-1, 1).T
+        mood = np.array(target['mood'][target['encode'] == int(results)])
+        name_song = preds[0][1]
+        artist = self.prepare_artists(preds[2][1])
 
-    # Predict the features of the song
-    results = pip.predict(preds_features)
-
-    mood = np.array(target['mood'][target['encode'] == int(results)])
-    name_song = preds[0][1]
-    artist = prepare_artists(preds[2][1])
-
-    return print("{0} by {1} is a {2} song".format(name_song, artist, mood[0].upper()))
-    # print(f"{name_song} by {artist} is a {mood[0].upper()} song")
+        return print("{0} by {1} is a {2} song".format(name_song, artist, mood[0].upper()))
+        # print(f"{name_song} by {artist} is a {mood[0].upper()} song")
