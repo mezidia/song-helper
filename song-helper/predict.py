@@ -37,8 +37,8 @@ class PredictMood:
                 continue
         return result
 
-    def predict_mood(self, id_song: str) -> str:
-        df = pd.read_csv('data/data_moods.csv')
+    def predict_mood(self, id_song: str, path: str) -> str:
+        df = pd.read_csv(path)
         col_features = df.columns[6:-3]
         X2 = np.array(df[col_features])
         Y = df['mood']
@@ -66,8 +66,8 @@ class PredictMood:
         name_song = preds[0][1]
         artist = self.prepare_artists(preds[2][1])
 
-        return print("{0} by {1} is a {2} song".format(name_song, artist, mood[0].upper()))
+        return "{0} by {1} is a {2} song".format(name_song, artist, mood[0].upper())
         # print(f"{name_song} by {artist} is a {mood[0].upper()} song")
 
 # obj = PredictMood()
-# obj.predict_mood('4Km5HrUvYTaSUfiSGPJeQR')
+# obj.predict_mood('4Km5HrUvYTaSUfiSGPJeQR', 'data/data_moods.csv')
