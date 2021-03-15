@@ -68,3 +68,6 @@ class PredictMood:
 
         return print("{0} by {1} is a {2} song".format(name_song, artist, mood[0].upper()))
         # print(f"{name_song} by {artist} is a {mood[0].upper()} song")
+
+# obj = PredictMood()
+# obj.predict_mood('4Km5HrUvYTaSUfiSGPJeQR')
