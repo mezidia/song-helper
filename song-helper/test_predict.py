@@ -20,7 +20,11 @@ class TestPredictMood(TestCase):
         self.assertEqual(self.predict.prepare_data(data), expected)
 
     def test_prepare_artists(self):
-        self.skipTest('Not ready')
+        """Returned string must be without list symbols"""
+        data = self.spt.get_song(self.id)[2][1]
+        expected = "'Migos', 'Lil Uzi Vert'"
+        self.assertIsNotNone(self.predict.prepare_artists(data))
+        self.assertEqual(self.predict.prepare_artists(data), expected)
 
     def test_predict_mood(self):
         self.skipTest('Not ready')
