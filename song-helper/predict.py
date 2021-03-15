@@ -5,7 +5,7 @@ from sklearn.preprocessing import MinMaxScaler, LabelEncoder
 from keras.wrappers.scikit_learn import KerasClassifier
 
 from .utils import SpotifyUtils
-from .model import base_model
+from .model import make_model
 
 sp_utils = SpotifyUtils()
 
@@ -60,7 +60,7 @@ class PredictMood:
         target = pd.DataFrame({'mood': df['mood'].tolist(), 'encode': encoded_y}).drop_duplicates().sort_values(['encode'],
                                                                                                                 ascending=True)
         # Join the model and the scaler in a Pipeline
-        pip = Pipeline([('minmaxscaler', MinMaxScaler()), ('keras', KerasClassifier(build_fn=base_model, epochs=300,
+        pip = Pipeline([('minmaxscaler', MinMaxScaler()), ('keras', KerasClassifier(build_fn=make_model, epochs=300,
                                                                                     batch_size=200, verbose=0))])
         # Fit the Pipeline
         pip.fit(X2, encoded_y)

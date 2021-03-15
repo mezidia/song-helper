@@ -2,7 +2,7 @@ from keras.models import Sequential
 from keras.layers import Dense
 
 
-def base_model():
+def make_model():
     # Create the model
     model = Sequential()
     # Add 1 layer with 8 nodes,input of 4 dim with relu function
