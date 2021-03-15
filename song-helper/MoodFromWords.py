@@ -2,6 +2,8 @@
 import pandas as pd
 import spacy as sp
 from spacy.lang.en.stop_words import STOP_WORDS
+# Creating a Spacy Parser
+from spacy.lang.en import English
 # ML Packages
 from sklearn.feature_extraction.text import CountVectorizer,TfidfVectorizer
 from sklearn.metrics import accuracy_score
@@ -53,3 +55,12 @@ for word in docx:
 # Stop words and Punctuation In List Comprehension
 [ word for word in docx if word.is_stop == False and not word.is_punct ]
 
+punctuations = string.punctuation
+
+parser = English()
+
+def spacy_tokenizer(sentence):
+    mytokens = parser(sentence)
+    mytokens = [ word.lemma_.lower().strip() if word.lemma_ != "-PRON-" else word.lower_ for word in mytokens ]
+    mytokens = [ word for word in mytokens if word not in stopwords and word not in punctuations ]
+    return mytokens
