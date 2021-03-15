@@ -8,6 +8,8 @@ from sklearn.metrics import accuracy_score
 from sklearn.base import TransformerMixin
 from sklearn.pipeline import Pipeline
 from sklearn.svm import LinearSVC
+# Use the punctuations of string module
+import string
 
 # Load the spacy model that you have installed
 nlp = sp.load('en_core_web_md')
@@ -38,4 +40,16 @@ print("\nLemma that are not pronouns:\n")
 for word in docx:
     if word.lemma_ != "-PRON-":
         print(word.lemma_.lower().strip())
+
+# List Comprehensions of our Lemma
+[word.lemma_.lower().strip() if word.lemma_ != "-PRON-" else word.lower_ for word in docx]
+
+# Filtering out Stopwords and Punctuations
+for word in docx:
+    if word.is_stop == False and not word.is_punct:
+#     if word.is_stop != True and not word.is_punct:
+        print(word)
+
+# Stop words and Punctuation In List Comprehension
+[ word for word in docx if word.is_stop == False and not word.is_punct ]
 
