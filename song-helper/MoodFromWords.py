@@ -64,3 +64,17 @@ def spacy_tokenizer(sentence):
     mytokens = [ word.lemma_.lower().strip() if word.lemma_ != "-PRON-" else word.lower_ for word in mytokens ]
     mytokens = [ word for word in mytokens if word not in stopwords and word not in punctuations ]
     return mytokens
+
+# Custom transformer using spaCy
+class predictors(TransformerMixin):
+    def transform(self, X, **transform_params):
+        return [clean_text(text) for text in X]
+    def fit(self, X, y=None, **fit_params):
+        return self
+    def get_params(self, deep=True):
+        return {}
+
+# Basic function to clean the text
+def clean_text(text):
+    return text.strip().lower()
+
