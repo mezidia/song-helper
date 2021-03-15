@@ -10,6 +10,8 @@ from sklearn.metrics import accuracy_score
 from sklearn.base import TransformerMixin
 from sklearn.pipeline import Pipeline
 from sklearn.svm import LinearSVC
+# Splitting Data Set
+from sklearn.model_selection import train_test_split
 # Use the punctuations of string module
 import string
 
@@ -62,7 +64,7 @@ parser = English()
 def spacy_tokenizer(sentence):
     mytokens = parser(sentence)
     mytokens = [ word.lemma_.lower().strip() if word.lemma_ != "-PRON-" else word.lower_ for word in mytokens ]
-    mytokens = [ word for word in mytokens if word not in stopwords and word not in punctuations ]
+    mytokens = [ word for word in mytokens if word not in stopWords and word not in punctuations ]
     return mytokens
 
 # Custom transformer using spaCy
@@ -84,3 +86,15 @@ classifier = LinearSVC()
 
 # Using Tfidf
 tfvectorizer = TfidfVectorizer(tokenizer = spacy_tokenizer)
+
+# Features and Labels
+X = df['Utterance']
+ylabels = df['Emotion']
+
+X_train, X_test, y_train, y_test = train_test_split(X, ylabels, test_size=0.2, random_state=42)
+
+# Create the pipeline to clean, tokenize, vectorize, and classify
+pipe = Pipeline([("cleaner", predictors()),
+                ('vectorizer', vectorizer),
+                ('classifier', classifier)])
+
