@@ -78,3 +78,9 @@ class predictors(TransformerMixin):
 def clean_text(text):
     return text.strip().lower()
 
+# Vectorization
+vectorizer = CountVectorizer(tokenizer = spacy_tokenizer, ngram_range=(1,1))
+classifier = LinearSVC()
+
+# Using Tfidf
+tfvectorizer = TfidfVectorizer(tokenizer = spacy_tokenizer)
