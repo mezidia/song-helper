@@ -10,6 +10,34 @@ from .model import base_model
 sp_utils = SpotifyUtils()
 
 
+def prepare_data(data: list) -> list:
+    """
+    Prepare data from custom to NumPy
+    :param data: some song features
+    :return: song features without keys
+    """
+    result = []
+    for element in data:
+        result.append(element[1])
+    return result
+
+
+def prepare_artists(string: str) -> str:
+    """
+    Prepare string from custom to readable
+    :param string: custom artists string
+    :return: string without elements of lists
+    """
+    result = ''
+    bad_chars = ['"', '[', ']']
+    for char in string:
+        if char not in bad_chars:
+            result += char
+        else:
+            continue
+    return result
+
+
 def predict_mood(id_song):
     df = pd.read_csv('data/data_moods.csv')
     col_features = df.columns[6:-3]
@@ -30,14 +58,14 @@ def predict_mood(id_song):
     # Obtain the features of the song
     preds = sp_utils.get_song(id_song)
     # Pre-process the features to input the Model
-    preds_features = np.array(preds[0][6:-2]).reshape(-1, 1).T
+    preds_features = np.array(prepare_data(preds[6:-2])).reshape(-1, 1).T
 
     # Predict the features of the song
     results = pip.predict(preds_features)
 
     mood = np.array(target['mood'][target['encode'] == int(results)])
-    name_song = preds[0][0]
-    artist = preds[0][2]
+    name_song = preds[0][1]
+    artist = prepare_artists(preds[2][1])
 
     return print("{0} by {1} is a {2} song".format(name_song, artist, mood[0].upper()))
     # print(f"{name_song} by {artist} is a {mood[0].upper()} song")
