@@ -10,6 +10,12 @@ class TestSpotifyUtils(TestCase):
     def setUp(self) -> None:
         self.util_obj = SpotifyUtils()
         self.util_obj_1 = SpotifyUtils(os.getenv('CLIENT_ID'), os.getenv('CLIENT_SECRET'), os.getenv('REDIRECT_URI'))
+        self.id = '1fipvP2zmef6vN2IwXfJhY'
+        self.id_1 = '6l7lX8hJXVIUyPrTaabpqk'
+        self.album_id = '4GRRGsQBwwd2kKaEXZqVNd'
+        self.album_id_1 = '5f6Eu9QtujgGggq5qbbycV'
+        self.artist_id = '4dwdTW1Lfiq0cM8nBAqIIz'
+        self.artist_id_1 = '10exVja0key0uqUkk6LJRT'
 
     def test_creation(self):
         """Our object must be an instance of SpotifyUtils class"""
@@ -43,8 +49,8 @@ class TestSpotifyUtils(TestCase):
 
     def test_get_song_features_method(self):
         """Test getting features from the song"""
-        song_features = self.util_obj.get_song_features('1fipvP2zmef6vN2IwXfJhY')
-        song_features_1 = self.util_obj_1.get_song_features('6l7lX8hJXVIUyPrTaabpqk')
+        song_features = self.util_obj.get_song_features(self.id)
+        song_features_1 = self.util_obj_1.get_song_features(self.id_1)
         self.assertIsNotNone(song_features)
         self.assertIsNotNone(song_features_1)
         self.assertEqual(len(song_features), 11)
@@ -65,8 +71,8 @@ class TestSpotifyUtils(TestCase):
 
     def get_song_meta(self):
         """Test getting meta info from the song"""
-        song_info = self.util_obj.get_song_meta('6l7lX8hJXVIUyPrTaabpqk')
-        song_info_1 = self.util_obj_1.get_song_meta('1fipvP2zmef6vN2IwXfJhY')
+        song_info = self.util_obj.get_song_meta(self.id_1)
+        song_info_1 = self.util_obj_1.get_song_meta(self.id)
         self.assertIsNotNone(song_info)
         self.assertIsNotNone(song_info_1)
         self.assertEqual(len(song_info), 7)
@@ -94,8 +100,8 @@ class TestSpotifyUtils(TestCase):
 
     def test_get_song_analise(self):
         """Test analysing the song"""
-        song_analise = self.util_obj.get_song_analise('6l7lX8hJXVIUyPrTaabpqk')
-        song_analise_1 = self.util_obj_1.get_song_analise('1fipvP2zmef6vN2IwXfJhY')
+        song_analise = self.util_obj.get_song_analise(self.id_1)
+        song_analise_1 = self.util_obj_1.get_song_analise(self.id)
         self.assertIsNotNone(song_analise)
         self.assertIsNotNone(song_analise_1)
         self.assertEqual(len(song_analise), 5)
@@ -115,8 +121,8 @@ class TestSpotifyUtils(TestCase):
 
     def test_get_song(self):
         """Test getting the song"""
-        song = self.util_obj.get_song('6l7lX8hJXVIUyPrTaabpqk')
-        song_1 = self.util_obj_1.get_song('1fipvP2zmef6vN2IwXfJhY')
+        song = self.util_obj.get_song(self.id_1)
+        song_1 = self.util_obj_1.get_song(self.id)
         self.assertIsNotNone(song)
         self.assertIsNotNone(song_1)
         self.assertEqual(len(song), 18)
@@ -138,8 +144,8 @@ class TestSpotifyUtils(TestCase):
 
     def test_get_album_songs(self):
         """Test get songs from album"""
-        songs = self.util_obj.get_album_songs('4GRRGsQBwwd2kKaEXZqVNd')
-        songs_1 = self.util_obj_1.get_album_songs('5f6Eu9QtujgGggq5qbbycV')
+        songs = self.util_obj.get_album_songs(self.album_id)
+        songs_1 = self.util_obj_1.get_album_songs(self.album_id_1)
         self.assertIsNotNone(songs)
         self.assertIsNotNone(songs_1)
         self.assertEqual(len(songs), 2)
@@ -157,8 +163,8 @@ class TestSpotifyUtils(TestCase):
 
     def test_get_artist(self):
         """Test getting the artist"""
-        artist = self.util_obj.get_artist('4dwdTW1Lfiq0cM8nBAqIIz')
-        artist_1 = self.util_obj_1.get_artist('10exVja0key0uqUkk6LJRT')
+        artist = self.util_obj.get_artist(self.artist_id)
+        artist_1 = self.util_obj_1.get_artist(self.artist_id_1)
         self.assertIsNotNone(artist)
         self.assertIsNotNone(artist_1)
         self.assertEqual(len(artist), 4)
@@ -179,3 +185,9 @@ class TestSpotifyUtils(TestCase):
     def tearDown(self) -> None:
         del self.util_obj
         del self.util_obj_1
+        del self.id
+        del self.id_1
+        del self.album_id
+        del self.album_id_1
+        del self.artist_id
+        del self.artist_id_1
