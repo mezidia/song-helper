@@ -30,7 +30,7 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics --exclude bot,server
     - name: Test with unittests
       run: |
-        python -m unittest -v song-helper
+        python -m unittest -v song-helper/song-helper
       env:
         CLIENT_ID: ${{ secrets.CLIENT_ID }}
         CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
