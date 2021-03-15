@@ -11,7 +11,8 @@ sp_utils = SpotifyUtils()
 
 
 class PredictMood:
-    def prepare_data(self, data: list) -> list:
+    @staticmethod
+    def prepare_data(data: list) -> list:
         """
         Prepare data from custom to NumPy
         :param data: some song features
@@ -22,7 +23,8 @@ class PredictMood:
             result.append(element[1])
         return result
 
-    def prepare_artists(self, string: str) -> str:
+    @staticmethod
+    def prepare_artists(string: str) -> str:
         """
         Prepare string from custom to readable
         :param string: custom artists string
@@ -38,6 +40,12 @@ class PredictMood:
         return result
 
     def predict_mood(self, id_song: str, path: str) -> str:
+        """
+        Main function to predict the mood
+        :param id_song: id of song from Spotify
+        :param path: path to dataset
+        :return: string with name of song and it mood
+        """
         df = pd.read_csv(path)
         col_features = df.columns[6:-3]
         X2 = np.array(df[col_features])
