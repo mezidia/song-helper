@@ -98,3 +98,12 @@ pipe = Pipeline([("cleaner", predictors()),
                 ('vectorizer', vectorizer),
                 ('classifier', classifier)])
 
+# Fit our data
+pipe.fit(X_train,y_train)
+
+# Predicting with a test dataset
+sample_prediction = pipe.predict(X_test)
+
+# Prediction Results
+for (sample,pred) in zip(X_test,sample_prediction):
+    print(sample,"Prediction=>",pred)
