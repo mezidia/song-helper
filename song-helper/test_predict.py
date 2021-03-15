@@ -29,6 +29,6 @@ class TestPredictMood(TestCase):
     def test_predict_mood(self):
         """Test the output from function that predicts the mood"""
         output = self.predict.predict_mood(self.id, 'song-helper/data/data_moods.csv')
-        expected = "Bad and Boujee (feat. Lil Uzi Vert) by 'Migos', 'Lil Uzi Vert' is a ENERGETIC song"
+        expected = "Bad and Boujee (feat. Lil Uzi Vert) by 'Migos', 'Lil Uzi Vert' is a HAPPY song"
         self.assertIsNotNone(output)
         self.assertEqual(output, expected)
