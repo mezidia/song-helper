@@ -11,6 +11,9 @@ sp_utils = SpotifyUtils()
 
 
 class PredictMood:
+    """
+    Class with the predicting the mood method
+    """
     @staticmethod
     def prepare_data(data: list) -> list:
         """
