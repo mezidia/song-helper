@@ -53,10 +53,10 @@ class SpotifyUtils:
             'name': info.name,
             'album': info.album.name,
             'artists': str([artist.name for artist in info.artists]),
-            'release_date': info.album.release_date,
-            'length': float(info.duration_ms),
-            'popularity': float(info.popularity),
             'id': info.id,
+            'release_date': info.album.release_date,
+            'popularity': float(info.popularity),
+            'length': float(info.duration_ms),
         }
 
     def get_song_analise(self, song_id: str) -> dict:
@@ -82,8 +82,8 @@ class SpotifyUtils:
         """
         features = self.spt.track_audio_features(song_id)
         return {
-            'acousticness': float(features.acousticness),
             'danceability': float(features.danceability),
+            'acousticness': float(features.acousticness),
             'energy': float(features.energy),
             'instrumentalness': float(features.instrumentalness),
             'liveness': float(features.liveness),
@@ -125,3 +125,7 @@ class SpotifyUtils:
     def download_playlist(self, id_playlist, n_songs):
         """Download playlist"""
         pass
+
+
+# obj = SpotifyUtils()
+# print(obj.get_song('4Km5HrUvYTaSUfiSGPJeQR'))
