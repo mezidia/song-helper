@@ -1,21 +1,18 @@
 """Search song on YouTube"""
-import requests
-from bs4 import BeautifulSoup
-
-URL = 'https://www.youtube.com/results?search_query=python'
-HEADERS = {
-    'user-agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.82 Mobile Safari/537.36',
-    'accept': '*/*'}
+from youtubesearchpython import VideosSearch
 
 
-def get_html(url: str, params=None):
-    response = requests.get(url, headers=HEADERS, params=params)
-    return response
+def search_youtube(value: str, parameters=None) -> dict:
+    search = VideosSearch(value, **parameters)
+    result = search.result()['result'][0]
+    return {
+        'title': result['title'],
+        'duration': result['duration'],
+        'views': result['viewCount']['short'],
+        'link': result['link'],
+    }
 
 
-def parse():
-    html = get_html(URL)
-    print(html)
-
-
-parse()
+# params = {'limit': 1}
+# r = search_youtube('python', params)
+# print(r)
