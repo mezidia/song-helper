@@ -42,12 +42,12 @@ class PredictMood:
                 continue
         return result
 
-    def predict_mood(self, id_song: str, path: str) -> str:
+    def predict_mood(self, id_song: str, path: str) -> dict:
         """
         Main function to predict the mood
         :param id_song: id of song from Spotify
         :param path: path to dataset
-        :return: string with name of song and it mood
+        :return: dictionary with name of song, artists and it mood
         """
         df = pd.read_csv(path)
         col_features = df.columns[6:-3]
@@ -76,9 +76,12 @@ class PredictMood:
         mood = np.array(target['mood'][target['encode'] == int(results)])
         name_song = preds[0][1]
         artist = self.prepare_artists(preds[2][1])
-
-        return "{0} by {1} is a {2} song".format(name_song, artist, mood[0].upper())
-        # print(f"{name_song} by {artist} is a {mood[0].upper()} song")
+        return {
+            'name': name_song,
+            'artists': artist,
+            'mood': mood[0],
+        }
+        # "{0} by {1} is a {2} song".format(name_song, artist, mood[0].upper())
 
 # obj = PredictMood()
 # obj.predict_mood('4Km5HrUvYTaSUfiSGPJeQR', 'data/data_moods.csv')
