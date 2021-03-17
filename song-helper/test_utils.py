@@ -69,7 +69,7 @@ class TestSpotifyUtils(TestCase):
         self.assertIsNotNone(song_features_1['speechiness'])
         self.assertIsNotNone(song_features_1['key'])
 
-    def get_song_meta(self):
+    def test_get_song_meta(self):
         """Test getting meta info from the song"""
         song_info = self.util_obj.get_song_meta(self.id_1)
         song_info_1 = self.util_obj_1.get_song_meta(self.id)
