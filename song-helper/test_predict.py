@@ -37,3 +37,8 @@ class TestPredictMood(TestCase):
         self.assertEqual(output['name'], expected_name)
         self.assertEqual(output['artists'], expected_artist)
         self.assertEqual(output['mood'], expected_mood)
+
+    def tearDown(self) -> None:
+        del self.predict
+        del self.spt
+        del self.id
