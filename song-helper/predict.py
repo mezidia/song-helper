@@ -15,32 +15,32 @@ class PredictMood:
     Class with the predicting the mood method
     """
     @staticmethod
-    def prepare_data(data: list) -> list:
+    def prepare_data(song_features: list) -> list:
         """
         Prepare data from custom to NumPy
-        :param data: some song features
+        :param song_features: some song features
         :return: song features without keys
         """
-        result = []
-        for element in data:
-            result.append(element[1])
-        return result
+        main_song_features = []
+        for element in song_features:
+            main_song_features.append(element[1])
+        return main_song_features
 
     @staticmethod
-    def prepare_artists(string: str) -> str:
+    def prepare_artists(artists_string: str) -> str:
         """
         Prepare string from custom to readable
-        :param string: custom artists string
+        :param artists_string: custom artists string
         :return: string without elements of lists
         """
-        result = ''
+        readable_string = ''
         bad_chars = ['"', '[', ']']
-        for char in string:
+        for char in artists_string:
             if char not in bad_chars:
-                result += char
+                readable_string += char
             else:
                 continue
-        return result
+        return readable_string
 
     def predict_mood(self, id_song: str, path: str) -> dict:
         """
@@ -49,33 +49,35 @@ class PredictMood:
         :param path: path to dataset
         :return: dictionary with name of song, artists and it mood
         """
-        df = pd.read_csv(path)
-        col_features = df.columns[6:-3]
-        X2 = np.array(df[col_features])
-        Y = df['mood']
-        # Encodethe categories
+        # Read song_features
+        csv_data = pd.read_csv(path)
+        # Define the features and the target
+        col_features = csv_data.columns[6:-3]
+        x_points = np.array(csv_data[col_features])
+        y_points = csv_data['mood']
+        # Encode the labels (targets)
         encoder = LabelEncoder()
-        encoder.fit(Y)
-        encoded_y = encoder.transform(Y)
-        target = pd.DataFrame({'mood': df['mood'].tolist(), 'encode': encoded_y}).drop_duplicates().sort_values(['encode'],
+        encoder.fit(y_points)
+        encoded_y = encoder.transform(y_points)
+        target = pd.DataFrame({'mood': csv_data['mood'].tolist(), 'encode': encoded_y}).drop_duplicates().sort_values(['encode'],
                                                                                                                 ascending=True)
         # Join the model and the scaler in a Pipeline
         pip = Pipeline([('minmaxscaler', MinMaxScaler()), ('keras', KerasClassifier(build_fn=make_model, epochs=300,
                                                                                     batch_size=200, verbose=0))])
         # Fit the Pipeline
-        pip.fit(X2, encoded_y)
+        pip.fit(x_points, encoded_y)
 
         # Obtain the features of the song
-        preds = sp_utils.get_song(id_song)
+        features = sp_utils.get_song(id_song)
         # Pre-process the features to input the Model
-        preds_features = np.array(self.prepare_data(preds[6:-2])).reshape(-1, 1).T
+        process_features = np.array(self.prepare_data(features[6:-2])).reshape(-1, 1).T
 
         # Predict the features of the song
-        results = pip.predict(preds_features)
+        results = pip.predict(process_features)
 
         mood = np.array(target['mood'][target['encode'] == int(results)])
-        name_song = preds[0][1]
-        artist = self.prepare_artists(preds[2][1])
+        name_song = features[0][1]
+        artist = self.prepare_artists(features[2][1])
         return {
             'name': name_song,
             'artists': artist,

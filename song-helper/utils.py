@@ -48,15 +48,15 @@ class SpotifyUtils:
         :param song_id: identifier of song
         :return: Meta-info about song
         """
-        info = self.spt.track(song_id)
+        meta_information = self.spt.track(song_id)
         return {
-            'name': info.name,
-            'album': info.album.name,
-            'artists': str([artist.name for artist in info.artists]),
-            'id': info.id,
-            'release_date': info.album.release_date,
-            'popularity': float(info.popularity),
-            'length': float(info.duration_ms),
+            'name': meta_information.name,
+            'album': meta_information.album.name,
+            'artists': str([artist.name for artist in meta_information.artists]),
+            'id': meta_information.id,
+            'release_date': meta_information.album.release_date,
+            'popularity': float(meta_information.popularity),
+            'length': float(meta_information.duration_ms),
         }
 
     def get_song_analise(self, song_id: str) -> dict:
@@ -104,13 +104,6 @@ class SpotifyUtils:
         meta = self.get_song_meta(song_id)
         features = self.get_song_features(song_id)
 
-        # track = [name, album, artist, song_id, release_date, popularity, length, danceability, acousticness,
-        #          energy, instrumentalness, liveness, valence, loudness, speechiness, tempo, key, time_signature]
-        # columns = ['name', 'album', 'artist', 'id', 'release_date', 'popularity', 'length', 'danceability',
-        #            'acousticness',
-        #            'energy', 'instrumentalness',
-        #            'liveness', 'valence', 'loudness', 'speechiness', 'tempo', 'key', 'time_signature']
-        # return track, columns
         return [*meta.items(), *features.items()]
         # [('name', 'I’m Ready (with Demi Lovato)'), ('album', 'I’m Ready (with Demi Lovato)'),
         #  ('artists', "['Sam Smith', 'Demi Lovato']"), ('release_date', '2020-04-16'), ('length', 200838.0),
