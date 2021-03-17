@@ -1,5 +1,6 @@
 from django.test import TestCase
 from .models import Mood, Song
+from .searcher import search_youtube
 
 
 class MoodModelTest(TestCase):
@@ -61,3 +62,31 @@ class SongModelTest(TestCase):
         self.assertEquals(song.liveness, 1.)
         self.assertIsInstance(song.key, float)
         self.assertEquals(song.time_signature, 0)
+
+
+class SearcherTest(TestCase):
+    """
+    Test search on YouTube
+    """
+    def test_searcher(self):
+        """
+        Test the function output
+        """
+        str_to_search = 'python'
+        params = {'limit': 1}
+        params_1 = {'limit': 3}
+        result = search_youtube(str_to_search, params)
+        result_1 = search_youtube(str_to_search, params_1)
+        self.assertIsNotNone(result)
+        self.assertIsNotNone(result_1)
+        self.assertIsInstance(result, dict)
+        self.assertIsInstance(result_1, dict)
+        self.assertIsNotNone(result['title'])
+        self.assertEqual(result['title'], 'Learn Python - Full Course for Beginners [Tutorial]')
+        self.assertIsNotNone(result['views'])
+        self.assertEqual(result['views'], '22M views')
+        self.assertIsNotNone(result_1['duration'])
+        self.assertEqual(result_1['duration'], '4:26:52')
+        self.assertIsNotNone(result_1['link'])
+        self.assertEqual(result_1['link'], 'https://www.youtube.com/watch?v=rfscVS0vtbw')
+
