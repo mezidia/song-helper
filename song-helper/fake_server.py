@@ -7,7 +7,7 @@ class FakeServer:
     This fake implements the requests from server-side interface.
     This interface is also used by the real implementation
     """
-    def __init__(self, spt: SpotifyUtils, pt: PredictMood) -> None:
+    def __init__(self, spt: SpotifyUtils = None, pt: PredictMood = None) -> None:
         self.spt = spt
         self.pt = pt
 
