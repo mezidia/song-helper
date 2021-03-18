@@ -4,10 +4,12 @@ import os
 from unittest import TestCase
 
 from .utils import SpotifyUtils
+from .fake_server import FakeServer
 
 
 class TestSpotifyUtils(TestCase):
     def setUp(self) -> None:
+        self.fs = FakeServer(SpotifyUtils())
         self.util_obj = SpotifyUtils()
         self.util_obj_1 = SpotifyUtils(os.getenv('CLIENT_ID'), os.getenv('CLIENT_SECRET'), os.getenv('REDIRECT_URI'))
         self.id = '1fipvP2zmef6vN2IwXfJhY'
@@ -49,8 +51,8 @@ class TestSpotifyUtils(TestCase):
 
     def test_get_song_features_method(self):
         """Test getting features from the song"""
-        song_features = self.util_obj.get_song_features(self.id)
-        song_features_1 = self.util_obj_1.get_song_features(self.id_1)
+        song_features = self.fs.get_song_features(self.id)
+        song_features_1 = self.fs.get_song_features(self.id_1)
         self.assertIsNotNone(song_features)
         self.assertIsNotNone(song_features_1)
         self.assertEqual(len(song_features), 11)

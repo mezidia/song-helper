@@ -2,10 +2,12 @@ from unittest import TestCase
 
 from .predict import PredictMood
 from .utils import SpotifyUtils
+from .fake_server import FakeServer
 
 
 class TestPredictMood(TestCase):
     def setUp(self) -> None:
+        self.fs = FakeServer(SpotifyUtils(), PredictMood())
         self.predict = PredictMood()
         self.spt = SpotifyUtils()
         self.assertIsNotNone(self.predict)
@@ -28,7 +30,7 @@ class TestPredictMood(TestCase):
 
     def test_predict_mood(self):
         """Test the output from function that predicts the mood"""
-        output = self.predict.predict_mood(self.id, 'song-helper/data/data_moods.csv')
+        output = self.fs.get_song_with_mood(self.id, 'song-helper/data/data_moods.csv')
         expected_name = '1999'
         expected_artist = '\'Prince\''
         expected_mood = 'Happy'
