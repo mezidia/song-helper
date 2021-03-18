@@ -14,6 +14,7 @@ class PredictMood:
     """
     Class with the predicting the mood method
     """
+
     @staticmethod
     def prepare_data(song_features: list) -> list:
         """
@@ -59,8 +60,9 @@ class PredictMood:
         encoder = LabelEncoder()
         encoder.fit(y_points)
         encoded_y = encoder.transform(y_points)
-        target = pd.DataFrame({'mood': csv_data['mood'].tolist(), 'encode': encoded_y}).drop_duplicates().sort_values(['encode'],
-                                                                                                                ascending=True)
+        target = pd.DataFrame({'mood': csv_data['mood'].tolist(), 'encode': encoded_y}).drop_duplicates().sort_values(
+            ['encode'],
+            ascending=True)
         # Join the model and the scaler in a Pipeline
         pip = Pipeline([('minmaxscaler', MinMaxScaler()), ('keras', KerasClassifier(build_fn=make_model, epochs=300,
                                                                                     batch_size=200, verbose=0))])
