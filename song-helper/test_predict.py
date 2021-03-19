@@ -7,7 +7,7 @@ from .fake_server import FakeServer
 
 class TestPredictMood(TestCase):
     def setUp(self) -> None:
-        self.fs = FakeServer(SpotifyUtils(), PredictMood())
+        self.fs = FakeServer(spt=SpotifyUtils(), pt=PredictMood())
         self.predict = PredictMood()
         self.spt = SpotifyUtils()
         self.assertIsNotNone(self.predict)

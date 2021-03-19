@@ -9,7 +9,7 @@ from .fake_server import FakeServer
 
 class TestSpotifyUtils(TestCase):
     def setUp(self) -> None:
-        self.fs = FakeServer(SpotifyUtils())
+        self.fs = FakeServer(spt=SpotifyUtils())
         self.util_obj = SpotifyUtils()
         self.util_obj_1 = SpotifyUtils(os.getenv('CLIENT_ID'), os.getenv('CLIENT_SECRET'), os.getenv('REDIRECT_URI'))
         self.id = '1fipvP2zmef6vN2IwXfJhY'
