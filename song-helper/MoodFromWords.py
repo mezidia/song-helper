@@ -27,7 +27,7 @@ class MoodOfWords:
 # Load the spacy model that you have installed
 nlp = sp.load('en_core_web_md')
 
-df=pd.read_csv('docs\OurData.csv',usecols=['Utterance', 'Emotion'])
+df=pd.read_csv('song-helper\docs\OurData.csv',usecols=['Utterance', 'Emotion'])
 #print(df)
 
 # Checking for missing values
@@ -37,32 +37,35 @@ df=pd.read_csv('docs\OurData.csv',usecols=['Utterance', 'Emotion'])
 stopWords = list(STOP_WORDS)
 
 # There You should read input
-docx = nlp("This is how John Walker was walking. He was also running beside the lawn.")
+userText = nlp("This is how John Walker was walking. He was also running beside the lawn.")
 
 print("\nLemmatizing of tokens:\n")
 
-# Lemmatizing of tokens
-for word in docx:
-    print(word.text,"Lemma =>",word.lemma_)
+def lemmatize():
+    # Lemmatizing of tokens
+    for word in userText:
+        print(word.text,"Lemma =>",word.lemma_)
 
-print("\nLemma that are not pronouns:\n")
+    print("\nLemma that are not pronouns:\n")
 
-# Lemma that are not pronouns
-for word in docx:
-    if word.lemma_ != "-PRON-":
-        print(word.lemma_.lower().strip())
+    # Lemma that are not pronouns
+    for word in userText:
+        if word.lemma_ != "-PRON-":
+            print(word.lemma_.lower().strip())
 
-# List Comprehensions of our Lemma
-[word.lemma_.lower().strip() if word.lemma_ != "-PRON-" else word.lower_ for word in docx]
+    # List Comprehensions of our Lemma
+    [word.lemma_.lower().strip() if word.lemma_ != "-PRON-" else word.lower_ for word in userText]
+
+lemmatize()
 
 # Filtering out Stopwords and Punctuations
-for word in docx:
+for word in userText:
     if word.is_stop == False and not word.is_punct:
-#     if word.is_stop != True and not word.is_punct:
+    # if word.is_stop != True and not word.is_punct:
         print(word)
 
 # Stop words and Punctuation In List Comprehension
-[ word for word in docx if word.is_stop == False and not word.is_punct ]
+[ word for word in userText if word.is_stop == False and not word.is_punct ]
 
 punctuations = string.punctuation
 
@@ -106,7 +109,7 @@ pipe = Pipeline([("cleaner", predictors()),
                 ('classifier', classifier)])
 
 # Fit our data
-pipe.fit(X_train,y_train)
+# pipe.fit(X_train,y_train)
 
 # Predicting with a test dataset
 # sample_prediction = pipe.predict(X_test)
