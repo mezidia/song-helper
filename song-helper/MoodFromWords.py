@@ -15,6 +15,15 @@ from sklearn.model_selection import train_test_split
 # Use the punctuations of string module
 import string
 
+class MoodOfWords:
+    """
+    This class receives sentences from the user and analyzes them
+    for belonging to one of the four emotions:
+    Happy, Sad, Calm (Neutral) and Energetic (Angry)
+    Returns:
+        [Mood]: [emotional represantion of sentences]
+    """
+
 # Load the spacy model that you have installed
 nlp = sp.load('en_core_web_md')
 
