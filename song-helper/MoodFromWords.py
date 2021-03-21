@@ -1,4 +1,7 @@
 import spacy as sp
+import csv
+import os
+import random
 
 # class MoodOfWords:
 #     """
@@ -34,5 +37,28 @@ lemmas = [
 ]
 print(lemmas)
 
-#    def lemmatize():
+def load_training_data(
+    data_directory: str = "song-helper\docs\OurData.csv",
+    split: float = 0.8,
+    limit: int = 0
+) -> tuple:
+    # Load from file
+    reviews = []
+    for label in ["HAPPY", "SAD", "CALM", "ENERGETIC"]:
+        text = str.read()
+        if text.strip():
+            spacy_label = {
+                "cats": {
+                    "HAPPY": "HAPPY" == label,
+                    "SAD": "SAD" == label,
+                    "CALM": "CALM" == label,
+                    "ENERGETIC": "ENERGETIC" == label}
+            }
+            reviews.append((text, spacy_label))
+    random.shuffle(reviews)
+
+    if limit:
+        reviews = reviews[:limit]
+    split = int(len(reviews) * split)
+    return reviews[:split], reviews[split:]
 
