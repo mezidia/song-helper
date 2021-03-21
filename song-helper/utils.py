@@ -111,14 +111,6 @@ class SpotifyUtils:
         #  ('energy', 0.674), ('instrumentalness', 3.56e-05), ('liveness', 0.282), ('valence', 0.152),
         #  ('loudness', -6.363), ('speechiness', 0.0408), ('tempo', 155.051), ('key', 5.0), ('time_signature', 4.0)]
 
-    def download_albums(self, music_id, artist=False):
-        """Download albums"""
-        pass
-
-    def download_playlist(self, id_playlist, n_songs):
-        """Download playlist"""
-        pass
-
 
 # obj = SpotifyUtils()
 # print(obj.get_song('4Km5HrUvYTaSUfiSGPJeQR'))

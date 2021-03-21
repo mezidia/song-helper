@@ -94,12 +94,6 @@ class TestSpotifyUtils(TestCase):
         self.assertIsInstance(song_info_1['release_date'], str)
         self.assertIsNotNone(song_info_1['popularity'])
 
-    def test_get_albums_id(self):
-        self.skipTest('Not ready')
-
-    def test_get_album_songs_id(self):
-        self.skipTest('Not ready')
-
     def test_get_song_analise(self):
         """Test analysing the song"""
         song_analise = self.util_obj.get_song_analise(self.id_1)
@@ -137,12 +131,6 @@ class TestSpotifyUtils(TestCase):
         self.assertIsInstance(song_1[-1], tuple)
         self.assertEqual(song[0][0], 'name')
         self.assertEqual(song_1[-1][0], 'time_signature')
-
-    def test_download_albums(self):
-        self.skipTest('Not ready')
-
-    def test_download_playlist(self):
-        self.skipTest('Not ready')
 
     def test_get_album_songs(self):
         """Test get songs from album"""
