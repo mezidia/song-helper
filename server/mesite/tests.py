@@ -73,20 +73,20 @@ class SearcherTest(TestCase):
         Test the function output
         """
         str_to_search = 'python'
-        params = {'limit': 1}
-        params_1 = {'limit': 3}
-        result = search_youtube(str_to_search, params)
-        result_1 = search_youtube(str_to_search, params_1)
-        self.assertIsNotNone(result)
-        self.assertIsNotNone(result_1)
-        self.assertIsInstance(result, dict)
-        self.assertIsInstance(result_1, dict)
-        self.assertIsNotNone(result['title'])
-        self.assertEqual(result['title'], 'Learn Python - Full Course for Beginners [Tutorial]')
-        self.assertIsNotNone(result['views'])
-        self.assertEqual(result['views'], '22M views')
-        self.assertIsNotNone(result_1['duration'])
-        self.assertEqual(result_1['duration'], '4:26:52')
-        self.assertIsNotNone(result_1['link'])
-        self.assertEqual(result_1['link'], 'https://www.youtube.com/watch?v=rfscVS0vtbw')
+        params1 = {'limit': 1}
+        params2 = {'limit': 3}
+        result1 = search_youtube(str_to_search, params1)
+        result2 = search_youtube(str_to_search, params2)
+        self.assertIsNotNone(result1)
+        self.assertIsNotNone(result2)
+        self.assertIsInstance(result1, dict)
+        self.assertIsInstance(result2, dict)
+        self.assertIsNotNone(result1['title'])
+        self.assertEqual(result1['title'], 'Learn Python - Full Course for Beginners [Tutorial]')
+        self.assertIsNotNone(result1['views'])
+        self.assertEqual(result1['views'], '22M views')
+        self.assertIsNotNone(result2['duration'])
+        self.assertEqual(result2['duration'], '4:26:52')
+        self.assertIsNotNone(result2['link'])
+        self.assertEqual(result2['link'], 'https://www.youtube.com/watch?v=rfscVS0vtbw')
 
