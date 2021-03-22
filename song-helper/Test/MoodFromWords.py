@@ -17,7 +17,7 @@ from sklearn.model_selection import train_test_split
 
 nlp = spacy.load('en_core_web_trf')
 
-df = pd.read_csv('song-helper/song-helper/Test/sentimentdataset.csv')
+df = pd.read_csv('song-helper\docs\OurData.csv')
 
 parser = English()
 
@@ -47,8 +47,8 @@ classifier = LinearSVC(dual=False)
 tfvectorizer = TfidfVectorizer()
 
 # Features and Labels
-X = df['Message']
-ylabels = df['Target']
+X = df['Utterance']
+ylabels = df['Emotion']
 
 X_train, X_test, y_train, y_test = train_test_split(X, ylabels, test_size=0.2, random_state=42)
 
