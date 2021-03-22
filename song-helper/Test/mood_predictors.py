@@ -1,6 +1,7 @@
 #Custom transformer using spaCy
 from sklearn.base import TransformerMixin
 
+
 class Predictors(TransformerMixin):
     """[summary]
 
@@ -9,8 +10,10 @@ class Predictors(TransformerMixin):
     """
     def transform(self, X, **transform_params):
         return [clean_text(text) for text in X]
+
     def fit(self, X, y=None, **fit_params):
         return self
+
     def get_params(self, deep=True):
         return {}
 
