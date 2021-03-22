@@ -54,4 +54,4 @@ class PredictMood():
         # print(Consts.ACCURACY, pipe_tfid.score(X_train,y_train))
 
     def predict(self, user_text: list) -> list:
-        return self.pipe_tfid.predict(user_text)
+        return self.pipe_tfid.predict([user_text])
