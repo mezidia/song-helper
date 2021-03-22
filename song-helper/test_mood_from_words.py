@@ -23,7 +23,16 @@ class TestPredictMood(TestCase):
         result = self.predictor.predict('I want sad music')
         expected = 'HAPPY'
         self.assertNotEqual(result, expected)
-        # self.assertIsInstance(result, list)
+
+    def test_predict_sad(self):
+        result = self.predictor.predict('I want sad music')
+        expected = 'SAD'
+        self.assertEqual(result, expected)
+
+    def test_predict_not_sad(self):
+        result = self.predictor.predict('I want energetic music')
+        expected = 'SAD'
+        self.assertNotEqual(result, expected)
 
     def tearDown(self):
         del self.predictor
