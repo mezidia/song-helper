@@ -2,7 +2,6 @@
 import pandas as pd
 # Load NLP and Lemmanization packages
 import spacy
-from spacy.lang.en.stop_words import STOP_WORDS
 # Load string for punctuation
 import string
 # Load english for parsing
@@ -53,41 +52,11 @@ df.isnull().sum()
 
 nlp = spacy.load('en_core_web_trf')
 
-# Build a list of stopwords to use to filter
-stopwords = list(STOP_WORDS)
-
-docx = nlp("This is how John Walker was walking. He was also running beside the lawn.")
-
-# Lemmatizing of tokens
-for word in docx:
-    print(word.text,"Lemma =>",word.lemma_)
-
-# Lemma that are not pronouns
-for word in docx:
-    if word.lemma_ != "-PRON-":
-        print(word.lemma_.lower().strip())
-
-# List Comprehensions of our Lemma
-[word.lemma_.lower().strip() if word.lemma_ != "-PRON-" else word.lower_ for word in docx]
-
-# Filtering out Stopwords and Punctuations
-for word in docx:
-    if word.is_stop == False and not word.is_punct:
-#     if word.is_stop != True and not word.is_punct:
-        print(word)
-
-# Stop words and Punctuation In List Comprehension
-[ word for word in docx if word.is_stop == False and not word.is_punct ]
-
-# Use the punctuations of string module
-punctuations = string.punctuation
-
 parser = English()
 
 def spacy_tokenizer(sentence):
     mytokens = parser(sentence)
     mytokens = [ word.lemma_.lower().strip() if word.lemma_ != "-PRON-" else word.lower_ for word in mytokens ]
-    #mytokens = [ word for word in mytokens if word not in stopwords and word not in punctuations ]
     return mytokens
 
 #Custom transformer using spaCy
