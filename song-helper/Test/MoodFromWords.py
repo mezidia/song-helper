@@ -14,30 +14,20 @@ from sklearn.pipeline import Pipeline
 from sklearn.svm import LinearSVC
 # Splitting Data Set
 from sklearn.model_selection import train_test_split
+from mood_predictors import Predictors
 
+
+#class PredictMood():
 nlp = spacy.load('en_core_web_trf')
 
 df = pd.read_csv('song-helper\docs\OurData.csv')
 
 parser = English()
 
-def spacy_tokenizer(sentence):
+def spacy_tokenizer(self, sentence):
     mytokens = parser(sentence)
     mytokens = [ word.lemma_.lower().strip() if word.lemma_ != "-PRON-" else word.lower_ for word in mytokens ]
     return mytokens
-
-#Custom transformer using spaCy
-class predictors(TransformerMixin):
-    def transform(self, X, **transform_params):
-        return [clean_text(text) for text in X]
-    def fit(self, X, y=None, **fit_params):
-        return self
-    def get_params(self, deep=True):
-        return {}
-
-# Basic function to clean the text
-def clean_text(text):
-    return text.strip().lower()
 
 # Vectorization
 vectorizer = CountVectorizer(tokenizer = spacy_tokenizer, ngram_range=(1,1))
@@ -54,7 +44,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, ylabels, test_size=0.2, r
 
 #### Using Tfid
 # Create the  pipeline to clean, tokenize, vectorize, and classify
-pipe_tfid = Pipeline([("cleaner", predictors()),
+pipe_tfid = Pipeline([("cleaner", Predictors()),
                     ('vectorizer', tfvectorizer),
                     ('classifier', classifier)])
 
@@ -63,9 +53,7 @@ pipe_tfid.fit(X_train,y_train)
 sample_prediction1 = pipe_tfid.predict(X_test)
 
 # Prediction Results
-# 1 = Positive review
-# 0 = Negative review
-for (sample,pred) in zip(X_test,sample_prediction1):
+for (sample, pred) in zip(X_test,sample_prediction1):
     print(sample,"Prediction=>", pred)
 
 # Accuracy
