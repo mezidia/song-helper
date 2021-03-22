@@ -30,11 +30,7 @@ def spacy_tokenizer(self, sentence):
     return mytokens
 
 # Vectorization
-vectorizer = CountVectorizer(tokenizer = spacy_tokenizer, ngram_range=(1,1))
 classifier = LinearSVC(dual=False)
-
-# Using Tfidf
-tfvectorizer = TfidfVectorizer()
 
 # Features and Labels
 X = df['Utterance']
@@ -45,7 +41,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, ylabels, test_size=0.2, r
 #### Using Tfid
 # Create the  pipeline to clean, tokenize, vectorize, and classify
 pipe_tfid = Pipeline([("cleaner", Predictors()),
-                    ('vectorizer', tfvectorizer),
+                    ('vectorizer', TfidfVectorizer()),
                     ('classifier', classifier)])
 
 pipe_tfid.fit(X_train,y_train)
