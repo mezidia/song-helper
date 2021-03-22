@@ -42,8 +42,6 @@ class PredictMood():
 
         self.pipe_tfid.fit(self.X_train, self.y_train)
 
-        self.sample_prediction = self.pipe_tfid.predict(self.X_test)
-
         # Prediction Results
         # for (sample, pred) in zip(X_test, sample_prediction):
         # print(sample, Consts.PREDICTION, pred)
@@ -55,3 +53,6 @@ class PredictMood():
 
     def predict(self, user_text: list) -> list:
         return self.pipe_tfid.predict([user_text])
+
+predictor = PredictMood()
+print(predictor.predict("I want calm music"))
