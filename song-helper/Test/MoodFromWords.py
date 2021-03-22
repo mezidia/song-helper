@@ -77,4 +77,12 @@ print("Accuracy: ",pipe_tfid.score(X_test,y_test))
 print("Accuracy: ",pipe_tfid.score(X_test,sample_prediction1))
 print("Accuracy: ",pipe_tfid.score(X_train,y_train))
 
-pipe_tfid.predict(example)
+print()
+
+print(pipe_tfid.predict(example))
+
+print()
+
+example2 = ["I want some happy music"]
+
+print(pipe_tfid.predict(example2))
