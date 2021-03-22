@@ -19,8 +19,8 @@ df = pd.read_csv('song-helper\song-helper\data\OurData.csv')
 classifier = LinearSVC(dual=False)
 
 # Features and Labels
-X = df['Utterance']
-ylabels = df['Emotion']
+X = df[str(df.columns[0])]
+ylabels = df[str(df.columns[1])]
 
 X_train, X_test, y_train, y_test = train_test_split(X, ylabels, test_size=0.2, random_state=42)
 
