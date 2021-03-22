@@ -52,38 +52,9 @@ ylabels = df['Target']
 
 X_train, X_test, y_train, y_test = train_test_split(X, ylabels, test_size=0.2, random_state=42)
 
-# Create the  pipeline to clean, tokenize, vectorize, and classify
-pipe = Pipeline([("cleaner", predictors()),
-                ('vectorizer', vectorizer),
-                ('classifier', classifier)])
-
-# Fit our data
-pipe.fit(X_train,y_train)
-
-# Predicting with a test dataset
-sample_prediction = pipe.predict(X_test)
-
-# Prediction Results
-# 1 = Positive review
-# 0 = Negative review
-for (sample,pred) in zip(X_test,sample_prediction):
-    print(sample,"Prediction=>",pred)
-
-# Accuracy
-print("Accuracy: ",pipe.score(X_test,y_test))
-print("Accuracy: ",pipe.score(X_test,sample_prediction))
-
-# Accuracy
-print("Accuracy: ",pipe.score(X_train,y_train))
-
-# Another random review
-pipe.predict(["This was a great movie"])
-
 example = ["I do enjoy my job",
         "What a poor product!,I will have to get a new one",
         "I feel amazing!"]
-
-pipe.predict(example)
 
 #### Using Tfid
 # Create the  pipeline to clean, tokenize, vectorize, and classify
@@ -95,10 +66,15 @@ pipe_tfid.fit(X_train,y_train)
 
 sample_prediction1 = pipe_tfid.predict(X_test)
 
+# Prediction Results
+# 1 = Positive review
+# 0 = Negative review
 for (sample,pred) in zip(X_test,sample_prediction1):
     print(sample,"Prediction=>", pred)
 
+# Accuracy
 print("Accuracy: ",pipe_tfid.score(X_test,y_test))
 print("Accuracy: ",pipe_tfid.score(X_test,sample_prediction1))
+print("Accuracy: ",pipe_tfid.score(X_train,y_train))
 
 pipe_tfid.predict(example)
