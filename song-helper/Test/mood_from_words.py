@@ -2,32 +2,18 @@
 import pandas as pd
 # Load NLP and Lemmanization packages
 import spacy
-# Load string for punctuation
-import string
-# Load english for parsing
-from spacy.lang.en import English
 # Machine Learning (ML) packages
-from sklearn.feature_extraction.text import CountVectorizer,TfidfVectorizer
-from sklearn.metrics import accuracy_score
-from sklearn.base import TransformerMixin
+from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.pipeline import Pipeline
 from sklearn.svm import LinearSVC
 # Splitting Data Set
 from sklearn.model_selection import train_test_split
 from mood_predictors import Predictors
 
-
 #class PredictMood():
 nlp = spacy.load('en_core_web_trf')
 
 df = pd.read_csv('song-helper\docs\OurData.csv')
-
-parser = English()
-
-def spacy_tokenizer(self, sentence):
-    mytokens = parser(sentence)
-    mytokens = [ word.lemma_.lower().strip() if word.lemma_ != "-PRON-" else word.lower_ for word in mytokens ]
-    return mytokens
 
 # Vectorization
 classifier = LinearSVC(dual=False)
