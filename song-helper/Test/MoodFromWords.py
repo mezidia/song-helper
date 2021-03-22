@@ -17,9 +17,9 @@ from sklearn.svm import LinearSVC
 from sklearn.model_selection import train_test_split
 
 # Load our dataset
-df_yelp = pd.read_table('yelp_labelled.txt')
-df_imdb = pd.read_table('imdb_labelled.txt')
-df_amz = pd.read_table('amazon_cells_labelled.txt')
+df_yelp = pd.read_table('song-helper/song-helper/Test/yelp_labelled.txt')
+df_amz = pd.read_table('song-helper/song-helper/Test/amazon_cells_labelled.txt')
+df_imdb = pd.read_table('song-helper/song-helper/Test/imdb_labelled.txt')
 
 # Concatenate our Datasets
 frames = [df_yelp,df_imdb,df_amz]
@@ -55,8 +55,6 @@ nlp = spacy.load('en_core_web_trf')
 
 # Build a list of stopwords to use to filter
 stopwords = list(STOP_WORDS)
-
-stopwords
 
 docx = nlp("This is how John Walker was walking. He was also running beside the lawn.")
 
@@ -118,12 +116,10 @@ ylabels = df['Target']
 
 X_train, X_test, y_train, y_test = train_test_split(X, ylabels, test_size=0.2, random_state=42)
 
-# Create the  pipeline to clean, tokenize, vectorize, and classify 
+# Create the  pipeline to clean, tokenize, vectorize, and classify
 pipe = Pipeline([("cleaner", predictors()),
                 ('vectorizer', vectorizer),
                 ('classifier', classifier)])
-
-X_train.to_csv("test.csv")
 
 # Fit our data
 pipe.fit(X_train,y_train)
