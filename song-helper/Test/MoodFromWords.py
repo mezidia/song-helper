@@ -42,13 +42,15 @@ df.shape
 
 df.head()
 
-df.to_csv("sentimentdataset.csv")
+df.to_csv('song-helper/song-helper/Test/sentimentdataset.csv')
 
 # Data Cleaning
 df.columns
 
 # Checking for Missing Values
 df.isnull().sum()
+
+print(type(df))
 
 nlp = spacy.load('en_core_web_trf')
 
