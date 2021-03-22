@@ -18,7 +18,6 @@ from sklearn.model_selection import train_test_split
 nlp = spacy.load('en_core_web_trf')
 
 df = pd.read_csv('song-helper\docs\OurData.csv')
-df = df.dropna()
 
 parser = English()
 
