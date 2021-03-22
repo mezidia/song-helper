@@ -21,34 +21,40 @@ class Consts:
     VECTORIZER = 'vectorizer'
     CLASSIFIER = 'classifier'
 
-#class PredictMood():
-nlp = spacy.load(Consts.LANGUAGE_PACKAGE)
+class PredictMood():
+    def __init__(self):
+        self.nlp = spacy.load(Consts.LANGUAGE_PACKAGE)
+        self.df = pd.read_csv(Consts.PATH_TO_CSV)
 
-df = pd.read_csv(Consts.PATH_TO_CSV)
+        # Vectorization
+        self.classifier = LinearSVC(dual=False)
 
-# Vectorization
-classifier = LinearSVC(dual=False)
+        # Features and Labels
+        self.X = self.df[str(self.df.columns[0])]
+        self.ylabels = self.df[str(self.df.columns[1])]
 
-# Features and Labels
-X = df[str(df.columns[0])]
-ylabels = df[str(df.columns[1])]
+        self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(self.X, self.ylabels, test_size=Consts.TEST_SIZE, random_state=Consts.RAND_STATE)
 
-X_train, X_test, y_train, y_test = train_test_split(X, ylabels, test_size=Consts.TEST_SIZE, random_state=Consts.RAND_STATE)
+            # Create the  pipeline to clean, tokenize, vectorize, and classify
+        self.pipe_tfid = Pipeline([(Consts.CLEANER, Predictors()),
+                            (Consts.VECTORIZER, TfidfVectorizer()),
+                            (Consts.CLASSIFIER, self.classifier)])
 
-# Create the  pipeline to clean, tokenize, vectorize, and classify
-pipe_tfid = Pipeline([(Consts.CLEANER, Predictors()),
-                    (Consts.VECTORIZER, TfidfVectorizer()),
-                    (Consts.CLASSIFIER, classifier)])
+        self.pipe_tfid.fit(self.X_train, self.y_train)
 
-pipe_tfid.fit(X_train,y_train)
+        self.sample_prediction = self.pipe_tfid.predict(self.X_test)
 
-sample_prediction1 = pipe_tfid.predict(X_test)
+        # Prediction Results
+        # for (sample, pred) in zip(X_test, sample_prediction):
+        # print(sample, Consts.PREDICTION, pred)
 
-# Prediction Results
-for (sample, pred) in zip(X_test, sample_prediction1):
-    print(sample, Consts.PREDICTION, pred)
+        # Accuracy
+        # print(Consts.ACCURACY, pipe_tfid.score(X_test,y_test))
+        # print(Consts.ACCURACY, pipe_tfid.score(X_test,sample_prediction))
+        # print(Consts.ACCURACY, pipe_tfid.score(X_train,y_train))
 
-# Accuracy
-print(Consts.ACCURACY, pipe_tfid.score(X_test,y_test))
-print(Consts.ACCURACY, pipe_tfid.score(X_test,sample_prediction1))
-print(Consts.ACCURACY, pipe_tfid.score(X_train,y_train))
+    def predict(self, user_text: list) -> list:
+        return self.pipe_tfid.predict(user_text)
+
+predictor = PredictMood()
+print(predictor.predict(["I want calm music"]))
