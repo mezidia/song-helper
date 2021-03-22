@@ -13,10 +13,16 @@ class TestPredictMood(TestCase):
     #     # self.assertIsInstance(self.predictor, PredictMood)
     #     # self.assertEqual(self.predictor.nlp, 'something')
 
-    def test_predict(self):
+    def test_predict_happy(self):
         result = self.predictor.predict('I want happy music')
         expected = 'HAPPY'
         self.assertEqual(result, expected)
+        # self.assertIsInstance(result, list)
+
+    def test_predict_not_happy(self):
+        result = self.predictor.predict('I want sad music')
+        expected = 'HAPPY'
+        self.assertNotEqual(result, expected)
         # self.assertIsInstance(result, list)
 
     def tearDown(self):
