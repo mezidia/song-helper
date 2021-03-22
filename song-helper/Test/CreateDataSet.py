@@ -2,9 +2,9 @@
 import pandas as pd
 
 # Load our dataset
-df_yelp = pd.read_table('yelp_labelled.txt')
-df_imdb = pd.read_table('imdb_labelled.txt')
-df_amz = pd.read_table('amazon_cells_labelled.txt')
+df_yelp = pd.read_table('song-helper/song-helper/Test/yelp_labelled.txt')
+df_imdb = pd.read_table('song-helper/song-helper/Test/imdb_labelled.txt')
+df_amz = pd.read_table('song-helper/song-helper/Test/amazon_cells_labelled.txt')
 
 # Concatenate our Datasets
 frames = [df_yelp,df_imdb,df_amz]
@@ -28,7 +28,7 @@ df.shape
 
 df.head()
 
-df.to_csv("sentimentdataset.csv")
+df.to_csv('song-helper/song-helper/Test/sentimentdataset.csv')
 
 # Data Cleaning
 df.columns
