@@ -52,10 +52,6 @@ ylabels = df['Emotion']
 
 X_train, X_test, y_train, y_test = train_test_split(X, ylabels, test_size=0.2, random_state=42)
 
-example = ["I do enjoy my job",
-        "What a poor product!,I will have to get a new one",
-        "I feel amazing!"]
-
 #### Using Tfid
 # Create the  pipeline to clean, tokenize, vectorize, and classify
 pipe_tfid = Pipeline([("cleaner", predictors()),
@@ -78,6 +74,10 @@ print("Accuracy: ",pipe_tfid.score(X_test,sample_prediction1))
 print("Accuracy: ",pipe_tfid.score(X_train,y_train))
 
 print()
+
+example = ["I do enjoy my job",
+        "What a poor product!,I will have to get a new one",
+        "I feel amazing!"]
 
 print(pipe_tfid.predict(example))
 
