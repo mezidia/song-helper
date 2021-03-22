@@ -10,10 +10,21 @@ from sklearn.svm import LinearSVC
 from sklearn.model_selection import train_test_split
 from mood_predictors import Predictors
 
-#class PredictMood():
-nlp = spacy.load('en_core_web_trf')
+class Consts:
+    LANGUAGE_PACKAGE = 'en_core_web_trf'
+    PATH_TO_CSV = 'song-helper\song-helper\data\OurData.csv'
+    ACCURACY = "Accuracy: "
+    PREDICTION = "Prediction=>"
+    TEST_SIZE = 0.2
+    RAND_STATE = 42
+    CLEANER = "cleaner"
+    VECTORIZER = 'vectorizer'
+    CLASSIFIER = 'classifier'
 
-df = pd.read_csv('song-helper\song-helper\data\OurData.csv')
+#class PredictMood():
+nlp = spacy.load(Consts.LANGUAGE_PACKAGE)
+
+df = pd.read_csv(Consts.PATH_TO_CSV)
 
 # Vectorization
 classifier = LinearSVC(dual=False)
@@ -22,37 +33,22 @@ classifier = LinearSVC(dual=False)
 X = df[str(df.columns[0])]
 ylabels = df[str(df.columns[1])]
 
-X_train, X_test, y_train, y_test = train_test_split(X, ylabels, test_size=0.2, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(X, ylabels, test_size=Consts.TEST_SIZE, random_state=Consts.RAND_STATE)
 
-#### Using Tfid
 # Create the  pipeline to clean, tokenize, vectorize, and classify
-pipe_tfid = Pipeline([("cleaner", Predictors()),
-                    ('vectorizer', TfidfVectorizer()),
-                    ('classifier', classifier)])
+pipe_tfid = Pipeline([(Consts.CLEANER, Predictors()),
+                    (Consts.VECTORIZER, TfidfVectorizer()),
+                    (Consts.CLASSIFIER, classifier)])
 
 pipe_tfid.fit(X_train,y_train)
 
 sample_prediction1 = pipe_tfid.predict(X_test)
 
 # Prediction Results
-for (sample, pred) in zip(X_test,sample_prediction1):
-    print(sample,"Prediction=>", pred)
+for (sample, pred) in zip(X_test, sample_prediction1):
+    print(sample, Consts.PREDICTION, pred)
 
 # Accuracy
-print("Accuracy: ",pipe_tfid.score(X_test,y_test))
-print("Accuracy: ",pipe_tfid.score(X_test,sample_prediction1))
-print("Accuracy: ",pipe_tfid.score(X_train,y_train))
-
-print()
-
-example = ["I do enjoy my job",
-        "What a poor product!,I will have to get a new one",
-        "I feel amazing!"]
-
-print(pipe_tfid.predict(example))
-
-print()
-
-example2 = ["I want some happy music"]
-
-print(pipe_tfid.predict(example2))
+print(Consts.ACCURACY, pipe_tfid.score(X_test,y_test))
+print(Consts.ACCURACY, pipe_tfid.score(X_test,sample_prediction1))
+print(Consts.ACCURACY, pipe_tfid.score(X_train,y_train))
