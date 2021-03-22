@@ -19,6 +19,24 @@ class TestPredictMood(TestCase):
     def test_field_not_none_classifier(self):
         self.assertIsNotNone(self.predictor.classifier)
 
+    def test_field_not_none_X(self):
+        self.assertIsNotNone(self.predictor.X)
+
+    def test_field_not_none_ylabels(self):
+        self.assertIsNotNone(self.predictor.ylabels)
+
+    def test_field_not_none_X_train(self):
+        self.assertIsNotNone(self.predictor.X_train)
+
+    def test_field_not_none_X_test(self):
+        self.assertIsNotNone(self.predictor.X_test)
+
+    def test_field_not_none_y_train(self):
+        self.assertIsNotNone(self.predictor.y_train)
+
+    def test_field_not_none_y_test(self):
+        self.assertIsNotNone(self.predictor.y_test)
+
     # def test_predict_happy(self):
     #     result = self.predictor.predict('I want happy music')
     #     expected = 'HAPPY'
