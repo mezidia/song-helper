@@ -13,7 +13,7 @@ from mood_predictors import Predictors
 #class PredictMood():
 nlp = spacy.load('en_core_web_trf')
 
-df = pd.read_csv('song-helper\docs\OurData.csv')
+df = pd.read_csv('song-helper\song-helper\data\OurData.csv')
 
 # Vectorization
 classifier = LinearSVC(dual=False)
