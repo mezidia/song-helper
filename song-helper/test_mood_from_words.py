@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from .mood_from_words import PredictMood
+from mood_from_words import PredictMood
 
 
 class TestPredictMood(TestCase):
