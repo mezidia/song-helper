@@ -24,14 +24,14 @@ keys = ['Yelp','IMDB','Amazon']
 df = pd.concat(frames,keys=keys)
 
 # Length and Shape
-df.shape
+print(df.shape)
 
-df.head()
+print(df.head(1))
 
 df.to_csv('song-helper/song-helper/data/sentimentdataset.csv')
 
 # Data Cleaning
-df.columns
+print(df.columns)
 
 # Checking for Missing Values
 df.isnull().sum()
