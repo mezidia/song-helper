@@ -7,6 +7,9 @@ class TestPredictMood(unittest.TestCase):
         self.predictor = PredictMood()
 
     # region Not None Tests
+    """
+    Test if fields are none
+    """
 
     def test_field_not_none_nlp(self):
         self.assertIsNotNone(self.predictor.nlp)
@@ -41,22 +44,27 @@ class TestPredictMood(unittest.TestCase):
     # endregion Not None Tests
 
     # region Instance Tests
+    """
+    Test if instances are the same
+    """
 
-    def test_field_instance_PredictMood_predictor(self):
+    def test_instance_PredictMood_predictor(self):
         self.assertIsInstance(self.predictor, PredictMood)
 
-    def test_field_not_instance_PredictMood_predictor(self):
+    def test_not_instance_PredictMood_predictor(self):
         self.assertNotIsInstance(self.predictor, TestPredictMood)
 
     # endregion Instance Tests
 
     # region Mood Tests
+    """
+    Test if moods are predicted properly
+    """
 
     def test_predict_happy(self):
         result = self.predictor.predict('I want happy music')
         expected = 'HAPPY'
         self.assertEqual(result, expected)
-        # self.assertIsInstance(result, list)
 
     def test_predict_not_happy(self):
         result = self.predictor.predict('I want sad music')
