@@ -4,10 +4,8 @@ from sklearn.pipeline import Pipeline
 from words_preprocessor import WordPreprocessor
 
 class Predictors(TransformerMixin):
-    """[summary]
-
-    Args:
-        TransformerMixin ([type]): [description]
+    """
+    Class which used in pipe
     """
 
     def transform(self, X: list, **transform_params: dict) -> list:

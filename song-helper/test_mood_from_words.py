@@ -1,10 +1,8 @@
-from unittest import TestCase
-
 from mood_from_words import PredictMood
 import unittest
 
 
-class TestPredictMood(TestCase):
+class TestPredictMood(unittest.TestCase):
     def setUp(self):
         self.predictor = PredictMood()
 
