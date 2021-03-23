@@ -1,4 +1,4 @@
-from mood_from_words import PredictMood
+from .mood_from_words import PredictMood
 import unittest
 from unittest.mock import patch
 
