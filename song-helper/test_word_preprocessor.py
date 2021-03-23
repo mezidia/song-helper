@@ -63,19 +63,19 @@ class TestWordPreprocessor(unittest.TestCase):
 
     @patch('words_preprocessor.WordPreprocessor.clean_text', return_value="passing test using mock")
     def test_clean_text_not_equal_mock_Passing_text(self, clean_text):
-        result = self.preprocessor.clean_text("Passing test using mock")# 'Passing test using mock not true' to check, that mock is working
+        result = self.preprocessor.clean_text("Passing test using mock")
         expected = "not passing test using mock"
         self.assertNotEqual(result, expected)
 
     @patch('words_preprocessor.WordPreprocessor.clean_text', return_value="new text using mock")
     def test_clean_text_equal_mock_new_text(self, clean_text):
-        result = self.preprocessor.clean_text("new text using mock")# 'Passing test using mock not true' to check, that mock is working
+        result = self.preprocessor.clean_text("new text using mock")
         expected = "new text using mock"
         self.assertEqual(result, expected)
 
     @patch('words_preprocessor.WordPreprocessor.clean_text', return_value="passing test using mock")
     def test_clean_text_not_equal_mock_new_text(self, clean_text):
-        result = self.preprocessor.clean_text("Passing test using mock")# 'Passing test using mock not true' to check, that mock is working
+        result = self.preprocessor.clean_text("Passing test using mock")
         expected = "not new text using mock"
         self.assertNotEqual(result, expected)
 
