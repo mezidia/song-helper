@@ -1,4 +1,4 @@
-from .words_preprocessor import WordPreprocessor
+from words_preprocessor import WordPreprocessor
 import unittest
 from unittest.mock import patch
 
