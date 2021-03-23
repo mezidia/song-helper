@@ -42,17 +42,8 @@ class PredictMood():
 
         self.pipe_tfid.fit(self.X_train, self.y_train)
 
-        # Prediction Results
-        # for (sample, pred) in zip(X_test, sample_prediction):
-        # print(sample, Consts.PREDICTION, pred)
-
-        # Accuracy
-        # print(Consts.ACCURACY, pipe_tfid.score(X_test,y_test))
-        # print(Consts.ACCURACY, pipe_tfid.score(X_test,sample_prediction))
-        # print(Consts.ACCURACY, pipe_tfid.score(X_train,y_train))
-
     def predict(self, user_text: list) -> list:
         return self.pipe_tfid.predict([user_text])
 
-predictor = PredictMood()
-print(predictor.predict("I want calm music"))
+#predictor = PredictMood()
+#print(predictor.predict("I want calm music"))
