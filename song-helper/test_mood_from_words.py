@@ -210,7 +210,6 @@ class TestPredictMood(unittest.TestCase):
 
     # endregion Mock Mood Tests
 
-
     def tearDown(self):
         del self.predictor
 
