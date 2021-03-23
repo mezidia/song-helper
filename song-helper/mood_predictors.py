@@ -13,6 +13,3 @@ class Predictors(TransformerMixin):
 
     def fit(self, X: list, y=None, **fit_params: dict) -> Pipeline:
         return self
-
-    def get_params(self, deep=True) -> dict:
-        return {}
