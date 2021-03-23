@@ -3,6 +3,9 @@ import unittest
 
 
 class TestPredictMood(unittest.TestCase):
+    """
+    Class for testing PredictMood class
+    """
     def setUp(self):
         self.predictor = PredictMood()
 

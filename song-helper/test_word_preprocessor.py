@@ -3,6 +3,9 @@ import unittest
 
 
 class TestWordPreprocessor(unittest.TestCase):
+    """
+    Class for testing WordPreprocessor class
+    """
     def setUp(self):
         self.preprocessor = WordPreprocessor()
 
