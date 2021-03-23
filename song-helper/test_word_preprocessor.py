@@ -49,6 +49,15 @@ class TestWordPreprocessor(unittest.TestCase):
 
     # endregion Instance Tests
 
+    # region Mock Text Tests
+    """
+    Test if moods are predicted properly using mocks
+    """
+
+    
+
+    #endregion Mock Text Tests
+
     def tearDown(self):
         del self.preprocessor
 

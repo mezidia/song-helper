@@ -45,5 +45,5 @@ class PredictMood():
     def predict(self, user_text: list) -> list:
         return self.pipe_tfid.predict([user_text])
 
-predictor = PredictMood()
-print(predictor.predict("I want energetic music"))
+#predictor = PredictMood()
+#print(predictor.predict("I want energetic music"))
