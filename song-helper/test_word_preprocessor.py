@@ -7,6 +7,9 @@ class TestWordPreprocessor(unittest.TestCase):
         self.preprocessor = WordPreprocessor()
 
     # region Equal Tests
+    """
+    Test if method is working fine
+    """
 
     def test_clean_text_equal_Passing_text(self):
         result = self.preprocessor.clean_text("Passing test")
@@ -31,6 +34,9 @@ class TestWordPreprocessor(unittest.TestCase):
     # endregion Equal Tests
 
     # region Instance Tests
+    """
+    Test if instances are the same
+    """
 
     def test_instance_PredictMood_predictor(self):
         self.assertIsInstance(self.preprocessor, WordPreprocessor)
