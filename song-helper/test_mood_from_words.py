@@ -162,45 +162,51 @@ class TestPredictMood(unittest.TestCase):
 
     @patch('mood_from_words.PredictMood.predict', return_value='HAPPY')
     def test_predict_mock_happy(self, predict):
-        result = self.predictor.predict('I want sad music')
+        result = self.predictor.predict('I want happy music')# 'I want sad music' to check, that mock is working
         expected = 'HAPPY'
         self.assertEqual(result, expected)
 
-    # def test_predict_not_happy(self):
-    #     result = self.predictor.predict('I want sad music')
-    #     expected = 'HAPPY'
-    #     self.assertNotEqual(result, expected)
+    @patch('mood_from_words.PredictMood.predict', return_value='SAD')
+    def test_predict_mock_not_happy(self, predict):
+        result = self.predictor.predict('I want sad music')
+        expected = 'HAPPY'
+        self.assertNotEqual(result, expected)
 
-    # def test_predict_sad(self):
-    #     result = self.predictor.predict('I want sad music')
-    #     expected = 'SAD'
-    #     self.assertEqual(result, expected)
+    @patch('mood_from_words.PredictMood.predict', return_value='SAD')
+    def test_predict_mock_sad(self, predict):
+        result = self.predictor.predict('I want sad music')
+        expected = 'SAD'
+        self.assertEqual(result, expected)
 
-    # def test_predict_not_sad(self):
-    #     result = self.predictor.predict('I want energetic music')
-    #     expected = 'SAD'
-    #     self.assertNotEqual(result, expected)
+    @patch('mood_from_words.PredictMood.predict', return_value='ENERGETIC')
+    def test_predict_mock_not_sad(self, predict):
+        result = self.predictor.predict('I want energetic music')
+        expected = 'SAD'
+        self.assertNotEqual(result, expected)
 
-    # def test_predict_energetic(self):
-    #     result = self.predictor.predict('I want energetic music')
-    #     expected = 'ENERGETIC'
-    #     self.assertEqual(result, expected)
-    #     # self.assertIsInstance(result, list)
+    @patch('mood_from_words.PredictMood.predict', return_value='ENERGETIC')
+    def test_predict_mock_energetic(self, predict):
+        result = self.predictor.predict('I want energetic music')
+        expected = 'ENERGETIC'
+        self.assertEqual(result, expected)
 
-    # def test_predict_not_energetic(self):
-    #     result = self.predictor.predict('I want calm music')
-    #     expected = 'ENERGETIC'
-    #     self.assertNotEqual(result, expected)
+    @patch('mood_from_words.PredictMood.predict', return_value='CALM')
+    def test_predict_mock_not_energetic(self, predict):
+        result = self.predictor.predict('I want calm music')
+        expected = 'ENERGETIC'
+        self.assertNotEqual(result, expected)
 
-    # def test_predict_calm(self):
-    #     result = self.predictor.predict('I want calm music')
-    #     expected = 'CALM'
-    #     self.assertEqual(result, expected)
+    @patch('mood_from_words.PredictMood.predict', return_value='CALM')
+    def test_predict_mock_calm(self, predict):
+        result = self.predictor.predict('I want calm music')
+        expected = 'CALM'
+        self.assertEqual(result, expected)
 
-    # def test_predict_not_calm(self):
-    #     result = self.predictor.predict('I want happy music')
-    #     expected = 'CALM'
-    #     self.assertNotEqual(result, expected)
+    @patch('mood_from_words.PredictMood.predict', return_value='HAPPY')
+    def test_predict_mock_not_calm(self, predict):
+        result = self.predictor.predict('I want happy music')
+        expected = 'CALM'
+        self.assertNotEqual(result, expected)
 
     # endregion Mock Mood Tests
 
