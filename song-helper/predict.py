@@ -66,17 +66,12 @@ class PredictMood:
         # Join the model and the scaler in a Pipeline
         pip = Pipeline([('minmaxscaler', MinMaxScaler()), ('keras', KerasClassifier(build_fn=make_model, epochs=300,
                                                                                     batch_size=200, verbose=0))])
-        # Fit the Pipeline
         pip.fit(x_points, encoded_y)
-
         # Obtain the features of the song
         features = sp_utils.get_song(id_song)
         # Pre-process the features to input the Model
         process_features = np.array(self.prepare_data(features[6:-2])).reshape(-1, 1).T
-
-        # Predict the features of the song
         results = pip.predict(process_features)
-
         mood = np.array(target['mood'][target['encode'] == int(results)])
         name_song = features[0][1]
         artist = self.prepare_artists(features[2][1])

@@ -9,10 +9,10 @@ class SpotifyUtils:
 
     def __init__(self, client_id=Config.client_id, client_secret=Config.client_secret,
                  redirect_uri=Config.redirect_uri):
+        # Credentials to access the Spotify Music Data
         self.client_id = client_id
         self.client_secret = client_secret
         self.redirect_uri = redirect_uri
-        # Credentials to access the Spotify Music Data
         self.app_token = tk.request_client_token(self.client_id, self.client_secret)
         self.spt = tk.Spotify(self.app_token)
 
