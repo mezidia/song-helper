@@ -1,5 +1,6 @@
 from django.test import TestCase
 from .models import Mood, Song
+from .forms import InputForm
 
 
 class MoodModelTest(TestCase):
@@ -61,3 +62,9 @@ class SongModelTest(TestCase):
         self.assertEquals(song.liveness, 1.)
         self.assertIsInstance(song.key, float)
         self.assertEquals(song.time_signature, 0)
+
+
+class ViewsTests(TestCase):
+    pass
+
+
