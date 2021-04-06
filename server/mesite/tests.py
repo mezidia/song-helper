@@ -1,4 +1,6 @@
 from django.test import TestCase
+from django.urls import reverse
+from http import HTTPStatus
 from .models import Mood, Song
 from .forms import InputForm
 
@@ -65,7 +67,15 @@ class SongModelTest(TestCase):
 
 
 class ViewsTests(TestCase):
-    pass
+    def test_get_index(self):
+        url = reverse('mesite:index')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, HTTPStatus.OK)
+
+    def test_post_index(self):
+        url = reverse('mesite:index')
+        response = self.client.post(url, data={'text': 'test-case'})
+        self.assertEqual(response.status_code, HTTPStatus.OK)
 
 
 class FormsTests(TestCase):
