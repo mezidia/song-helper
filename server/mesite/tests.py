@@ -67,24 +67,42 @@ class SongModelTest(TestCase):
 
 
 class ViewsTests(TestCase):
+    """
+    Test app views
+    """
     def test_get_index(self):
+        """
+        Test get method for mesite:index
+        """
         url = reverse('mesite:index')
         response = self.client.get(url)
         self.assertEqual(response.status_code, HTTPStatus.OK)
 
     def test_post_index(self):
+        """
+        Test post method for mesite:index
+        """
         url = reverse('mesite:index')
         response = self.client.post(url, data={'text': 'test-case'})
         self.assertEqual(response.status_code, HTTPStatus.OK)
 
 
 class FormsTests(TestCase):
+    """
+    Test app forms
+    """
     def test_valid_input_form(self):
+        """
+        Test valid form
+        """
         data = {'text': 'test-text'}
         form = InputForm(data=data)
         self.assertTrue(form.is_valid())
 
     def test_invalid_input_form(self):
+        """
+        Test invalid form
+        """
         data = {}
         form = InputForm(data=data)
         self.assertFalse(form.is_valid())
