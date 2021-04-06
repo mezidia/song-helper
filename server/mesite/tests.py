@@ -68,3 +68,13 @@ class ViewsTests(TestCase):
     pass
 
 
+class FormsTests(TestCase):
+    def test_valid_input_form(self):
+        data = {'text': 'test-text'}
+        form = InputForm(data=data)
+        self.assertTrue(form.is_valid())
+
+    def test_invalid_input_form(self):
+        data = {}
+        form = InputForm(data=data)
+        self.assertFalse(form.is_valid())
