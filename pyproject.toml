@@ -8,6 +8,7 @@ authors = ["valentyn2202 <<>>"]
 python = "^3.8"
 discord = "^1.0.1"
 django = "^3.2"
+flask = "^1.1.2"
 
 [tool.poetry.dev-dependencies]
 
