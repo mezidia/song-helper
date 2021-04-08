@@ -11,12 +11,12 @@ async def on_ready():
 
 @client.command()
 async def join(ctx):
-    channel = ctx.author.voice.channel
-    await channel.connect()
+  channel = ctx.author.voice.channel
+  await channel.connect()
 
 @client.command()
 async def leave(ctx):
-    await ctx.voice_client.disconnect()
+  await ctx.voice_client.disconnect()
 
 @client.event
 async def on_message(message):
