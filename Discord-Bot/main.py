@@ -9,10 +9,14 @@ client = commands.Bot(command_prefix = 'sh!')
 async def on_ready():
 	print('We have logged in as {0.user}'.format(client))
 
-@client.command(pass_context=True)
+@client.command()
 async def join(ctx):
-	channel = ctx.message.author.voice.voice_channel
-	await client.join_voice_channel(channel)
+    channel = ctx.author.voice.channel
+    await channel.connect()
+
+@client.command()
+async def leave(ctx):
+    await ctx.voice_client.disconnect()
 
 @client.event
 async def on_message(message):
