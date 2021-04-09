@@ -76,24 +76,13 @@ class Music(commands.Cog):
         await ctx.send(f'Now playing: {player.title}')
 
     @commands.command()
-    async def stream(self, ctx, *, url):
-        """Streams from a url (same as yt, but doesn't predownload)"""
+    async def pause(self, ctx):
+        """Pauses a voice from bot"""
+        channel = ctx.author.voice.channel
+        if ctx.voice_client is not None:
+            return await ctx.voice_client.move_to(channel)
 
-        async with ctx.typing():
-            player = await YTDLSource.from_url(url, loop=self.bot.loop, stream=True)
-            ctx.voice_client.play(player, after=lambda e: print(f'Player error: {e}') if e else None)
-
-        await ctx.send(f'Now playing: {player.title}')
-
-    @commands.command()
-    async def volume(self, ctx, volume: int):
-        """Changes the player's volume"""
-
-        if ctx.voice_client is None:
-            return await ctx.send("Not connected to a voice channel.")
-
-        ctx.voice_client.source.volume = volume / 100
-        await ctx.send(f"Changed volume to {volume}%")
+        await channel.connect()
 
     @commands.command()
     async def stop(self, ctx):
@@ -102,7 +91,6 @@ class Music(commands.Cog):
         await ctx.voice_client.disconnect()
 
     @play.before_invoke
-    @stream.before_invoke
     async def ensure_voice(self, ctx):
         if ctx.voice_client is None:
             if ctx.author.voice:
@@ -116,7 +104,6 @@ class Music(commands.Cog):
 @client.event
 async def on_ready():
     print(f'Logged in as {client.user}')
-
 
 client.add_cog(Music(client))
 
