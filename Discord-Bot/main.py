@@ -78,11 +78,10 @@ class Music(commands.Cog):
     @commands.command()
     async def pause(self, ctx):
         """Pauses a voice from bot"""
-        channel = ctx.author.voice.channel
-        if ctx.voice_client is not None:
-            return await ctx.voice_client.move_to(channel)
-
-        await channel.connect()
+        if ctx.voice_client.is_playing():
+            return await ctx.voice.pause
+        else:
+            return await ctx.send("The bot is not connected to the channel")
 
     @commands.command()
     async def stop(self, ctx):
