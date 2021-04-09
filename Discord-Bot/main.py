@@ -56,16 +56,17 @@ class Music(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(name='join', help='How to join the channel')
+    @commands.command(name='join', help='Joins bot to the channel')
     async def join(self, ctx):
         """Joins a voice channel"""
-        channel = ctx.author.voice.channel
-        if ctx.voice_client is not None:
-            return await ctx.voice_client.move_to(channel)
-
+        if not ctx.message.author.voice:
+            await ctx.send("{} is not connected to a voice channel".format(ctx.message.author.name))
+            return
+        else:
+            channel = ctx.message.author.voice.channel
         await channel.connect()
 
-    @commands.command(name='play', help='How to play the song')
+    @commands.command(name='play', help='Bot will play the song')
     async def play(self, ctx, *, url):
         """Plays from a url (almost anything youtube_dl supports)"""
         try :
@@ -81,7 +82,7 @@ class Music(commands.Cog):
         except:
             await ctx.send("The bot is not connected to a voice channel.")
 
-    @commands.command(name='pause', help='How to pause the song')
+    @commands.command(name='pause', help='Bot will pause the song')
     async def pause(self, ctx):
         """Pauses a voice from bot"""
         voice_client = ctx.message.guild.voice_client
@@ -90,11 +91,15 @@ class Music(commands.Cog):
         else:
             await ctx.send("The bot is not playing anything at the moment.")
 
-    @commands.command(name='stop', help='How to stop the song')
-    async def stop(self, ctx):
+    @commands.command(name='leave', help='Bot will leave the voice channel')
+    async def leave(self, ctx):
         """Stops and disconnects the bot from voice"""
 
-        await ctx.voice_client.disconnect()
+        voice_client = ctx.message.guild.voice_client
+        if voice_client.is_connected():
+            await voice_client.disconnect()
+        else:
+            await ctx.send("The bot is not connected to a voice channel.")
 
 @client.event
 async def on_ready():
