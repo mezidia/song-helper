@@ -99,6 +99,7 @@ class Music(commands.Cog):
 
     @commands.command(name='stop', help='Bot will stop the song')
     async def stop(self, ctx):
+        """Stops a voice from bot"""
         voice_client = ctx.message.guild.voice_client
         if voice_client.is_playing():
             await voice_client.stop()
@@ -108,7 +109,6 @@ class Music(commands.Cog):
     @commands.command(name='leave', help='Bot will leave the voice channel')
     async def leave(self, ctx):
         """Stops and disconnects the bot from voice"""
-
         voice_client = ctx.message.guild.voice_client
         if voice_client.is_connected():
             await voice_client.disconnect()
