@@ -68,12 +68,18 @@ class Music(commands.Cog):
     @commands.command(name='play', help='How to play the song')
     async def play(self, ctx, *, url):
         """Plays from a url (almost anything youtube_dl supports)"""
+        try :
+            server = ctx.message.guild
+            voice_channel = server.voice_client
 
-        async with ctx.typing():
-            player = await YTDLSource.from_url(url, loop=self.bot.loop)
-            ctx.voice_client.play(player, after=lambda e: print(f'Player error: {e}') if e else None)
+            async with ctx.typing():
+                player = await YTDLSource.from_url(url, loop=self.bot.loop)
+                ctx.voice_client.play(player, after=lambda e: print(f'Player error: {e}') if e else None)
 
-        await ctx.send(f'Now playing: {player.title}')
+            await ctx.send(f'Now playing: {player.title}')
+
+        except:
+            await ctx.send("The bot is not connected to a voice channel.")
 
     @commands.command(name='pause', help='How to pause the song')
     async def pause(self, ctx):
