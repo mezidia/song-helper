@@ -56,7 +56,7 @@ class Music(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command()
+    @commands.command(name='join', help='How to join the channel')
     async def join(self, ctx):
         """Joins a voice channel"""
         channel = ctx.author.voice.channel
@@ -65,7 +65,7 @@ class Music(commands.Cog):
 
         await channel.connect()
 
-    @commands.command()
+    @commands.command(name='play', help='How to play the song')
     async def play(self, ctx, *, url):
         """Plays from a url (almost anything youtube_dl supports)"""
 
@@ -75,7 +75,7 @@ class Music(commands.Cog):
 
         await ctx.send(f'Now playing: {player.title}')
 
-    @commands.command()
+    @commands.command(name='pause', help='How to pause the song')
     async def pause(self, ctx):
         """Pauses a voice from bot"""
         voice_client = ctx.message.guild.voice_client
@@ -84,22 +84,11 @@ class Music(commands.Cog):
         else:
             await ctx.send("The bot is not playing anything at the moment.")
 
-    @commands.command()
+    @commands.command(name='stop', help='How to stop the song')
     async def stop(self, ctx):
         """Stops and disconnects the bot from voice"""
 
         await ctx.voice_client.disconnect()
-
-    @play.before_invoke
-    async def ensure_voice(self, ctx):
-        if ctx.voice_client is None:
-            if ctx.author.voice:
-                await ctx.author.voice.channel.connect()
-            else:
-                await ctx.send("You are not connected to a voice channel.")
-                raise commands.CommandError("Author not connected to a voice channel.")
-        elif ctx.voice_client.is_playing():
-            ctx.voice_client.stop()
 
 @client.event
 async def on_ready():
