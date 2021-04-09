@@ -100,6 +100,14 @@ class Music(commands.Cog):
         else:
             await ctx.send("The bot was not playing anything before this. Use play_song command")
 
+    @commands.command(name='stop', help='Bot will stop the song')
+    async def stop(self, ctx):
+        voice_client = ctx.message.guild.voice_client
+        if voice_client.is_playing():
+            await voice_client.stop()
+        else:
+            await ctx.send("The bot is not playing anything at the moment.")
+
     @commands.command(name='leave', help='Bot will leave the voice channel')
     async def leave(self, ctx):
         """Stops and disconnects the bot from voice"""
