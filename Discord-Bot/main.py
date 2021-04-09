@@ -57,10 +57,10 @@ class Music(commands.Cog):
         self.bot = bot
 
     @commands.command()
-    async def join(self, ctx, *, channel: discord.VoiceChannel):
+    async def join(self, ctx):
         """Joins a voice channel"""
-
         if ctx.voice_client is not None:
+            channel = ctx.author.voice.channel
             return await ctx.voice_client.move_to(channel)
 
         await channel.connect()
