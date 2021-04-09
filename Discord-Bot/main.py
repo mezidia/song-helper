@@ -91,6 +91,15 @@ class Music(commands.Cog):
         else:
             await ctx.send("The bot is not playing anything at the moment.")
 
+    @commands.command(name='resume', help='Bot will resume the song')
+    async def resume(self, ctx):
+        """Resumes a voice from bot"""
+        voice_client = ctx.message.guild.voice_client
+        if voice_client.is_paused():
+            await voice_client.resume()
+        else:
+            await ctx.send("The bot was not playing anything before this. Use play_song command")
+
     @commands.command(name='leave', help='Bot will leave the voice channel')
     async def leave(self, ctx):
         """Stops and disconnects the bot from voice"""
