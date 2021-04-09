@@ -99,8 +99,8 @@ class Music(commands.Cog):
 
 @client.event
 async def on_ready():
-		await client.change_presence(status = discord.Status.idle, activity = discord.Game('Mezidia is the best!'))
-    print(f'Bot {client.user} has logged in')
+		await client.change_presence(status = discord.Status.online, activity = discord.Game('Mezidia is the best!'))
+		print('We have logged in as {0.user}'.format(client))
 
 client.add_cog(Music(client))
 
