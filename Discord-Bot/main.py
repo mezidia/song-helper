@@ -78,10 +78,7 @@ class Music(commands.Cog):
     @commands.command()
     async def pause(self, ctx):
         """Pauses a voice from bot"""
-        if ctx.voice_client.is_playing():
-            await ctx.voice.pause()
-        else:
-            await ctx.send("The bot is not connected to the channel")
+        await ctx.voice.pause()
 
     @commands.command()
     async def stop(self, ctx):
