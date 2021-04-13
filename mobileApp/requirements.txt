@@ -1,3 +1,6 @@
+aiohttp==3.7.4.post0
+async-timeout==3.0.1
+attrs==20.3.0
 certifi==2020.12.5
 chardet==4.0.0
 docutils==0.17
@@ -7,8 +10,11 @@ kivy-deps.angle==0.3.0
 kivy-deps.glew==0.3.0
 kivy-deps.sdl2==0.3.1
 Kivy-Garden==0.1.4
+multidict==5.1.0
 Pygments==2.8.1
 pypiwin32==223
 pywin32==300
 requests==2.25.1
+typing-extensions==3.7.4.3
 urllib3==1.26.4
+yarl==1.6.3
