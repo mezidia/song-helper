@@ -52,7 +52,7 @@ class MainApp(App):
         return box
 
     async def make_request(self, mood_text: str) -> str:
-        # TODO: Some conditionals and fix event loop error
+        # TODO: Some conditionals and fix event loop error https://replit.com/@mezgoodle/requests#main.py
         """
         Function that makes request to server and gets link
         :param mood_text: text from input field
