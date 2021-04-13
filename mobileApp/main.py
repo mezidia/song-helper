@@ -4,6 +4,8 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
 from kivy.uix.textinput import TextInput
 from kivy.core.window import Window
+import asyncio
+import aiohttp
 
 Window.size = (250, 300)
 Window.clearcolor = (255 / 255, 186 / 255, 3 / 255, 1)
@@ -19,7 +21,7 @@ class MainApp(App):
         self.button = Button(text='Search the song', background_color=(0, 0, 0, 0))
         self.button.bind(on_press=self.btn_callback)
         self.input_data = TextInput(hint_text='Text your mood here', multiline=True)
-        self.link = Label(text='')
+        self.link = Label(text='[b]Hello[/b]', markup=True)
 
     def btn_callback(self, instance):
         # TODO: check if input is not blank
@@ -30,8 +32,10 @@ class MainApp(App):
         """
         data = self.input_data.text
         print(f'The data {data}')
+        link = asyncio.run(self.make_request(data))
+        print(link)
         self.input_data.text = ''
-        self.link.text = data
+        self.link.text = 'link'
 
     def build(self):
         """
@@ -47,15 +51,16 @@ class MainApp(App):
 
         return box
 
-    def make_request(self, mood_text: str) -> str:
-        # TODO: Write logic for this function. Make requests with https://docs.python-requests.org/en/master/. Maybe
-        #  async
+    async def make_request(self, mood_text: str) -> str:
+        # TODO: Some conditionals and fix event loop error
         """
         Function that makes request to server and gets link
         :param mood_text: text from input field
         :return: link to youtube video with song
         """
-        pass
+        async with aiohttp.ClientSession() as session:
+            async with session.get('http://python.org') as response:
+                return await response.text()
 
 
 if __name__ == '__main__':
