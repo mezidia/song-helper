@@ -3,6 +3,7 @@ from django.urls import reverse
 from http import HTTPStatus
 from .models import Mood, Song
 from .forms import InputForm
+from .searcher import search_youtube
 
 
 class MoodModelTest(TestCase):
@@ -106,3 +107,31 @@ class FormsTests(TestCase):
         data = {}
         form = InputForm(data=data)
         self.assertFalse(form.is_valid())
+        
+        
+class SearcherTest(TestCase):
+    """
+    Test search on YouTube
+    """
+    def test_searcher(self):
+        """
+        Test the function output
+        """
+        str_to_search = 'python'
+        params1 = {'limit': 1}
+        params2 = {'limit': 3}
+        result1 = search_youtube(str_to_search, params1)
+        result2 = search_youtube(str_to_search, params2)
+        self.assertIsNotNone(result1)
+        self.assertIsNotNone(result2)
+        self.assertIsInstance(result1, dict)
+        self.assertIsInstance(result2, dict)
+        self.assertIsNotNone(result1['title'])
+        self.assertEqual(result1['title'], 'Learn Python - Full Course for Beginners [Tutorial]')
+        self.assertIsNotNone(result1['views'])
+        self.assertEqual(result1['views'], '22M views')
+        self.assertIsNotNone(result2['duration'])
+        self.assertEqual(result2['duration'], '4:26:52')
+        self.assertIsNotNone(result2['link'])
+        self.assertEqual(result2['link'], 'https://www.youtube.com/watch?v=rfscVS0vtbw')
+
