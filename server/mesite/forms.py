@@ -1,7 +1,7 @@
 from django.forms import Form, Textarea, CharField
 
 
-class MainForm(Form):
+class InputForm(Form):
     text = CharField(label='Your description',
                      required=True,
                      widget=Textarea(attrs={
