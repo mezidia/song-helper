@@ -36,6 +36,8 @@ class MainApp(App):
         print(link)
         self.input_data.text = ''
         self.link.text = 'link'
+            loop = asyncio.get_event_loop()
+            link = loop.run_until_complete(make_request(data))
 
     def build(self):
         """
@@ -51,16 +53,17 @@ class MainApp(App):
 
         return box
 
-    async def make_request(self, mood_text: str) -> str:
-        # TODO: Some conditionals and fix event loop error https://replit.com/@mezgoodle/requests#main.py
-        """
-        Function that makes request to server and gets link
-        :param mood_text: text from input field
-        :return: link to youtube video with song
-        """
-        async with aiohttp.ClientSession() as session:
-            async with session.get('http://python.org') as response:
-                return await response.text()
+
+async def make_request(self, mood_text: str) -> str:
+    # TODO: Some conditionals and fix event loop error https://replit.com/@mezgoodle/requests#main.py
+    """
+    Function that makes request to server and gets link
+    :param mood_text: text from input field
+    :return: link to youtube video with song
+    """
+    async with aiohttp.ClientSession() as session:
+        async with session.get(f'https://api.github.com/users/{mood_text}') as response:
+            return await response.json()
 
 
 if __name__ == '__main__':
