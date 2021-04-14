@@ -129,7 +129,7 @@ class SearcherTest(TestCase):
         self.assertIsNotNone(result1['title'])
         self.assertEqual(result1['title'], 'Learn Python - Full Course for Beginners [Tutorial]')
         self.assertIsNotNone(result1['views'])
-        self.assertEqual(result1['views'], '22M views')
+        self.assertTrue(result1['views'].endswith('views'))
         self.assertIsNotNone(result2['duration'])
         self.assertEqual(result2['duration'], '4:26:52')
         self.assertIsNotNone(result2['link'])
