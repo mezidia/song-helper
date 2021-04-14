@@ -23,11 +23,12 @@ class MainApp(App):
         self.button = Button(text='Search the song', background_color=(0, 0, 0, 0))
         self.button.bind(on_press=self.input_btn_callback)
         self.input_data = TextInput(hint_text='Text your mood here', multiline=True)
-        self.link = Label(text='[b]Hello[/b]', markup=True)
+        self.link = Button(text='[b]Here[/b] will be your link', markup=True, background_color=(0, 0, 0, 0))
+        self.link.bind(on_press=self.link_btn_callback)
 
     def input_btn_callback(self, instance):
         """
-        Callback for out button
+        Callback for input button
         :param instance: required parameter, but not used
         :return: nothing to return
         """
@@ -43,6 +44,16 @@ class MainApp(App):
             except KeyError:
                 self.link.text = 'This user is not found'
 
+    def link_btn_callback(self, instance):
+        """
+        Callback for link button
+        :param instance: required parameter
+        :return: nothing to return
+        """
+        if instance.text.startswith('https://'):
+            webbrowser.open_new_tab(instance.text)
+        else:
+            instance.text = 'This is not a link'
 
     def build(self):
         """
