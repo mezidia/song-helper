@@ -1,4 +1,5 @@
 import os
+import time
 import asyncio
 import discord
 import youtube_dl
@@ -78,6 +79,13 @@ class Music(commands.Cog):
 
         except:
             await ctx.send("The bot is not connected to a voice channel.")
+        seconds = 7
+        time.sleep(seconds)
+        # discord.FFmpegPCMAudio.cleanup(self)
+        for file in os.listdir('./'):
+            if file.split('.')[-1] in ['webm', 'm4a']:
+                os.remove(file)
+
 
     @commands.command(name='pause', help='Bot will pause the song')
     async def pause(self, ctx):
