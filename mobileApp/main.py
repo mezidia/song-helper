@@ -7,6 +7,8 @@ from kivy.core.window import Window
 import asyncio
 import aiohttp
 
+import webbrowser
+
 Window.size = (250, 300)
 Window.clearcolor = (255 / 255, 186 / 255, 3 / 255, 1)
 
@@ -19,25 +21,28 @@ class MainApp(App):
         super().__init__()
         self.label = Label(text='Enter your mood', font_size='20sp', bold=True)
         self.button = Button(text='Search the song', background_color=(0, 0, 0, 0))
-        self.button.bind(on_press=self.btn_callback)
+        self.button.bind(on_press=self.input_btn_callback)
         self.input_data = TextInput(hint_text='Text your mood here', multiline=True)
         self.link = Label(text='[b]Hello[/b]', markup=True)
 
-    def btn_callback(self, instance):
-        # TODO: check if input is not blank
+    def input_btn_callback(self, instance):
         """
         Callback for out button
         :param instance: required parameter, but not used
         :return: nothing to return
         """
-        data = self.input_data.text
-        print(f'The data {data}')
-        link = asyncio.run(self.make_request(data))
-        print(link)
-        self.input_data.text = ''
-        self.link.text = 'link'
+        input_text = self.input_data.text
+        if not input_text:
+            self.link.text = 'Enter the mood'
+        else:
             loop = asyncio.get_event_loop()
-            link = loop.run_until_complete(make_request(data))
+            link = loop.run_until_complete(make_request(input_text))
+            self.input_data.text = ''
+            try:
+                self.link.text = link['html_url']
+            except KeyError:
+                self.link.text = 'This user is not found'
+
 
     def build(self):
         """
@@ -54,8 +59,7 @@ class MainApp(App):
         return box
 
 
-async def make_request(self, mood_text: str) -> str:
-    # TODO: Some conditionals and fix event loop error https://replit.com/@mezgoodle/requests#main.py
+async def make_request(mood_text: str) -> dict:
     """
     Function that makes request to server and gets link
     :param mood_text: text from input field
