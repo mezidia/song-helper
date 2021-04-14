@@ -107,8 +107,8 @@ class FormsTests(TestCase):
         data = {}
         form = InputForm(data=data)
         self.assertFalse(form.is_valid())
-        
-        
+
+
 class SearcherTest(TestCase):
     """
     Test search on YouTube
@@ -134,4 +134,3 @@ class SearcherTest(TestCase):
         self.assertEqual(result2['duration'], '4:26:52')
         self.assertIsNotNone(result2['link'])
         self.assertEqual(result2['link'], 'https://www.youtube.com/watch?v=rfscVS0vtbw')
-
