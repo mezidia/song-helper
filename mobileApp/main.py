@@ -10,7 +10,7 @@ import aiohttp
 import webbrowser
 
 Window.size = (250, 300)
-Window.clearcolor = (255 / 255, 186 / 255, 3 / 255, 1)
+Window.clearcolor = (43 / 255, 76 / 255, 186 / 255, 1)
 
 
 class MainApp(App):
@@ -19,10 +19,10 @@ class MainApp(App):
         Constructor for class. Set all elements here
         """
         super().__init__()
-        self.label = Label(text='Enter your mood', font_size='20sp', bold=True)
-        self.button = Button(text='Search the song', background_color=(0, 0, 0, 0))
+        self.label = Label(text='Enter your nickname', font_size='20sp', bold=True)
+        self.button = Button(text='Search the user in GitHub API', background_color=(0, 0, 0, 0))
         self.button.bind(on_press=self.input_btn_callback)
-        self.input_data = TextInput(hint_text='Text your mood here', multiline=True)
+        self.input_data = TextInput(hint_text='Text your nickname here', multiline=True)
         self.link = Button(text='[b]Here[/b] will be your link', markup=True, background_color=(0, 0, 0, 0))
         self.link.bind(on_press=self.link_btn_callback)
 
@@ -34,7 +34,7 @@ class MainApp(App):
         """
         input_text = self.input_data.text
         if not input_text:
-            self.link.text = 'Enter the mood'
+            self.link.text = 'Enter the nickname'
         else:
             loop = asyncio.get_event_loop()
             link = loop.run_until_complete(make_request(input_text))
@@ -52,6 +52,7 @@ class MainApp(App):
         """
         if instance.text.startswith('https://'):
             webbrowser.open_new_tab(instance.text)
+            instance.text = 'Try another one'
         else:
             instance.text = 'This is not a link'
 
