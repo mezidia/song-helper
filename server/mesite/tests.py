@@ -2,7 +2,7 @@ from django.test import TestCase
 from django.urls import reverse
 from http import HTTPStatus
 from .models import Mood, Song
-from .forms import MainForm
+from .forms import MainForm, AddForm
 from .searcher import search_youtube
 
 
@@ -88,7 +88,7 @@ class ViewsTests(TestCase):
         self.assertEqual(response.status_code, HTTPStatus.OK)
 
 
-class FormsTests(TestCase):
+class MainFormTests(TestCase):
     """
     Test app forms
     """
@@ -106,6 +106,27 @@ class FormsTests(TestCase):
         """
         data = {}
         form = MainForm(data=data)
+        self.assertFalse(form.is_valid())
+
+
+class AddFormTests(TestCase):
+    """
+    Test app forms
+    """
+    def test_valid_input_form(self):
+        """
+        Test valid form
+        """
+        data = {'song_id': 'test-text'}
+        form = AddForm(data=data)
+        self.assertTrue(form.is_valid())
+
+    def test_invalid_input_form(self):
+        """
+        Test invalid form
+        """
+        data = {}
+        form = AddForm(data=data)
         self.assertFalse(form.is_valid())
 
 
