@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Index page of song-helper">
-    <meta name="author" content="Sichkar Tetiana and Zavalniuk Maxim">
+    <meta name="author" content="Mezidia">
     <title>{% block title %}{% endblock %}</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/pricing/">
@@ -15,7 +15,8 @@
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon"  href="{% static 'img/favicon.ico' %}">
     <!-- Custom styles for this template -->
-    <link href="{% static 'css/index.css' %}" rel="stylesheet" />
+    {% block extra_links %}
+    {% endblock %}
 </head>
 <body>
     {% block content %}

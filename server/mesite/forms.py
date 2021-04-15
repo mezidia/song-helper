@@ -6,6 +6,6 @@ class InputForm(Form):
                      required=True,
                      widget=Textarea(attrs={
                          'class': 'form-control',
-                         'placeholder': 'Your description',
+                         'placeholder': 'Write your description here',
                          'rows': 3,
                      }))
