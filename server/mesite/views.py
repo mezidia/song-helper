@@ -1,9 +1,11 @@
 from django.shortcuts import render
+from datetime import date
 from .forms import InputForm
 
 
 def index(request):
     result = ''
+    year = date.today().year
     if request.method == 'POST':
         form = InputForm(request.POST)
         if form.is_valid():
@@ -12,5 +14,6 @@ def index(request):
     context = {
         'result': result,
         'form': InputForm(),
+        'year': year,
     }
     return render(request, 'mesite/index.html', context)
