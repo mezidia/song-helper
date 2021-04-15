@@ -11,6 +11,8 @@ def index(request):
         form = MainForm(request.POST)
         if form.is_valid():
             text = form.cleaned_data['text']
+            # TODO: go to song-helper/mood_from_words.py and get mood
+            # result = predict_mood(text)
             result = text.capitalize()
     context = {
         'result': result,
@@ -27,6 +29,12 @@ def add_song(request):
         if form.is_valid():
             song_id = form.cleaned_data['song_id']
             try:
+                # TODO: go to song-helper/predict.py and get mood
+                # result = predict_mood(song_id)
+                # TODO: go to song-helper/utils.py and get song feature
+                # features = get_song_features(song_id)
+                # TODO: save new object to model
+                # Song.save(features)
                 result = f'Song with id "{song_id}" added as Happy'
             except:
                 result = 'Cannot find your song'
