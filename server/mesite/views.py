@@ -10,10 +10,14 @@ def index(request):
     if request.method == 'POST':
         form = MainForm(request.POST)
         if form.is_valid():
-            text = form.cleaned_data['text']
+            mood = form.cleaned_data['text']
             # TODO: go to song-helper/mood_from_words.py and get mood
-            # result = predict_mood(text)
-            result = text.capitalize()
+            # mood = predict_mood(text)
+            # TODO: go to Songs model and get random song with this mood
+            # song = Songs.query(mood)
+            # TODO: go to searcher.py and get link
+            # link = searcher(song)
+            result = mood.capitalize()
     context = {
         'result': result,
         'form': MainForm(),

@@ -153,5 +153,5 @@ class SearcherTest(TestCase):
         self.assertTrue(result1['views'].endswith('views'))
         self.assertIsNotNone(result2['duration'])
         self.assertEqual(result2['duration'], '4:26:52')
-        self.assertIsNotNone(result2['link'])
-        self.assertEqual(result2['link'], 'https://www.youtube.com/watch?v=rfscVS0vtbw')
+        self.assertIsNotNone(result2['song_id'])
+        self.assertEqual(result2['song_id'], 'rfscVS0vtbw')
