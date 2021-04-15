@@ -1,11 +1,17 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block extra_links %}
-    <link href="{% static 'css/index.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/index.css' %}" rel="stylesheet"/>
 {% endblock %}
 {% block title %}
     Song helper
 {% endblock %}
 {% block content %}
-    {% include 'includes/add_song_form.html' %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto text-center p-4 pt-5">
+                {% include 'includes/add_song_form.html' %}
+            </div>
+        </div>
+    </div>
 {% endblock %}
