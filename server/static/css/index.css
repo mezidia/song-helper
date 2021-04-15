@@ -10,10 +10,11 @@ body {
     text-transform: uppercase;
 }
 
-.form p {
+.form p, label, a {
     color: white;
 }
 
-.form label {
-    color: white;
+.form a:hover {
+    transition: 1s;
+    color: grey;
 }
