@@ -1,8 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
 body {
+    font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
-    background: linear-gradient(to right, #b92b27, #1565c0)
+    background: linear-gradient(to right, #b92b27, #e9df0c)
 }
 
 .form h1 {
