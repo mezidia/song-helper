@@ -12,7 +12,7 @@ class MainForm(Form):
 
 
 class AddForm(Form):
-    text = CharField(label='ID of song',
+    song_id = CharField(label='ID of song',
                      required=True,
                      widget=TextInput(attrs={
                          'class': 'form-control',

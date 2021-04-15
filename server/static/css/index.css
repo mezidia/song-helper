@@ -10,7 +10,11 @@ body {
     text-transform: uppercase;
 }
 
-.form p, label, a {
+.white-color {
+    color: white;
+}
+
+.form label {
     color: white;
 }
 

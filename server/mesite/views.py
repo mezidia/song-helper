@@ -21,8 +21,18 @@ def index(request):
 
 
 def add_song(request):
+    result = ''
+    if request.method == 'POST':
+        form = AddForm(request.POST)
+        if form.is_valid():
+            song_id = form.cleaned_data['song_id']
+            try:
+                result = f'Song with id "{song_id}" added as Happy'
+            except:
+                result = 'Cannot find your song'
     context = {
         'form': AddForm(),
         'year': year,
+        'result': result,
     }
     return render(request, 'mesite/add_song.html', context)
