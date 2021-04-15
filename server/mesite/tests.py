@@ -2,7 +2,7 @@ from django.test import TestCase
 from django.urls import reverse
 from http import HTTPStatus
 from .models import Mood, Song
-from .forms import InputForm
+from .forms import MainForm
 from .searcher import search_youtube
 
 
@@ -97,7 +97,7 @@ class FormsTests(TestCase):
         Test valid form
         """
         data = {'text': 'test-text'}
-        form = InputForm(data=data)
+        form = MainForm(data=data)
         self.assertTrue(form.is_valid())
 
     def test_invalid_input_form(self):
@@ -105,7 +105,7 @@ class FormsTests(TestCase):
         Test invalid form
         """
         data = {}
-        form = InputForm(data=data)
+        form = MainForm(data=data)
         self.assertFalse(form.is_valid())
 
 

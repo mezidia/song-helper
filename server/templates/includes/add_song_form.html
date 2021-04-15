@@ -7,10 +7,10 @@
                 <img class="mb-4" src="{% static 'img/MezidiaLogoTransparent.png' %}"
                      alt="Logo image" width="72" height="72">
                 <h1>Song helper</h1>
-                <p>Please write a description of your mood</p>
+                <p>Please an identifier of your song</p>
                 {{ form }}
-                <button class="w-100 btn btn-lg btn-primary mt-2" type="submit">Sign in</button>
-                <a href="{% url 'mesite:add_song' %}" style="text-decoration: underline">Add new song to database</a>
+                <button class="w-100 btn btn-lg btn-primary mt-2" type="submit">Add</button>
+                <a href="{% url 'mesite:index' %}" style="text-decoration: underline">Return to main page</a>
                 <p class="mt-3 mb-3">&copy; 2020–{{ year }}</p>
             </form>
         </div>

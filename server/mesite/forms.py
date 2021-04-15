@@ -1,7 +1,7 @@
-from django.forms import Form, Textarea, CharField
+from django.forms import Form, Textarea, CharField, TextInput
 
 
-class InputForm(Form):
+class MainForm(Form):
     text = CharField(label='Your description',
                      required=True,
                      widget=Textarea(attrs={
@@ -9,3 +9,13 @@ class InputForm(Form):
                          'placeholder': 'Write your description here',
                          'rows': 3,
                      }))
+
+
+class AddForm(Form):
+    text = CharField(label='ID of song',
+                     required=True,
+                     widget=TextInput(attrs={
+                         'class': 'form-control',
+                         'placeholder': 'Write Spotify ID of song. For example, 4Km5HrUvYTaSUfiSGPJeQR',
+                     }))
+
