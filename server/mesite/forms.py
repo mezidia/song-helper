@@ -13,9 +13,8 @@ class MainForm(Form):
 
 class AddForm(Form):
     song_id = CharField(label='ID of song',
-                     required=True,
-                     widget=TextInput(attrs={
-                         'class': 'form-control',
-                         'placeholder': 'Write Spotify ID of song. For example, 4Km5HrUvYTaSUfiSGPJeQR',
-                     }))
-
+                        required=True,
+                        widget=TextInput(attrs={
+                            'class': 'form-control',
+                            'placeholder': 'Write Spotify ID of song. For example, 4Km5HrUvYTaSUfiSGPJeQR',
+                        }))
