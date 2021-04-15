@@ -9,14 +9,8 @@
                 <h1>Song helper</h1>
                 <p>Please write a description of your mood</p>
                 {{ form }}
-                <!-- {% for field in form %}
-                        {{ field.errors }}
-                        {{ field.label_tag }}
-                        {{ field.results }}
-                        {{ field }}
-                        {% endfor %} -->
                 <button class="w-100 btn btn-lg btn-primary mt-2" type="submit">Sign in</button>
-                <a href="#" style="text-decoration: underline">Add new song to database</a>
+                <a href="{% url 'mesite:add_song' %}" style="text-decoration: underline">Add new song to database</a>
                 <p class="mt-3 mb-3">&copy; 2020–{{ year }}</p>
             </form>
         </div>

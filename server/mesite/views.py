@@ -17,3 +17,7 @@ def index(request):
         'year': year,
     }
     return render(request, 'mesite/index.html', context)
+
+
+def add_song(request):
+    return render(request, 'mesite/add_song.html')
