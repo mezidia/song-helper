@@ -1,119 +1,116 @@
-import spotipy
-import time
-from spotipy import SpotifyClientCredentials, util
-
-client_id = 'your_spotify_client_id'
-client_secret = 'your_spotify_client_secret'
-redirect_uri = 'your_url_to_redirect'
-username = 'your_username_spotify_code'
-scope = 'playlist-modify-public'
-
-# Credentials to access the Spotify Music Data
-manager = SpotifyClientCredentials(client_id, client_secret)
-sp = spotipy.Spotify(client_credentials_manager=manager)
-
-# Credentials to access to  the Spotify User's Playlist, Favorite Songs, etc.
-token = util.prompt_for_user_token(username, scope, client_id, client_secret, redirect_uri)
-spt = spotipy.Spotify(auth=token)
+import tekore as tk
+from .config import Config
 
 
-def get_albums_id(ids):
-    album_ids = []
-    results = sp.artist_albums(ids)
-    for album in results['items']:
-        album_ids.append(album['id'])
-    return album_ids
+class SpotifyUtils:
+    """
+    Class for making requests to Spotify API
+    """
+
+    def __init__(self, client_id=Config.client_id, client_secret=Config.client_secret,
+                 redirect_uri=Config.redirect_uri):
+        # Credentials to access the Spotify Music Data
+        self.client_id = client_id
+        self.client_secret = client_secret
+        self.redirect_uri = redirect_uri
+        self.app_token = tk.request_client_token(self.client_id, self.client_secret)
+        self.spt = tk.Spotify(self.app_token)
+
+    def get_artist(self, artist_id: str):
+        """
+        Get information about the artist
+        :param artist_id: identifier of artist
+        :return: information about the artist
+        """
+        artist = self.spt.artist(artist_id)
+        return {
+            'id': artist.id,
+            'name': artist.name,
+            'popularity': artist.popularity,
+            'genres': [genre for genre in artist.genres]
+        }
+
+    def get_album_songs(self, album_id: str):
+        """
+        Get songs of the album
+        :param album_id: identifier of album
+        :return: tracks in album and total number of tracks
+        """
+        tracks = self.spt.album_tracks(album_id, limit=50)
+        return {
+            'tracks': tracks.items,
+            'total': tracks.total,
+        }
+
+    def get_song_meta(self, song_id: str) -> dict:
+        """
+        Get meta-info about the song
+        :param song_id: identifier of song
+        :return: Meta-info about song
+        """
+        meta_information = self.spt.track(song_id)
+        return {
+            'name': meta_information.name,
+            'album': meta_information.album.name,
+            'artists': str([artist.name for artist in meta_information.artists]),
+            'id': meta_information.id,
+            'release_date': meta_information.album.release_date,
+            'popularity': float(meta_information.popularity),
+            'length': float(meta_information.duration_ms),
+        }
+
+    def get_song_analise(self, song_id: str) -> dict:
+        """
+        Analise the song
+        :param song_id: identifier of song
+        :return: info after analysing the song
+        """
+        analise = self.spt.track_audio_analysis(song_id)
+        return {
+            'bars': analise.bars,
+            'beats': analise.beats,
+            'sections': analise.sections,
+            'segments': analise.segments,
+            'tatums': analise.tatums,
+        }
+
+    def get_song_features(self, song_id: str) -> dict:
+        """
+        Get features of song
+        :param song_id: identifier of song
+        :return: song features
+        """
+        features = self.spt.track_audio_features(song_id)
+        return {
+            'danceability': float(features.danceability),
+            'acousticness': float(features.acousticness),
+            'energy': float(features.energy),
+            'instrumentalness': float(features.instrumentalness),
+            'liveness': float(features.liveness),
+            'valence': float(features.valence),
+            'loudness': float(features.loudness),
+            'speechiness': float(features.speechiness),
+            'tempo': float(features.tempo),
+            'key': float(features.key),
+            'time_signature': float(features.time_signature),
+        }
+
+    def get_song(self, song_id: str) -> list:
+        """
+        Get all information about song
+        :param song_id: identifier of song
+        :return: information about song
+        """
+        meta = self.get_song_meta(song_id)
+        features = self.get_song_features(song_id)
+
+        return [*meta.items(), *features.items()]
+        # [('name', 'I’m Ready (with Demi Lovato)'), ('album', 'I’m Ready (with Demi Lovato)'),
+        #  ('artists', "['Sam Smith', 'Demi Lovato']"), ('release_date', '2020-04-16'), ('length', 200838.0),
+        #  ('popularity', 74.0), ('id', '1fipvP2zmef6vN2IwXfJhY'), ('acousticness', 0.00346), ('danceability', 0.501),
+        #  ('energy', 0.674), ('instrumentalness', 3.56e-05), ('liveness', 0.282), ('valence', 0.152),
+        #  ('loudness', -6.363), ('speechiness', 0.0408), ('tempo', 155.051), ('key', 5.0), ('time_signature', 4.0)]
 
 
-def get_album_songs_id(ids):
-    song_ids = []
-    results = sp.album_tracks(ids, offset=0)
-    for songs in results['items']:
-        song_ids.append(songs['id'])
-    return song_ids
-
-
-def get_songs_features(ids):
-    meta = sp.track(ids)
-    features = sp.audio_features(ids)
-
-    # meta
-    name = meta['name']
-    album = meta['album']['name']
-    artist = meta['album']['artists'][0]['name']
-    release_date = meta['album']['release_date']
-    length = meta['duration_ms']
-    popularity = meta['popularity']
-    ids = meta['id']
-
-    # features
-    acousticness = features[0]['acousticness']
-    danceability = features[0]['danceability']
-    energy = features[0]['energy']
-    instrumentalness = features[0]['instrumentalness']
-    liveness = features[0]['liveness']
-    valence = features[0]['valence']
-    loudness = features[0]['loudness']
-    speechiness = features[0]['speechiness']
-    tempo = features[0]['tempo']
-    key = features[0]['key']
-    time_signature = features[0]['time_signature']
-
-    track = [name, album, artist, ids, release_date, popularity, length, danceability, acousticness,
-             energy, instrumentalness, liveness, valence, loudness, speechiness, tempo, key, time_signature]
-    columns = ['name', 'album', 'artist', 'id', 'release_date', 'popularity', 'length', 'danceability', 'acousticness',
-               'energy', 'instrumentalness',
-               'liveness', 'valence', 'loudness', 'speechiness', 'tempo', 'key', 'time_signature']
-    return track, columns
-
-
-def download_albums(music_id, artist=False):
-    if artist:
-        ids_album = get_albums_id(music_id)
-    else:
-        if type(music_id) == list:
-            ids_album = music_id
-        elif type(music_id) == str:
-            ids_album = list([music_id])
-
-    tracks = columns = []
-    for ids in ids_album:
-        # Obtener Ids de canciones en album
-        song_ids = get_album_songs_id(ids=ids)
-        # Obtener feautres de canciones en album
-        ids2 = song_ids
-
-        print(f'Album Length: {len(song_ids)}')
-
-        time.sleep(.6)
-        track, columns = get_songs_features(ids2)
-        tracks.append(track)
-
-        print(f'Song Added: {track[0]} By {track[2]} from the album {track[1]}')
-
-    print('Music Downloaded!')
-
-    return tracks, columns
-
-
-def download_playlist(id_playlist, n_songs):
-    songs_id = []
-    tracks = columns = []
-
-    for i in range(0, n_songs, 100):
-        playlist = spt.playlist_items(id_playlist, limit=100, offset=i)
-
-        for songs in playlist['items']:
-            songs_id.append(songs['track']['id'])
-
-    counter = 1
-    for ids in songs_id:
-        time.sleep(.6)
-        track, columns = get_songs_features(ids)
-        tracks.append(track)
-
-        print(f'Song {counter} Added:')
-        print(f'{track[0]} By {track[2]} from the album {track[1]}')
-        counter += 1
-
-    return tracks, columns
+# obj = SpotifyUtils()
+# print(obj.get_song('4Km5HrUvYTaSUfiSGPJeQR'))
