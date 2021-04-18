@@ -55,6 +55,8 @@ class TelegramTest(unittest.TestCase, Parent):
 
 
 class AudioDownloaderTest(unittest.TestCase, Parent):
+    """Class for testing Audio Downloader"""
+    
     def test_path(self):
         for i in range(len(self.urls)):
             path = audiodownloader.audio_downloader(self.urls[i])
