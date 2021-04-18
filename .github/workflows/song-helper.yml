@@ -36,4 +36,3 @@ jobs:
         CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
         USERNAME: ${{ secrets.USERNAME }}
         REDIRECT_URI: ${{ secrets.REDIRECT_URI }}
-        
