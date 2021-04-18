@@ -114,6 +114,13 @@ class Music(commands.Cog):
         else:
             await ctx.send("The bot is not playing anything at the moment.")
 
+    #@commands.command(name='repeat', help='Bot will loop the song')
+    #async def repeat(self, ctx):
+    #    voice_client = ctx.message.guild.voice_client
+    #    voice_client.play(audio, after=lambda e: Music.repeat(ctx.guild, #voice_client.voice, ctx.audio))
+    #    voice_client.is_playing()
+    #    await ctx.send("Current music will be repeated")
+
     @commands.command(name='leave', help='Bot will leave the voice channel')
     async def leave(self, ctx):
         """Stops and disconnects the bot from voice"""
