@@ -39,8 +39,8 @@ class PredictMood():
 
         # Create the  pipeline to clean, tokenize, vectorize, and classify
         self.pipe_tfid = Pipeline([(Consts.CLEANER, Predictors()),
-                            (Consts.VECTORIZER, TfidfVectorizer()),
-                            (Consts.CLASSIFIER, self.classifier)])
+                                    (Consts.VECTORIZER, TfidfVectorizer()),
+                                    (Consts.CLASSIFIER, self.classifier)])
 
         self.pipe_tfid.fit(self.X_train, self.y_train)
 
