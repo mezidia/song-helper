@@ -6,4 +6,4 @@ COPY . /opt
 RUN pip install -r /opt/requirements.txt
 
 WORKDIR /opt/server
-CMD ["python", "manage.py", "runserver"]
+CMD ["/bin/bash", "-c", "python manage.py migrate && python manage.py runserver"]
