@@ -162,7 +162,7 @@ class TestPredictMood(unittest.TestCase):
 
     @patch('mood_from_words.PredictMood.predict', return_value='HAPPY')
     def test_predict_mock_happy(self, predict):
-        result = self.predictor.predict('I want happy music')# 'I want sad music' to check, that mock is working
+        result = self.predictor.predict('I want happy music')  # 'I want sad music' to check, that mock is working
         expected = 'HAPPY'
         self.assertEqual(result, expected)
 
@@ -212,6 +212,7 @@ class TestPredictMood(unittest.TestCase):
 
     def tearDown(self):
         del self.predictor
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -10,9 +10,10 @@ from sklearn.svm import LinearSVC
 from sklearn.model_selection import train_test_split
 from mood_predictors import Predictors
 
+
 class Consts:
     LANGUAGE_PACKAGE = 'en_core_web_trf'
-    PATH_TO_CSV = 'song-helper\song-helper\data\OurData.csv'
+    PATH_TO_CSV = 'song-helper/song-helper/data/OurData.csv'
     ACCURACY = "Accuracy: "
     PREDICTION = "Prediction=>"
     TEST_SIZE = 0.2
@@ -20,6 +21,7 @@ class Consts:
     CLEANER = "cleaner"
     VECTORIZER = 'vectorizer'
     CLASSIFIER = 'classifier'
+
 
 class PredictMood():
     def __init__(self):
@@ -35,7 +37,7 @@ class PredictMood():
 
         self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(self.X, self.ylabels, test_size=Consts.TEST_SIZE, random_state=Consts.RAND_STATE)
 
-            # Create the  pipeline to clean, tokenize, vectorize, and classify
+        # Create the  pipeline to clean, tokenize, vectorize, and classify
         self.pipe_tfid = Pipeline([(Consts.CLEANER, Predictors()),
                             (Consts.VECTORIZER, TfidfVectorizer()),
                             (Consts.CLASSIFIER, self.classifier)])
@@ -56,5 +58,5 @@ class PredictMood():
     def predict(self, user_text: list) -> list:
         return self.pipe_tfid.predict([user_text])
 
-#predictor = PredictMood()
-#print(predictor.predict("I want energetic music"))
+# predictor = PredictMood()
+# print(predictor.predict("I want energetic music"))

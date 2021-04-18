@@ -1,7 +1,8 @@
-#Custom transformer using spaCy
+# Custom transformer using spaCy
 from sklearn.base import TransformerMixin
 from sklearn.pipeline import Pipeline
 from words_preprocessor import WordPreprocessor
+
 
 class Predictors(TransformerMixin):
     """

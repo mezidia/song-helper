@@ -57,7 +57,7 @@ class TestWordPreprocessor(unittest.TestCase):
 
     @patch('words_preprocessor.WordPreprocessor.clean_text', return_value="passing test using mock")
     def test_clean_text_equal_mock_Passing_text(self, clean_text):
-        result = self.preprocessor.clean_text("Passing test using mock ")# 'Passing test using mock not true' to check, that mock is working
+        result = self.preprocessor.clean_text("Passing test using mock ")  # 'Passing test using mock not true' to check, that mock is working
         expected = "passing test using mock"
         self.assertEqual(result, expected)
 
@@ -79,10 +79,11 @@ class TestWordPreprocessor(unittest.TestCase):
         expected = "not new text using mock"
         self.assertNotEqual(result, expected)
 
-    #endregion Mock Text Tests
+    # endregion Mock Text Tests
 
     def tearDown(self):
         del self.preprocessor
+
 
 if __name__ == '__main__':
     unittest.main()
