@@ -1,6 +1,9 @@
-# Install the base requirements for the app.
-# This stage is to support development.
+# For more information, please refer to https://aka.ms/vscode-docker-python
 FROM python:3.8-slim-buster
+
 COPY . /app
 WORKDIR /app
-CMD cat LICENSE
+
+RUN pip install -r requirements.txt
+
+CMD ["/bin/bash", "-c", "python server/manage.py migrate && python server/manage.py runserver 0.0.0.0:8000"]
