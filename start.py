@@ -15,7 +15,7 @@ def start_server():
     """
     Script to launch the server
     """
-    os.system('python server/manage.py runserver')
+    os.system('python server/manage.py runserver 0.0.0.0:8000')
     print('Launch the server')
 
 

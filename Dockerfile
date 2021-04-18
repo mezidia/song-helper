@@ -8,4 +8,4 @@ RUN pip install -r server/requirements.txt
 RUN pip install -r bot/requirements.txt
 #RUN pip install -r song-helper/requirements.txt
 
-CMD ["/bin/bash", "-c", "python bot/bot.py"]
+CMD ["/bin/bash", "-c", "python start.py"]
