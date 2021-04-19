@@ -75,18 +75,19 @@ class Music(commands.Cog):
         try :
             async with ctx.typing():
                 player = await YTDLSource.from_url(url, loop=self.bot.loop)
-                ctx.voice_client.play(player, after=lambda e: print(f'Player error: {e}') if e else None)
+                if ctx.is_playing():
+                    global queueArray
+                    queueArray.append(url)
 
-                global queueArray
-                queueArray.append(url)
-
-                if len(queueArray) >= 2:
-                    await ctx.send(f'Song {player.title} has been added to the queue')
-
-            await ctx.send(f'Now playing: {player.title}')
+                    if len(queueArray) >= 2:
+                        await ctx.send(f'Song {player.title} has been added to the queue')
+                else:
+                    ctx.voice_client.play(player, after=lambda e: print(f'Player error: {e}') if e else None)
+                    await ctx.send(f'Now playing: {player.title}')
 
         except:
             await ctx.send("The bot is not connected to a voice channel")
+            
         seconds = 7
         time.sleep(seconds)
         # discord.FFmpegPCMAudio.cleanup(self)
