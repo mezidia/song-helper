@@ -2,17 +2,20 @@ version: '3.4'
 
 services:
   server:
-    image: songhelper-server
     container_name: server
-#    build:
-#      context: .
-#      dockerfile: ./Dockerfile
+    build:
+      context: .
+      dockerfile: ./Dockerfile.server
     ports:
       - 8000:8000
+    command: ["/bin/bash", "-c", "python server/manage.py runserver 0.0.0.0:8000"]
     restart: always
   bot:
-    image: songhelper-bot
     container_name: bot
+    build:
+      context: .
+      dockerfile: ./Dockerfile.bot
+    command: ["/bin/bash", "-c", "python bot/bot.py"]
     restart: always
     environment:
       TOKEN: ${TOKEN}
