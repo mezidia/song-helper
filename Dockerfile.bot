@@ -5,5 +5,4 @@ COPY . /app
 WORKDIR /app
 
 RUN pip install -r bot/requirements.txt
-
-CMD ["/bin/bash", "-c", "python bot/bot.py"]
+RUN pip install -r songhelper/requirements.txt
