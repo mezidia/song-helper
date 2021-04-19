@@ -5,4 +5,4 @@ COPY . /app
 WORKDIR /app
 
 RUN pip install -r bot/requirements.txt
-RUN pip install -r songhelper/requirements.txt
+# RUN pip install -r songhelper/requirements.txt
