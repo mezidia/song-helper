@@ -30,7 +30,7 @@ class TestPredictMood(TestCase):
 
     def test_predict_mood(self):
         """Test the output from function that predicts the mood"""
-        output = self.fs.get_song_with_mood(self.id, 'song-helper/data/data_moods.csv')
+        output = self.fs.get_song_with_mood(self.id, 'songhelper/data/data_moods.csv')
         expected_name = '1999'
         expected_artist = '\'Prince\''
         expected_mood = 'Happy'

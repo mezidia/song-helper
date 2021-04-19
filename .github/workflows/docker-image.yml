@@ -15,7 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build Docker Image for Server
-      run: docker build . --file Dockerfile.server --tag song-helper_server:$(date +%s)
+      run: docker build . --file Dockerfile.server --tag songhelper_server:$(date +%s)
 
     - name: Build Docker Image for Bot
-      run: docker build . --file Dockerfile.bot --tag song-helper_bot:$(date +%s)
+      run: docker build . --file Dockerfile.bot --tag songhelper_bot:$(date +%s)
