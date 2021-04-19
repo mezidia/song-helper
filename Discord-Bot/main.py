@@ -62,12 +62,17 @@ class Music(commands.Cog):
     @commands.command(name='join', help='Joins bot to the channel')
     async def join(self, ctx):
         """Joins a voice channel"""
-        if not ctx.message.author.voice:
-            await ctx.send("{} is not connected to a voice channel".format(ctx.message.author.name))
-            return
-        else:
-            channel = ctx.message.author.voice.channel
-        await channel.connect()
+        try:
+            if not ctx.message.author.voice:
+                await ctx.send("{} is not connected to a voice channel".format(ctx.message.author.name))
+                return
+            else:
+                channel = ctx.message.author.voice.channel
+            await channel.connect()
+
+        except IndexError as e:
+            await ctx.send("Something wrong has happend during **join command!**")
+            print(e)
 
     @commands.command(name='play', help='Bot will play the song')
     async def play(self, ctx, *, url):
@@ -114,8 +119,8 @@ class Music(commands.Cog):
     @commands.command(name='remove', help='Bot will remove song from the queue')
     async def remove(self, ctx, number):
         """Removes song from the queue"""
-        global queueArray
         try:
+            global queueArray
             del(queueArray[int(number)])
             await ctx.send(f'Your queue now is {queueArray}')
         
@@ -127,29 +132,44 @@ class Music(commands.Cog):
     @commands.command(name='pause', help='Bot will pause the song')
     async def pause(self, ctx):
         """Pauses a voice from bot"""
-        voice_client = ctx.message.guild.voice_client
-        if voice_client.is_playing():
-            await voice_client.pause()
-        else:
-            await ctx.send("The bot is not playing anything at the moment.")
+        try:
+            voice_client = ctx.message.guild.voice_client
+            if voice_client.is_playing():
+                await voice_client.pause()
+            else:
+                await ctx.send("The bot is not playing anything at the moment.")
+
+        except IndexError as e:
+            await ctx.send("Something wrong has happend during **pause command!**")
+            print(e)
 
     @commands.command(name='resume', help='Bot will resume the song')
     async def resume(self, ctx):
         """Resumes a voice from bot"""
-        voice_client = ctx.message.guild.voice_client
-        if voice_client.is_paused():
-            await voice_client.resume()
-        else:
-            await ctx.send("The bot was not playing anything before this. Use 'play' command")
+        try:
+            voice_client = ctx.message.guild.voice_client
+            if voice_client.is_paused():
+                await voice_client.resume()
+            else:
+                await ctx.send("The bot was not playing anything before this. Use 'play' command")
+
+        except IndexError as e:
+            await ctx.send("Something wrong has happend during **resume command!**")
+            print(e)
 
     @commands.command(name='stop', help='Bot will stop the song')
     async def stop(self, ctx):
         """Stops a voice from bot"""
-        voice_client = ctx.message.guild.voice_client
-        if voice_client.is_playing():
-            await voice_client.stop()
-        else:
-            await ctx.send("The bot is not playing anything at the moment.")
+        try:
+            voice_client = ctx.message.guild.voice_client
+            if voice_client.is_playing():
+                await voice_client.stop()
+            else:
+                await ctx.send("The bot is not playing anything at the moment.")
+
+        except IndexError as e:
+            await ctx.send("Something wrong has happend during **stop command!**")
+            print(e)
 
     #@commands.command(name='repeat', help='Bot will loop the song')
     #async def repeat(self, ctx):
@@ -161,16 +181,25 @@ class Music(commands.Cog):
     @commands.command(name='leave', help='Bot will leave the voice channel')
     async def leave(self, ctx):
         """Stops and disconnects the bot from voice"""
-        voice_client = ctx.message.guild.voice_client
-        if voice_client.is_connected():
-            await voice_client.disconnect()
-        else:
-            await ctx.send("The bot is not connected to a voice channel.")
+        try:
+            voice_client = ctx.message.guild.voice_client
+            if voice_client.is_connected():
+                await voice_client.disconnect()
+            else:
+                await ctx.send("The bot is not connected to a voice channel.")
+
+        except IndexError as e:
+            await ctx.send("Something wrong has happend during **leave command!**")
+            print(e)
 
 @client.event
 async def on_ready():
-		await client.change_presence(status = discord.Status.online, activity = discord.Game('Mezidia is the best!'))
-		print('We have logged in as {0.user}'.format(client))
+    try:
+		    await client.change_presence(status = discord.Status.online, activity = discord.Game('Mezidia is the best!'))
+		    print('We have logged in as {0.user}'.format(client))
+
+    except IndexError as e:
+        print(e)
 
 client.add_cog(Music(client))
 
