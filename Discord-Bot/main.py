@@ -8,6 +8,8 @@ from discord.ext import commands
 
 client = commands.Bot(command_prefix=commands.when_mentioned_or("sh!"))
 
+queueArray = []
+
 # Suppress noise about console usage from errors
 youtube_dl.utils.bug_reports_message = lambda: ''
 
@@ -75,10 +77,16 @@ class Music(commands.Cog):
                 player = await YTDLSource.from_url(url, loop=self.bot.loop)
                 ctx.voice_client.play(player, after=lambda e: print(f'Player error: {e}') if e else None)
 
+                global queueArray
+                queueArray.append(url)
+
+                if len(queueArray) >= 2:
+                    await ctx.send(f'Song {player.title} has been added to the queue')
+
             await ctx.send(f'Now playing: {player.title}')
 
         except:
-            await ctx.send("The bot is not connected to a voice channel.")
+            await ctx.send("The bot is not connected to a voice channel")
         seconds = 7
         time.sleep(seconds)
         # discord.FFmpegPCMAudio.cleanup(self)
@@ -86,6 +94,14 @@ class Music(commands.Cog):
             if file.split('.')[-1] in ['webm', 'm4a']:
                 os.remove(file)
 
+    @commands.command(name='queue', help='Bot will show the queue')
+    async def queue(self, ctx):
+        """Shows the queue"""
+        await ctx.send('Current queue has:')
+
+        global queueArray
+        for song in queueArray:
+            await ctx.send(song)
 
     @commands.command(name='pause', help='Bot will pause the song')
     async def pause(self, ctx):
