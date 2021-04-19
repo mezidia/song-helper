@@ -14,4 +14,4 @@ services:
       dockerfile: ./Dockerfile.bot
     command: ["/bin/bash", "-c", "python -m unittest -v bot/test.py"]
     environment:
-      TOKEN: ${TG_TOKEN}
+      TG_TOKEN: ${TG_TOKEN}
