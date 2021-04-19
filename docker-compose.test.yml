@@ -6,7 +6,7 @@ services:
     build:
       context: .
       dockerfile: ./Dockerfile.server
-    command: ["/bin/bash", "-c", "python server/manage.py test"]
+    command: ["/bin/bash", "-c", "python server/manage.py test mesite.tests"]
   bot:
     container_name: bot
     build:
