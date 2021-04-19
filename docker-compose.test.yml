@@ -15,3 +15,4 @@ services:
     command: ["/bin/bash", "-c", "python -m unittest -v bot/test.py"]
     environment:
       TG_TOKEN: ${TG_TOKEN}
+      CHAT_ID: ${CHAT_ID}
