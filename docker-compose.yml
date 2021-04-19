@@ -1,10 +1,18 @@
 version: '3.4'
 
 services:
-  songhelper:
-    image: songhelper
-    build:
-      context: .
-      dockerfile: ./Dockerfile
+  server:
+    image: songhelper-server
+    container_name: server
+#    build:
+#      context: .
+#      dockerfile: ./Dockerfile
     ports:
       - 8000:8000
+    restart: always
+  bot:
+    image: songhelper-bot
+    container_name: bot
+    restart: always
+    environment:
+      TOKEN: ${TOKEN}
