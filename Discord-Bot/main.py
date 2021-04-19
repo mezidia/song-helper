@@ -96,14 +96,33 @@ class Music(commands.Cog):
             if file.split('.')[-1] in ['webm', 'm4a']:
                 os.remove(file)
 
+    # @commands.command(name='skip', help='Bot will sktp the song')
+    # async def skip(self, ctx):
+    #     """Skips current song and play next in queue"""
+    #     stop(self, ctx)
+
     @commands.command(name='queue', help='Bot will show the queue')
     async def queue(self, ctx):
         """Shows the queue"""
         await ctx.send('Current queue has:')
 
         global queueArray
-        for song in queueArray:
-            await ctx.send(song)
+        await ctx.send(f'Your queue now is {queueArray}')
+        #for song in queueArray:
+        #    await ctx.send(song)
+
+    @commands.command(name='remove', help='Bot will remove song from the queue')
+    async def remove(self, ctx, number):
+        """Removes song from the queue"""
+        global queueArray
+        try:
+            del(queueArray[int(number)])
+            await ctx.send(f'Your queue now is {queueArray}')
+        
+        except IndexError as e:
+            await ctx.send("Your queue is either **empty** or the index is **out of range**")
+            print(e)
+
 
     @commands.command(name='pause', help='Bot will pause the song')
     async def pause(self, ctx):
