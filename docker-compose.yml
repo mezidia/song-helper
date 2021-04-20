@@ -15,7 +15,7 @@ services:
     build:
       context: .
       dockerfile: ./Dockerfile.bot
-    command: ["/bin/bash", "-c", "python app/bot.py"]
+    command: ["/bin/bash", "-c", "python bot.py"]
     restart: always
     environment:
       TOKEN: ${TOKEN}
