@@ -79,10 +79,10 @@ class Music(commands.Cog):
         """Plays from a url (almost anything youtube_dl supports)"""
         #try:
         global queueArray
-        #if len(queueArray) >= 1:
-            #del queueArray[0]
-            #voice_client = ctx.message.guild.voice_client
-            #ctx.voice_client.play(discord.FFmpegPCMAudio(source=source)
+        if len(queueArray) >= 1:
+            del queueArray[0]
+            voice_client = ctx.message.guild.voice_client
+            ctx.voice_client.play(discord.FFmpegPCMAudio(source=source, after=lambda e: play_next(ctx)))
             #asyncio.run_coroutine_threadsafe(ctx.send("No more songs in queue."))
 
         # except IndexError as e:
@@ -102,7 +102,7 @@ class Music(commands.Cog):
 
                     await ctx.send(f'Song {player.title} has been added to the queue')
                 else:
-                    ctx.voice_client.play(player, after=lambda e: play_next(ctx) && print(f'Player error: {e}') if e else None)
+                    ctx.voice_client.play(player, after=lambda e: play_next(ctx) & print(f'Player error: {e}') if e else None)
                     await ctx.send(f'Now playing: {player.title}')
 
         except IndexError as e:
