@@ -74,6 +74,21 @@ class Music(commands.Cog):
             await ctx.send("Something wrong has happend during **join command!**")
             print(e)
 
+    #@commands.command(name='play_next', help='Bot will play next song the song')
+    async def play_next(self, ctx, source):
+        """Plays from a url (almost anything youtube_dl supports)"""
+        #try:
+        global queueArray
+        #if len(queueArray) >= 1:
+            #del queueArray[0]
+            #voice_client = ctx.message.guild.voice_client
+            #ctx.voice_client.play(discord.FFmpegPCMAudio(source=source)
+            #asyncio.run_coroutine_threadsafe(ctx.send("No more songs in queue."))
+
+        # except IndexError as e:
+        #     await ctx.send("Your queue is either **empty** or the index is **out of range**")
+        #     print(e)
+
     @commands.command(name='play', help='Bot will play the song')
     async def play(self, ctx, *, url):
         """Plays from a url (almost anything youtube_dl supports)"""
@@ -87,7 +102,7 @@ class Music(commands.Cog):
 
                     await ctx.send(f'Song {player.title} has been added to the queue')
                 else:
-                    ctx.voice_client.play(player, after=lambda e: print(f'Player error: {e}') if e else None)
+                    ctx.voice_client.play(player, after=lambda e: play_next(ctx) && print(f'Player error: {e}') if e else None)
                     await ctx.send(f'Now playing: {player.title}')
 
         except IndexError as e:
@@ -105,6 +120,9 @@ class Music(commands.Cog):
     # async def skip(self, ctx):
     #     """Skips current song and play next in queue"""
     #     stop(self, ctx)
+
+
+
 
     @commands.command(name='queue', help='Bot will show the queue')
     async def queue(self, ctx):
