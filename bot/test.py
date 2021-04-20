@@ -39,7 +39,7 @@ class TelegramTest(unittest.TestCase, Parent):
 
     def test_fields(self):
         """Test fields from different request methods"""
-        self.assertTrue(self.getMe.json()["ok"])
+        self.assertFalse(self.getMe.json()["ok"])
         self.assertTrue(self.sendMessage.json()["ok"])
         self.assertTrue(self.getMe.json()["result"]["is_bot"])
         self.assertFalse(
