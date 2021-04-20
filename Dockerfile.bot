@@ -2,6 +2,6 @@
 FROM python:3.8-slim-buster
 
 COPY bot /bot
-
+# WORKDIR is here automated
 RUN pip install -r bot/requirements.txt
 # RUN pip install -r songhelper/requirements.txt
