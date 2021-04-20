@@ -76,14 +76,14 @@ class Music(commands.Cog):
 
     #@commands.command(name='play_next', help='Bot will play next song the song')
     async def play_next(self, ctx, source):
-        """Plays from a url (almost anything youtube_dl supports)"""
+        """"""
         #try:
         global queueArray
         if len(queueArray) >= 1:
             del queueArray[0]
-            voice_client = ctx.message.guild.voice_client
-            ctx.voice_client.play(discord.FFmpegPCMAudio(source=source, after=lambda e: play_next(ctx)))
-            #asyncio.run_coroutine_threadsafe(ctx.send("No more songs in queue."))
+            #voice_client = ctx.message.guild.voice_client
+            ctx.voice_client.play(discord.FFmpegPCMAudio(source=source, after=lambda e: asyncio.run_coroutine_threadsafe(self.play_next(self, ctx, source))))
+            asyncio.run_coroutine_threadsafe(ctx.send("No more songs in queue."))
 
         # except IndexError as e:
         #     await ctx.send("Your queue is either **empty** or the index is **out of range**")
@@ -102,7 +102,7 @@ class Music(commands.Cog):
 
                     await ctx.send(f'Song {player.title} has been added to the queue')
                 else:
-                    ctx.voice_client.play(player, after=lambda e: play_next(ctx) & print(f'Player error: {e}') if e else None)
+                    ctx.voice_client.play(player, after=lambda e: asyncio.run_coroutine_threadsafe(self.play_next(ctx)) and print(f'Player error: {e}') if e else None)
                     await ctx.send(f'Now playing: {player.title}')
 
         except IndexError as e:
@@ -116,14 +116,6 @@ class Music(commands.Cog):
             if file.split('.')[-1] in ['webm', 'm4a']:
                 os.remove(file)
 
-    # @commands.command(name='skip', help='Bot will sktp the song')
-    # async def skip(self, ctx):
-    #     """Skips current song and play next in queue"""
-    #     stop(self, ctx)
-
-
-
-
     @commands.command(name='queue', help='Bot will show the queue')
     async def queue(self, ctx):
         """Shows the queue"""
@@ -131,8 +123,6 @@ class Music(commands.Cog):
 
         global queueArray
         await ctx.send(f'Your queue now is {queueArray}')
-        #for song in queueArray:
-        #    await ctx.send(song)
 
     @commands.command(name='remove', help='Bot will remove song from the queue')
     async def remove(self, ctx, number):
@@ -145,7 +135,6 @@ class Music(commands.Cog):
         except IndexError as e:
             await ctx.send("Your queue is either **empty** or the index is **out of range**")
             print(e)
-
 
     @commands.command(name='pause', help='Bot will pause the song')
     async def pause(self, ctx):
