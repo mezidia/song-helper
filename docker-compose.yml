@@ -1,0 +1,21 @@
+version: '3.4'
+
+services:
+  server:
+    container_name: server
+    build:
+      context: .
+      dockerfile: ./Dockerfile.server
+    ports:
+      - 8000:8000
+    command: ["/bin/bash", "-c", "python manage.py runserver 0.0.0.0:8000"]
+    restart: always
+  bot:
+    container_name: bot
+    build:
+      context: .
+      dockerfile: ./Dockerfile.bot
+    command: ["/bin/bash", "-c", "python bot.py"]
+    restart: always
+    environment:
+      TOKEN: ${TOKEN}

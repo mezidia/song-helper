@@ -82,7 +82,6 @@ class PredictMood:
         }
         # "{0} by {1} is a {2} song".format(name_song, artist, mood[0].upper())
 
-
 # url_with_data = 'https://raw.githubusercontent.com/mezgoodle/images/master/data_moods.csv'
 # obj = PredictMood()
 # result = obj.predict_mood('3OQLaJXfJTzCmxrbAFMZ5P', url_with_data)

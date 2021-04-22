@@ -1,0 +1,18 @@
+version: '3.4'
+
+services:
+  server:
+    container_name: server
+    build:
+      context: .
+      dockerfile: ./Dockerfile.server
+    command: ["/bin/bash", "-c", "python manage.py test mesite.tests"]
+  bot:
+    container_name: bot
+    build:
+      context: .
+      dockerfile: ./Dockerfile.bot
+    command: ["/bin/bash", "-c", "python -m unittest -v bot/test.py"]
+    environment:
+      TG_TOKEN: ${TG_TOKEN}
+      CHAT_ID: ${CHAT_ID}
