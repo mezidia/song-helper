@@ -25,6 +25,7 @@ Keras-Preprocessing==1.1.2
 Markdown==3.3.4
 MarkupSafe==1.1.1
 murmurhash==1.0.5
+numpy==1.19.5
 oauthlib==3.1.0
 opt-einsum==3.3.0
 packaging==20.9
@@ -70,4 +71,3 @@ wrapt==1.12.1
 en-core-web-md @ https://github.com/explosion/spacy-models/releases/download/en_core_web_md-3.0.0/en_core_web_md-3.0.0-py3-none-any.whl
 en-core-web-sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.0.0/en_core_web_sm-3.0.0-py3-none-any.whl
 en-core-web-trf @ https://github.com/explosion/spacy-models/releases/download/en_core_web_trf-3.0.0/en_core_web_trf-3.0.0-py3-none-any.whl
-numpy==1.20.2
