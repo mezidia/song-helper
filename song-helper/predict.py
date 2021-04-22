@@ -47,7 +47,7 @@ class PredictMood:
         """
         Main function to predict the mood
         :param id_song: id of song from Spotify
-        :param path: path to dataset
+        :param path: path or link to dataset
         :return: dictionary with name of song, artists and it mood
         """
         # Read song_features
@@ -82,5 +82,8 @@ class PredictMood:
         }
         # "{0} by {1} is a {2} song".format(name_song, artist, mood[0].upper())
 
+
+# url_with_data = 'https://raw.githubusercontent.com/mezgoodle/images/master/data_moods.csv'
 # obj = PredictMood()
-# obj.predict_mood('4Km5HrUvYTaSUfiSGPJeQR', 'data/data_moods.csv')
+# result = obj.predict_mood('3OQLaJXfJTzCmxrbAFMZ5P', url_with_data)
+# print(result)
