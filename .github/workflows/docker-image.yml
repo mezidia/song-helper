@@ -1,0 +1,21 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build Docker Image for Server
+      run: docker build . --file Dockerfile.server --tag songhelper_server:$(date +%s)
+
+    - name: Build Docker Image for Bot
+      run: docker build . --file Dockerfile.bot --tag songhelper_bot:$(date +%s)
