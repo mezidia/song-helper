@@ -13,6 +13,7 @@ class TestPredictMood(TestCase):
         self.assertIsNotNone(self.predict)
         self.assertIsNotNone(self.spt)
         self.id = '2H7PHVdQ3mXqEHXcvclTB0'
+        self.url_with_data = 'https://raw.githubusercontent.com/mezgoodle/images/master/data_moods.csv'
 
     def test_prepare_data(self):
         """Returned data must be customized"""
@@ -30,7 +31,7 @@ class TestPredictMood(TestCase):
 
     def test_predict_mood(self):
         """Test the output from function that predicts the mood"""
-        output = self.fs.get_song_with_mood(self.id, 'songhelper/data/data_moods.csv')
+        output = self.fs.get_song_with_mood(self.id, self.url_with_data)
         expected_name = '1999'
         expected_artist = '\'Prince\''
         expected_mood = 'Happy'

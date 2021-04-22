@@ -13,7 +13,7 @@ from mood_predictors import Predictors
 
 class Consts:
     LANGUAGE_PACKAGE = 'en_core_web_trf'
-    PATH_TO_CSV = 'songhelper/songhelper/data/OurData.csv'
+    PATH_TO_CSV = 'https://raw.githubusercontent.com/mezgoodle/images/master/OurData.csv'
     ACCURACY = "Accuracy: "
     PREDICTION = "Prediction=>"
     TEST_SIZE = 0.2
