@@ -91,6 +91,7 @@ We are using [Codacy](https://www.codacy.com/) to automate Our code quality.
 - [TensorFlow](https://www.tensorflow.org/)
 - [aiogram](https://github.com/aiogram/aiogram)
 - [python-dotenv](https://pypi.org/project/python-dotenv/)
+- [Docker](https://www.docker.com/)
 
 ## Code Example :pushpin:
 
@@ -98,7 +99,7 @@ We are using [Codacy](https://www.codacy.com/) to automate Our code quality.
 
 ## Installation :computer:
 
-> Currently in progress
+To install our project and use it, enter the following command: docker-compose up.
 
 ## Fast usage :dash:
 
