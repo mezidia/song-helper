@@ -80,11 +80,26 @@ class Music(commands.Cog):
         #try:
         global queueArray
         print("Text from play_next")
-        if len(queueArray) >= 1:
+        if len(queueArray) == 1:
+            print("Text from play_next 1")
+            sourceTemp = queueArray[0]
             del queueArray[0]
             #voice_client = ctx.message.guild.voice_client
-            #ctx.voice_client.play(discord.FFmpegPCMAudio(source=source, after=lambda e: asyncio.run_coroutine_threadsafe(self.play_next(self, ctx, source))))
-            asyncio.run_coroutine_threadsafe(ctx.send("No more songs in queue."))
+            print("Text from play_next 1 before play")
+            ctx.voice_client.play(discord.FFmpegPCMAudio(source=sourceTemp))
+            print("Text from play_next 1 play")
+        elif len(queueArray) >= 2:
+            print("Text from play_next 2")
+            sourceTemp = queueArray[0]
+            del queueArray[0]
+            print(sourceTemp)
+            print(queueArray[0])
+            #voice_client = ctx.message.guild.voice_client
+            print("Text from play_next 2 before play")
+            ctx.voice_client.play(discord.FFmpegPCMAudio(source=sourceTemp, after=lambda e: asyncio.run_coroutine_threadsafe(self.play_next(self, ctx, queueArray[0]))))
+            print("Text from play_next 2 play")
+            #print("Text from play_next 2")
+            #asyncio.run_coroutine_threadsafe(ctx.send("No more songs in queue."))
 
         # except IndexError as e:
         #     await ctx.send("Your queue is either **empty** or the index is **out of range**")
@@ -98,13 +113,11 @@ class Music(commands.Cog):
                 player = await YTDLSource.from_url(url, loop=self.bot.loop)
                 voice_client = ctx.message.guild.voice_client
                 if voice_client.is_playing():
-                    print("Text from IF")
                     global queueArray
                     queueArray.append(url)
 
                     await ctx.send(f'Song {player.title} has been added to the queue')
                 else:
-                    print("Text from Else")
                     ctx.voice_client.play(player, after=lambda e:asyncio.run_coroutine_threadsafe(self.play_next(ctx), loop = self.bot.loop))
                     await ctx.send(f'Now playing: {player.title}')
 
