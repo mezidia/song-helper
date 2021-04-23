@@ -75,14 +75,15 @@ class Music(commands.Cog):
             print(e)
 
     #@commands.command(name='play_next', help='Bot will play next song the song')
-    async def play_next(self, ctx, source):
+    async def play_next(self, ctx):
         """"""
         #try:
         global queueArray
+        print("Text from play_next")
         if len(queueArray) >= 1:
             del queueArray[0]
             #voice_client = ctx.message.guild.voice_client
-            ctx.voice_client.play(discord.FFmpegPCMAudio(source=source, after=lambda e: asyncio.run_coroutine_threadsafe(self.play_next(self, ctx, source))))
+            #ctx.voice_client.play(discord.FFmpegPCMAudio(source=source, after=lambda e: asyncio.run_coroutine_threadsafe(self.play_next(self, ctx, source))))
             asyncio.run_coroutine_threadsafe(ctx.send("No more songs in queue."))
 
         # except IndexError as e:
@@ -97,12 +98,14 @@ class Music(commands.Cog):
                 player = await YTDLSource.from_url(url, loop=self.bot.loop)
                 voice_client = ctx.message.guild.voice_client
                 if voice_client.is_playing():
+                    print("Text from IF")
                     global queueArray
                     queueArray.append(url)
 
                     await ctx.send(f'Song {player.title} has been added to the queue')
                 else:
-                    ctx.voice_client.play(player, after=lambda e: asyncio.run_coroutine_threadsafe(self.play_next(ctx)) and print(f'Player error: {e}') if e else None)
+                    print("Text from Else")
+                    ctx.voice_client.play(player, after=lambda e:asyncio.run_coroutine_threadsafe(self.play_next(ctx), loop = self.bot.loop))
                     await ctx.send(f'Now playing: {player.title}')
 
         except IndexError as e:
