@@ -80,15 +80,18 @@ class Music(commands.Cog):
         try:
             global queueArray
             player = await YTDLSource.from_url(queueArray[0], loop=self.bot.loop)
-            del queueArray[0]
+            
+            print("queue ", len(queueArray))
 
             if len(queueArray) == 1:
+                print("1")
                 ctx.voice_client.play(player)
-                return
             
-            # if len(queueArray) >= 2:
-            ctx.voice_client.play(player, after=lambda e: asyncio.run_coroutine_threadsafe(self.play_next(ctx), loop = self.bot.loop))
+            elif len(queueArray) >= 2:
+                print("2")
+                ctx.voice_client.play(player, after=lambda e: asyncio.run_coroutine_threadsafe(self.play_next(ctx), loop = self.bot.loop))
 
+            del queueArray[0]
         except IndexError as e:
             await ctx.send("Your queue is either **empty** or the index is **out of range**")
             print(e)
@@ -104,10 +107,10 @@ class Music(commands.Cog):
                     global queueArray
                     queueArray.append(url)
 
-                    await ctx.send(f'Song {player.title} has been added to the queue')
+                    await ctx.send(f'Song "{player.title}" has been added to the queue')
                 else:
-                    ctx.voice_client.play(player, after=lambda e:asyncio.run_coroutine_threadsafe(self.play_next(ctx), loop = self.bot.loop))
-                    await ctx.send(f'Now playing: {player.title}')
+                    ctx.voice_client.play(player, after=lambda e: asyncio.run_coroutine_threadsafe(self.play_next(ctx), loop = self.bot.loop))
+                    await ctx.send(f'Now playing: "{player.title}"')
 
         except IndexError as e:
             await ctx.send("Something has happened!")
