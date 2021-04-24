@@ -12,7 +12,7 @@
 </h1>
 
 <p align="center">
- 🌟Hello everyone! This is Our repository about AI on Python "Song-Helper"🌟
+ 🌟Hello everyone! This is Our repository about project on Python "Song-Helper"🌟
 </p>
 
 <h2 align="center">
@@ -62,13 +62,14 @@ The only functional requirement is to give a song
 ### Scenarios
 -----------
 
-- We get a description of the mood in _two different ways_: through a **bot** (Telegram) in the form of a text message and through a form on the **site** (Django). Next, the text is converted to a vector, compared with the song vectors in the database, and the result is returned as a song reference (in both cases).
-- The site will have only one page with a form for entering a description. No other pages are planned yet.
+- We get a description of the mood in _different ways_: through a **bot** (Telegram, Discord) in the form of a text message, through a form on the **site** (Django) , through a form on the **mobile app** (Kivy App). Next, the text is converted to a vector, compared with the mood vectors, getting a random song with this mood from databae and the result is returned as a song reference (in each cases).
+- The site will have one more page with a form for entering a song id from _Spotify_. This is for making database bigger. Also you can do it from bots in Telegram and Discord.
 
 ## Build status :hammer:
 
 [![Bot CI](https://github.com/mezidia/song-helper/actions/workflows/bot.yml/badge.svg)](https://github.com/mezidia/song-helper/actions/workflows/bot.yml)
-[![Formate Code](https://github.com/mezidia/song-helper/actions/workflows/formatter.yml/badge.svg)](https://github.com/mezidia/song-helper/actions/workflows/formatter.yml)
+[![Docker](https://github.com/mezidia/song-helper/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/mezidia/song-helper/actions/workflows/docker-publish.yml)
+[![Docker Image CI](https://github.com/mezidia/song-helper/actions/workflows/docker-image.yml/badge.svg)](https://github.com/mezidia/song-helper/actions/workflows/docker-image.yml)
 [![song-helper CI](https://github.com/mezidia/song-helper/actions/workflows/song-helper.yml/badge.svg)](https://github.com/mezidia/song-helper/actions/workflows/song-helper.yml)
 [![Django CI](https://github.com/mezidia/song-helper/actions/workflows/django.yml/badge.svg)](https://github.com/mezidia/song-helper/actions/workflows/django.yml)
 
@@ -91,6 +92,10 @@ We are using [Codacy](https://www.codacy.com/) to automate Our code quality.
 - [TensorFlow](https://www.tensorflow.org/)
 - [aiogram](https://github.com/aiogram/aiogram)
 - [python-dotenv](https://pypi.org/project/python-dotenv/)
+- [Kivy](https://kivy.org/#home)
+- [pandas](https://pandas.pydata.org/)
+- [discord.py](https://discordpy.readthedocs.io/en/stable/)
+- [Docker](https://www.docker.com/)
 
 ## Code Example :pushpin:
 
@@ -98,7 +103,7 @@ We are using [Codacy](https://www.codacy.com/) to automate Our code quality.
 
 ## Installation :computer:
 
-> Currently in progress
+To install our project and use it, enter the following command: docker-compose up.
 
 ## Fast usage :dash:
 
