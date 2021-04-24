@@ -6,6 +6,7 @@ import youtube_dl
 from keep_alive import keep_alive
 from discord.ext import commands
 
+
 client = commands.Bot(command_prefix=commands.when_mentioned_or("sh!"))
 
 queueArray = []
@@ -74,24 +75,22 @@ class Music(commands.Cog):
             await ctx.send("Something wrong has happend during **join command!**")
             print(e)
 
-    #@commands.command(name='play_next', help='Bot will play next song the song')
     async def play_next(self, ctx):
-        """"""
-        #try:
-        global queueArray
-        if len(queueArray) == 1:
-            player = await YTDLSource.from_url(queueArray[0], loop=self.bot.loop)
-            del queueArray[0]
-            ctx.voice_client.play(player)
-        elif len(queueArray) >= 2:
-            player = await YTDLSource.from_url(queueArray[0], loop=self.bot.loop)
-            del queueArray[0]
-            ctx.voice_client.play(player, after=lambda e: asyncio.run_coroutine_threadsafe(self.play_next(ctx), loop = self.bot.loop))
-        #asyncio.run_coroutine_threadsafe(ctx.send("No more songs in queue."))
+        """Plays next song in queue after another"""
+        try:
+            global queueArray
+            if len(queueArray) == 1:
+                player = await YTDLSource.from_url(queueArray[0], loop=self.bot.loop)
+                del queueArray[0]
+                ctx.voice_client.play(player)
+            elif len(queueArray) >= 2:
+                player = await YTDLSource.from_url(queueArray[0], loop=self.bot.loop)
+                del queueArray[0]
+                ctx.voice_client.play(player, after=lambda e: asyncio.run_coroutine_threadsafe(self.play_next(ctx), loop = self.bot.loop))
 
-        # except IndexError as e:
-        #     await ctx.send("Your queue is either **empty** or the index is **out of range**")
-        #     print(e)
+        except IndexError as e:
+            await ctx.send("Your queue is either **empty** or the index is **out of range**")
+            print(e)
 
     @commands.command(name='play', help='Bot will play the song')
     async def play(self, ctx, *, url):
