@@ -11,6 +11,7 @@ client = commands.Bot(command_prefix=commands.when_mentioned_or("sh!"))
 
 queueArray = []
 seconds = 7
+status = 'Mezidia is the best!'
 
 # Suppress noise about console usage from errors
 youtube_dl.utils.bug_reports_message = lambda: ''
@@ -111,7 +112,7 @@ class Music(commands.Cog):
     @commands.command(name='play', help='Bot will play the song')
     async def play(self, ctx, *, url):
         """Plays from a url (almost anything youtube_dl supports)"""
-        try :
+        try:
             async with ctx.typing():
                 player = await YTDLSource.from_url(url, loop=self.bot.loop)
                 voice_client = ctx.message.guild.voice_client
@@ -172,7 +173,6 @@ class Music(commands.Cog):
     async def resume(self, ctx):
         """Resumes a voice from bot"""
         try:
-            
             voice_client = ctx.message.guild.voice_client
             if voice_client.is_paused():
                 await voice_client.resume()
@@ -226,8 +226,9 @@ class Music(commands.Cog):
 
 @client.event
 async def on_ready():
+    """Invokes, when bot is hosted"""
     try:
-		    await client.change_presence(status = discord.Status.online, activity = discord.Game('Mezidia is the best!'))
+		    await client.change_presence(status = discord.Status.online, activity = discord.Game(status))
 		    print('We have logged in as {0.user}'.format(client))
 
     except IndexError as e:
