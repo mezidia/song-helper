@@ -113,9 +113,11 @@ class Music(commands.Cog):
     async def play(self, ctx, *, url):
         """Plays from a url (almost anything youtube_dl supports)"""
         try:
+            voice_client = ctx.message.guild.voice_client
+            #if not voice_client.is_connected():
+                #asyncio.run_coroutine_threadsafe(self.join(ctx), loop = self.bot.loop)
             async with ctx.typing():
                 player = await YTDLSource.from_url(url, loop=self.bot.loop)
-                voice_client = ctx.message.guild.voice_client
                 if voice_client.is_playing():
                     global queueArray
                     queueArray.append(url)
