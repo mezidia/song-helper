@@ -10,6 +10,7 @@ from discord.ext import commands
 client = commands.Bot(command_prefix=commands.when_mentioned_or("sh!"))
 
 queueArray = []
+seconds = 7
 
 # Suppress noise about console usage from errors
 youtube_dl.utils.bug_reports_message = lambda: ''
@@ -75,23 +76,33 @@ class Music(commands.Cog):
             await ctx.send("Something wrong has happend during **join command!**")
             print(e)
 
+    async def delete_songs(self):
+        """Delete song files"""
+        try:
+            time.sleep(seconds)
+            # discord.FFmpegPCMAudio.cleanup(self)
+            for file in os.listdir('./'):
+                if file.split('.')[-1] in ['webm', 'm4a']:
+                    os.remove(file)
+
+        except IndexError as e:
+            print(e)
+
     async def play_next(self, ctx):
         """Plays next song in queue after another"""
         try:
             global queueArray
             player = await YTDLSource.from_url(queueArray[0], loop=self.bot.loop)
-            
-            print("queue ", len(queueArray))
 
             if len(queueArray) == 1:
-                print("1")
                 ctx.voice_client.play(player)
             
             elif len(queueArray) >= 2:
-                print("2")
                 ctx.voice_client.play(player, after=lambda e: asyncio.run_coroutine_threadsafe(self.play_next(ctx), loop = self.bot.loop))
 
             del queueArray[0]
+            asyncio.run_coroutine_threadsafe(self.delete_songs(), loop = self.bot.loop)
+
         except IndexError as e:
             await ctx.send("Your queue is either **empty** or the index is **out of range**")
             print(e)
@@ -111,23 +122,16 @@ class Music(commands.Cog):
                 else:
                     ctx.voice_client.play(player, after=lambda e: asyncio.run_coroutine_threadsafe(self.play_next(ctx), loop = self.bot.loop))
                     await ctx.send(f'Now playing: "{player.title}"')
+                
+                asyncio.run_coroutine_threadsafe(self.delete_songs(), loop = self.bot.loop)
 
         except IndexError as e:
             await ctx.send("Something has happened!")
             print(e)
 
-        seconds = 7
-        time.sleep(seconds)
-        # discord.FFmpegPCMAudio.cleanup(self)
-        for file in os.listdir('./'):
-            if file.split('.')[-1] in ['webm', 'm4a']:
-                os.remove(file)
-
     @commands.command(name='queue', help='Bot will show the queue')
     async def queue(self, ctx):
         """Shows the queue"""
-        await ctx.send('Current queue has:')
-
         global queueArray
         await ctx.send(f'Your queue now is {queueArray}')
 
