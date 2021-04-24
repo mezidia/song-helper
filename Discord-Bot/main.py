@@ -77,7 +77,7 @@ class Music(commands.Cog):
             print(e)
 
     async def delete_songs(self):
-        """Delete song files"""
+        """Delete songs files"""
         try:
             time.sleep(seconds)
             # discord.FFmpegPCMAudio.cleanup(self)
@@ -104,7 +104,8 @@ class Music(commands.Cog):
             asyncio.run_coroutine_threadsafe(self.delete_songs(), loop = self.bot.loop)
 
         except IndexError as e:
-            await ctx.send("Your queue is either **empty** or the index is **out of range**")
+            async with ctx.typing():
+                await ctx.send("Your queue is either **empty** or the index is **out of range**")
             print(e)
 
     @commands.command(name='play', help='Bot will play the song')
@@ -126,25 +127,29 @@ class Music(commands.Cog):
                 asyncio.run_coroutine_threadsafe(self.delete_songs(), loop = self.bot.loop)
 
         except IndexError as e:
-            await ctx.send("Something has happened!")
+            async with ctx.typing():
+                await ctx.send("Something wrong has happend during **play command!**")
             print(e)
 
     @commands.command(name='queue', help='Bot will show the queue')
     async def queue(self, ctx):
         """Shows the queue"""
-        global queueArray
-        await ctx.send(f'Your queue now is {queueArray}')
+        async with ctx.typing():
+            global queueArray
+            await ctx.send(f'Your queue now is {queueArray}')
 
     @commands.command(name='remove', help='Bot will remove song from the queue')
     async def remove(self, ctx, number):
         """Removes song from the queue"""
         try:
-            global queueArray
-            del(queueArray[int(number)])
-            await ctx.send(f'Your queue now is {queueArray}')
+            async with ctx.typing():
+                global queueArray
+                del(queueArray[int(number)])
+                await ctx.send(f'Your queue now is {queueArray}')
         
         except IndexError as e:
-            await ctx.send("Your queue is either **empty** or the index is **out of range**")
+            async with ctx.typing():
+                await ctx.send("Your queue is either **empty** or the index is **out of range**")
             print(e)
 
     @commands.command(name='pause', help='Bot will pause the song')
@@ -155,24 +160,29 @@ class Music(commands.Cog):
             if voice_client.is_playing():
                 await voice_client.pause()
             else:
-                await ctx.send("The bot is not playing anything at the moment.")
+                async with ctx.typing():
+                    await ctx.send("The bot is not playing anything at the moment.")
 
         except IndexError as e:
-            await ctx.send("Something wrong has happend during **pause command!**")
+            async with ctx.typing():
+                await ctx.send("Something wrong has happend during **pause command!**")
             print(e)
 
     @commands.command(name='resume', help='Bot will resume the song')
     async def resume(self, ctx):
         """Resumes a voice from bot"""
         try:
+            
             voice_client = ctx.message.guild.voice_client
             if voice_client.is_paused():
                 await voice_client.resume()
             else:
-                await ctx.send("The bot was not playing anything before this. Use 'play' command")
+                async with ctx.typing():
+                    await ctx.send("The bot was not playing anything before this. Use 'play' command")
 
         except IndexError as e:
-            await ctx.send("Something wrong has happend during **resume command!**")
+            async with ctx.typing():
+                await ctx.send("Something wrong has happend during **resume command!**")
             print(e)
 
     @commands.command(name='stop', help='Bot will stop the song')
@@ -183,10 +193,12 @@ class Music(commands.Cog):
             if voice_client.is_playing():
                 await voice_client.stop()
             else:
-                await ctx.send("The bot is not playing anything at the moment.")
+                async with ctx.typing():
+                    await ctx.send("The bot is not playing anything at the moment.")
 
         except IndexError as e:
-            await ctx.send("Something wrong has happend during **stop command!**")
+            async with ctx.typing():
+                await ctx.send("Something wrong has happend during **stop command!**")
             print(e)
 
     #@commands.command(name='repeat', help='Bot will loop the song')
@@ -204,10 +216,12 @@ class Music(commands.Cog):
             if voice_client.is_connected():
                 await voice_client.disconnect()
             else:
-                await ctx.send("The bot is not connected to a voice channel.")
+                async with ctx.typing():
+                    await ctx.send("The bot is not connected to a voice channel.")
 
         except IndexError as e:
-            await ctx.send("Something wrong has happend during **leave command!**")
+            async with ctx.typing():
+                await ctx.send("Something wrong has happend during **leave command!**")
             print(e)
 
 @client.event
