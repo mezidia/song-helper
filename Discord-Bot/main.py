@@ -79,14 +79,15 @@ class Music(commands.Cog):
         """Plays next song in queue after another"""
         try:
             global queueArray
+            player = await YTDLSource.from_url(queueArray[0], loop=self.bot.loop)
+            del queueArray[0]
+
             if len(queueArray) == 1:
-                player = await YTDLSource.from_url(queueArray[0], loop=self.bot.loop)
-                del queueArray[0]
                 ctx.voice_client.play(player)
-            elif len(queueArray) >= 2:
-                player = await YTDLSource.from_url(queueArray[0], loop=self.bot.loop)
-                del queueArray[0]
-                ctx.voice_client.play(player, after=lambda e: asyncio.run_coroutine_threadsafe(self.play_next(ctx), loop = self.bot.loop))
+                return
+            
+            # if len(queueArray) >= 2:
+            ctx.voice_client.play(player, after=lambda e: asyncio.run_coroutine_threadsafe(self.play_next(ctx), loop = self.bot.loop))
 
         except IndexError as e:
             await ctx.send("Your queue is either **empty** or the index is **out of range**")
