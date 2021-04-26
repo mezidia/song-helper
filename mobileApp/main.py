@@ -1,5 +1,7 @@
 from kivy.app import App
+from kivymd.app import MDApp
 from kivy.uix.label import Label
+from kivymd.uix.label import MDLabel
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
 from kivy.uix.textinput import TextInput
@@ -13,13 +15,13 @@ Window.size = (250, 300)
 Window.clearcolor = (43 / 255, 76 / 255, 186 / 255, 1)
 
 
-class MainApp(App):
+class MainApp(MDApp):
     def __init__(self):
         """
         Constructor for class. Set all elements here
         """
         super().__init__()
-        self.label = Label(text='Enter your nickname', font_size='20sp', bold=True)
+        self.label = MDLabel(text='Enter your nickname', halign='center', theme_text_color='Primary', font_style='H5')
         self.button = Button(text='Search the user in GitHub API', background_color=(0, 0, 0, 0))
         self.button.bind(on_press=self.input_btn_callback)
         self.input_data = TextInput(hint_text='Text your nickname here', multiline=True)
