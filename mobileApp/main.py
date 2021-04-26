@@ -67,6 +67,8 @@ class MainApp(MDApp):
         """
         # TODO: Make label, input, button in layouts and add to screen them
         self.title = 'Song Helper'
+        self.theme_cls.primary_palette='Blue'
+        self.theme_cls.theme_style = 'Dark'
         screen = MDScreen()
         box = BoxLayout(orientation='vertical')
         box.add_widget(self.label)
