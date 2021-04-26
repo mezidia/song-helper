@@ -7,7 +7,9 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
 from kivymd.uix.button import MDFlatButton
 from kivy.uix.textinput import TextInput
+from kivymd.uix.textfield import MDTextField
 from kivy.core.window import Window
+from kivy.lang import Builder
 import asyncio
 import aiohttp
 
@@ -15,6 +17,19 @@ import webbrowser
 
 Window.size = (250, 300)
 Window.clearcolor = (43 / 255, 76 / 255, 186 / 255, 1)
+
+helper_config = """
+MDTextField:
+    hint_text: "Enter username"
+    helper_text: "or click on forgot username"
+    helper_text_mode: "on_focus"
+    multiline:True
+    icon_right: "music-note"
+    icon_right_color: app.theme_cls.primary_color
+    pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+    size_hint_x:None
+    width:230
+"""
 
 
 class MainApp(MDApp):
@@ -24,11 +39,9 @@ class MainApp(MDApp):
         """
         super().__init__()
         self.label = MDLabel(text='Enter your nickname', halign='center', theme_text_color='Primary', font_style='H5')
-        self.button = MDFlatButton(text='Search the user in GitHub API', pos_hint={'center_x': 0.5, 'center_y': 0.5})
-        self.button.bind(on_press=self.input_btn_callback)
-        self.input_data = TextInput(hint_text='Text your nickname here', multiline=True)
-        self.link = MDFlatButton(text='[b]Here[/b] will be your link', markup=True, pos_hint={'center_x': 0.5, 'center_y': 0.5})
-        self.link.bind(on_press=self.link_btn_callback)
+        self.button = MDFlatButton(text='Search the user in GitHub API', pos_hint={'center_x': 0.5, 'center_y': 0.5}, on_release=self.input_btn_callback)
+        self.input_data = Builder.load_string(helper_config)
+        self.link = MDFlatButton(text='[b]Here[/b] will be your link', markup=True, pos_hint={'center_x': 0.5, 'center_y': 0.5}, on_release=self.link_btn_callback)
 
     def input_btn_callback(self, instance):
         """
@@ -72,6 +85,7 @@ class MainApp(MDApp):
         screen = MDScreen()
         box = BoxLayout(orientation='vertical')
         box.add_widget(self.label)
+
         box.add_widget(self.input_data)
         box.add_widget(self.button)
         box.add_widget(self.link)
