@@ -2,7 +2,7 @@
 TextField = """
 MDTextField:
     hint_text: "Enter username"
-    helper_text: "or click on forgot username"
+    helper_text: "Click on question to get main portal"
     helper_text_mode: "on_focus"
     multiline:True
     icon_right: "music-note"
@@ -14,8 +14,9 @@ MDTextField:
 """
 Toolbar = """
 MDToolbar:
-    title: "MDToolbar"
+    title: "Song-helper"
     type: "top"
     right_action_items: [["comment-question", lambda x: app.mark_icon_callback(x)]]
     md_bg_color: app.theme_cls.primary_color
+    elevation: 10
 """
