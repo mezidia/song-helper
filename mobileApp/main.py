@@ -2,8 +2,10 @@ from kivy.app import App
 from kivymd.app import MDApp
 from kivy.uix.label import Label
 from kivymd.uix.label import MDLabel
+from kivymd.uix.screen import MDScreen
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
+from kivymd.uix.button import MDFlatButton
 from kivy.uix.textinput import TextInput
 from kivy.core.window import Window
 import asyncio
@@ -22,10 +24,10 @@ class MainApp(MDApp):
         """
         super().__init__()
         self.label = MDLabel(text='Enter your nickname', halign='center', theme_text_color='Primary', font_style='H5')
-        self.button = Button(text='Search the user in GitHub API', background_color=(0, 0, 0, 0))
+        self.button = MDFlatButton(text='Search the user in GitHub API', pos_hint={'center_x': 0.5, 'center_y': 0.5})
         self.button.bind(on_press=self.input_btn_callback)
         self.input_data = TextInput(hint_text='Text your nickname here', multiline=True)
-        self.link = Button(text='[b]Here[/b] will be your link', markup=True, background_color=(0, 0, 0, 0))
+        self.link = MDFlatButton(text='[b]Here[/b] will be your link', markup=True, pos_hint={'center_x': 0.5, 'center_y': 0.5})
         self.link.bind(on_press=self.link_btn_callback)
 
     def input_btn_callback(self, instance):
@@ -63,14 +65,16 @@ class MainApp(MDApp):
         Override build function
         :return: box layout
         """
+        # TODO: Make label, input, button in layouts and add to screen them
         self.title = 'Song Helper'
+        screen = MDScreen()
         box = BoxLayout(orientation='vertical')
         box.add_widget(self.label)
         box.add_widget(self.input_data)
         box.add_widget(self.button)
         box.add_widget(self.link)
-
-        return box
+        screen.add_widget(box)
+        return screen
 
 
 async def make_request(mood_text: str) -> dict:
