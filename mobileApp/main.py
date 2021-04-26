@@ -18,6 +18,7 @@ import webbrowser
 Window.size = (250, 300)
 Window.clearcolor = (43 / 255, 76 / 255, 186 / 255, 1)
 
+# TODO: fix max_height
 helper_config = """
 MDTextField:
     hint_text: "Enter username"
@@ -29,6 +30,7 @@ MDTextField:
     pos_hint:{'center_x': 0.5, 'center_y': 0.5}
     size_hint_x:None
     width:230
+    max_height: "1dp"
 """
 
 
