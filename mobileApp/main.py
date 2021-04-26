@@ -1,6 +1,6 @@
 from kivymd.app import MDApp
-from kivymd.uix.label import MDLabel
 from kivymd.uix.screen import MDScreen
+from kivymd.uix.boxlayout import MDBoxLayout
 from kivy.uix.boxlayout import BoxLayout
 from kivymd.uix.button import MDFlatButton
 from kivy.core.window import Window
@@ -21,9 +21,9 @@ class MainApp(MDApp):
         Constructor for class. Set all elements here
         """
         super().__init__()
-        self.label = MDLabel(text='Enter your nickname', halign='center', theme_text_color='Primary', font_style='H5')
-        self.button = MDFlatButton(text='Search the user in GitHub API', pos_hint={'center_x': 0.5, 'center_y': 0.5}, on_release=self.input_btn_callback)
+        self.label = Builder.load_string(styles.Label)
         self.input_data = Builder.load_string(styles.TextField)
+        self.button = MDFlatButton(text='Search the user in GitHub API', pos_hint={'center_x': 0.5, 'center_y': 0.5}, on_release=self.input_btn_callback)
         self.link = MDFlatButton(text='[b]Here[/b] will be your link', markup=True, pos_hint={'center_x': 0.5, 'center_y': 0.5}, on_release=self.link_btn_callback)
 
     def input_btn_callback(self, instance):
@@ -74,7 +74,7 @@ class MainApp(MDApp):
         self.theme_cls.primary_palette='Blue'
         self.theme_cls.theme_style = 'Dark'
         screen = MDScreen()
-        box = BoxLayout(orientation='vertical')
+        box = MDBoxLayout(orientation='vertical')
         box.add_widget(Builder.load_string(styles.Toolbar))
         box.add_widget(self.label)
         box.add_widget(self.input_data)

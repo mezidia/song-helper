@@ -12,6 +12,13 @@ MDTextField:
     width:230
     max_height: "1dp"
 """
+Label = """
+MDLabel:
+    text: 'Enter your nickname' 
+    halign: 'center' 
+    theme_text_color: 'Primary' 
+    font_style: 'H5'
+"""
 Toolbar = """
 MDToolbar:
     title: "Song-helper"
