@@ -1,37 +1,18 @@
-from kivy.app import App
 from kivymd.app import MDApp
-from kivy.uix.label import Label
 from kivymd.uix.label import MDLabel
 from kivymd.uix.screen import MDScreen
 from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.button import Button
 from kivymd.uix.button import MDFlatButton
-from kivy.uix.textinput import TextInput
-from kivymd.uix.textfield import MDTextField
 from kivy.core.window import Window
 from kivy.lang import Builder
+import styles
 import asyncio
 import aiohttp
 
 import webbrowser
 
-Window.size = (250, 300)
+Window.size = (350, 400)
 Window.clearcolor = (43 / 255, 76 / 255, 186 / 255, 1)
-
-# TODO: fix max_height
-helper_config = """
-MDTextField:
-    hint_text: "Enter username"
-    helper_text: "or click on forgot username"
-    helper_text_mode: "on_focus"
-    multiline:True
-    icon_right: "music-note"
-    icon_right_color: app.theme_cls.primary_color
-    pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-    size_hint_x:None
-    width:230
-    max_height: "1dp"
-"""
 
 
 class MainApp(MDApp):
@@ -42,7 +23,7 @@ class MainApp(MDApp):
         super().__init__()
         self.label = MDLabel(text='Enter your nickname', halign='center', theme_text_color='Primary', font_style='H5')
         self.button = MDFlatButton(text='Search the user in GitHub API', pos_hint={'center_x': 0.5, 'center_y': 0.5}, on_release=self.input_btn_callback)
-        self.input_data = Builder.load_string(helper_config)
+        self.input_data = Builder.load_string(styles.TextField)
         self.link = MDFlatButton(text='[b]Here[/b] will be your link', markup=True, pos_hint={'center_x': 0.5, 'center_y': 0.5}, on_release=self.link_btn_callback)
 
     def input_btn_callback(self, instance):
@@ -75,6 +56,14 @@ class MainApp(MDApp):
         else:
             instance.text = 'This is not a link'
 
+    def mark_icon_callback(self, instance):
+        """
+        Callback for link button
+        :param instance: required parameter
+        :return: nothing to return
+        """
+        webbrowser.open_new_tab('https://google.com.ua')
+
     def build(self):
         """
         Override build function
@@ -86,11 +75,12 @@ class MainApp(MDApp):
         self.theme_cls.theme_style = 'Dark'
         screen = MDScreen()
         box = BoxLayout(orientation='vertical')
+        box.add_widget(Builder.load_string(styles.Toolbar))
         box.add_widget(self.label)
-
         box.add_widget(self.input_data)
         box.add_widget(self.button)
         box.add_widget(self.link)
+
         screen.add_widget(box)
         return screen
 
