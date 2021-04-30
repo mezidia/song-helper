@@ -53,7 +53,7 @@ scipy==1.6.2
 six==1.15.0
 smart-open==3.0.0
 sniffio==1.2.0
-spacy==3.0.5
+spacy==3.0.6
 spacy-alignments==0.8.3
 spacy-legacy==3.0.4
 spacy-transformers==1.0.2
