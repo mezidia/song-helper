@@ -10,7 +10,7 @@ cymem==2.0.5
 filelock==3.0.12
 flatbuffers==1.12
 gast==0.3.3
-google-auth==1.29.0
+google-auth==1.30.0
 google-auth-oauthlib==0.4.4
 google-pasta==0.2.0
 grpcio==1.32.0
