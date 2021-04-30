@@ -1,4 +1,4 @@
-name: song-helper CI
+name: mobile-app CI
 
 on:
   push:
