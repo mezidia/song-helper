@@ -5,8 +5,9 @@ from kivymd.uix.button import MDFlatButton
 from kivy.core.window import Window
 from kivy.lang import Builder
 import styles
+import utils
 import asyncio
-import aiohttp
+
 
 import webbrowser
 
@@ -36,7 +37,7 @@ class MainApp(MDApp):
             self.result_link.text = 'Enter the nickname'
         else:
             loop = asyncio.get_event_loop()
-            link = loop.run_until_complete(make_request(input_text))
+            link = loop.run_until_complete(utils.make_request(input_text))
             self.input_data.text = ''
             try:
                 self.result_link.text = link['html_url']
@@ -81,17 +82,6 @@ class MainApp(MDApp):
 
         screen.add_widget(mainBox)
         return screen
-
-
-async def make_request(mood_text: str) -> dict:
-    """
-    Function that makes request to server and gets link
-    :param mood_text: text from input field
-    :return: link to youtube video with song
-    """
-    async with aiohttp.ClientSession() as session:
-        async with session.get(f'https://api.github.com/users/{mood_text}') as response:
-            return await response.json()
 
 
 if __name__ == '__main__':

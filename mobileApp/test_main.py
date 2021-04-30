@@ -1,6 +1,6 @@
 from unittest import TestCase
 import asyncio
-from .main import make_request
+import utils
 
 
 class Test(TestCase):
@@ -10,10 +10,10 @@ class Test(TestCase):
 
     def test_make_request_success(self):
         loop = asyncio.get_event_loop()
-        result = loop.run_until_complete(make_request(self.data['success']))
+        result = loop.run_until_complete(utils.make_request(self.data['success']))
         self.assertEqual(result['html_url'], self.expected['success'])
 
     def test_make_request_failure(self):
         loop = asyncio.get_event_loop()
-        result = loop.run_until_complete(make_request(self.data['failure']))
+        result = loop.run_until_complete(utils.make_request(self.data['failure']))
         self.assertFalse('html_url' in result)
