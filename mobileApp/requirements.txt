@@ -6,7 +6,6 @@ chardet==4.0.0
 docutils==0.17
 idna==2.10
 Kivy==2.0.0
-kivy-deps.angle-dev==0.3.0
 kivy-deps.glew==0.3.0
 kivy-deps.sdl2==0.3.1
 Kivy-Garden==0.1.4
