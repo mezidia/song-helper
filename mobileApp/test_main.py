@@ -1,6 +1,6 @@
 from unittest import TestCase
 import asyncio
-from main import make_request
+from .main import make_request
 
 
 class Test(TestCase):
