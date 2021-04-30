@@ -14,9 +14,9 @@ MDTextField:
 """
 Label = """
 MDLabel:
-    text: 'Enter your nickname' 
-    halign: 'center' 
-    theme_text_color: 'Primary' 
+    text: 'Enter your nickname'
+    halign: 'center'
+    theme_text_color: 'Primary'
     font_style: 'H5'
 """
 Toolbar = """

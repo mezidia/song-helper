@@ -8,7 +8,6 @@ import styles
 import utils
 import asyncio
 
-
 import webbrowser
 
 Window.size = (350, 400)
@@ -23,8 +22,11 @@ class MainApp(MDApp):
         super().__init__()
         self.greeting_label = Builder.load_string(styles.Label)
         self.input_data = Builder.load_string(styles.TextField)
-        self.search_button = MDFlatButton(text='Search the user in GitHub API', pos_hint={'center_x': 0.5, 'center_y': 0.5}, on_release=self.input_btn_callback)
-        self.result_link = MDFlatButton(text='[b]Here[/b] will be your link', markup=True, pos_hint={'center_x': 0.5, 'center_y': 0.5}, on_release=self.link_btn_callback)
+        self.search_button = MDFlatButton(text='Search the user in GitHub API',
+                                          pos_hint={'center_x': 0.5, 'center_y': 0.5},
+                                          on_release=self.input_btn_callback)
+        self.result_link = MDFlatButton(text='[b]Here[/b] will be your link', markup=True,
+                                        pos_hint={'center_x': 0.5, 'center_y': 0.5}, on_release=self.link_btn_callback)
 
     def input_btn_callback(self, instance):
         """
@@ -70,7 +72,7 @@ class MainApp(MDApp):
         :return: box layout
         """
         self.title = 'Song Helper'
-        self.theme_cls.primary_palette='Blue'
+        self.theme_cls.primary_palette = 'Blue'
         self.theme_cls.theme_style = 'Dark'
         screen = MDScreen()
         mainBox = MDBoxLayout(orientation='vertical')
