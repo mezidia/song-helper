@@ -1,6 +1,6 @@
 from unittest import TestCase
 import asyncio
-import utils
+from . import utils
 
 
 class Test(TestCase):
