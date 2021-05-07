@@ -5,7 +5,10 @@ import Input from "./components/Input";
 const {width: WIDTH} = Dimensions.get('window')
 
 const App = () => {
-  const btnPress = () => {
+  const btnPress = async () => {
+    await fetch('https://api.github.com/users/mezgoodle')
+        .then(res => res.json())
+        .then(json => console.log(json))
     Alert.alert('Your result', 'Main message', [
       {text: 'Ok', onPress: () => console.log('Yes button')},
       {text: 'Cancel', onPress: () => console.log('No button')}
