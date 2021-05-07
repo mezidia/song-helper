@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View, StyleSheet, Image, ImageBackground, TextInput, Dimensions} from 'react-native';
+import {Text, View, StyleSheet, Image, ImageBackground, TextInput, Dimensions, TouchableOpacity} from 'react-native';
 import Icon from "react-native-vector-icons/Ionicons";
 
 const {width: WIDTH} = Dimensions.get('window')
@@ -31,6 +31,9 @@ const App = () => {
               underlineColorAndroid='transparent'
           />
         </View>
+        <TouchableOpacity style={styles.btnLogin}>
+          <Text style={styles.text}>Login</Text>
+        </TouchableOpacity>
       </ImageBackground>
   );
 }
@@ -76,6 +79,14 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     marginTop: 10
+  },
+  btnLogin: {
+    width: WIDTH - 55,
+    height: 45,
+    borderRadius: 25,
+    backgroundColor: '#432577',
+    justifyContent: 'center',
+    marginTop: 20
   }
 })
 
