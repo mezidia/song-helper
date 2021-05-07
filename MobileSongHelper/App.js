@@ -1,12 +1,11 @@
-import {StatusBar} from 'expo-status-bar';
 import React from 'react';
 import {Text, View, StyleSheet, Image} from 'react-native';
+import Header from "./components/Header";
 
 const App = () => {
   return (
       <View style={styles.container}>
-        <Text style={styles.text}>Hello world!</Text>
-        <StatusBar style="auto"/>
+        <Header title='Song helper' />
         <Image
             source={{uri: 'https://raw.githubusercontent.com/mezgoodle/images/master/MezidiaLogoTransparent.png'}}
             style={styles.img}/>
@@ -17,12 +16,7 @@ const App = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  text: {
-    color: 'darkslateblue',
-    fontSize: 30
+    paddingTop: 60
   },
   img: {
     width: 100,
