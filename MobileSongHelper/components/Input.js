@@ -1,12 +1,47 @@
 import React from 'react';
-import {Text, View, StyleSheet, TextInput} from 'react-native';
+import {View, StyleSheet, TextInput, Dimensions} from 'react-native';
+import Icon from "react-native-vector-icons/Ionicons";
 
-const Input = () => {
+const {width: WIDTH} = Dimensions.get('window')
+
+const Input = props => {
   return (
-      <View>
-        <TextInput multiline='true' placeholder='useless placeholder' width='40' height='100'/>
+      <View style={styles.inputContainer}>
+        <Icon name={props.iconName} size={28} color={'rgba(255, 255, 255, 0.7)'} style={styles.inputIcon}/>
+        <TextInput
+            style={styles.input}
+            placeholder={props.placeholder}
+            placeholderTextColor={'rgba(255, 255, 255, 0.7)'}
+            underlineColorAndroid='transparent'
+        />
       </View>
   );
 }
+
+Input.defaultProps = {
+  iconName: 'happy-outline',
+  placeholder: 'Your mood'
+};
+
+const styles = StyleSheet.create({
+  input: {
+    width: WIDTH - 55,
+    height: 45,
+    borderRadius: 25,
+    fontSize: 16,
+    paddingLeft: 45,
+    backgroundColor: 'rgba(0, 0, 0, 0.35)',
+    color: 'rgba(255, 255, 255, 0.7)',
+    marginHorizontal: 25
+  },
+  inputIcon: {
+    position: 'absolute',
+    top: 8,
+    left: 37
+  },
+  inputContainer: {
+    marginTop: 10
+  }
+})
 
 export default Input;

@@ -1,6 +1,7 @@
 import React from 'react';
 import {Text, View, StyleSheet, Image, ImageBackground, TextInput, Dimensions, TouchableOpacity} from 'react-native';
 import Icon from "react-native-vector-icons/Ionicons";
+import Input from "./components/Input";
 
 const {width: WIDTH} = Dimensions.get('window')
 
@@ -13,24 +14,8 @@ const App = () => {
                  style={styles.logo}/>
           <Text style={styles.logoText}>Song helper</Text>
         </View>
-        <View style={styles.inputContainer}>
-          <Icon name={'happy-outline'} size={28} color={'rgba(255, 255, 255, 0.7)'} style={styles.inputIcon}/>
-          <TextInput
-              style={styles.input}
-              placeholder={'Your mood'}
-              placeholderTextColor={'rgba(255, 255, 255, 0.7)'}
-              underlineColorAndroid='transparent'
-          />
-        </View>
-        <View style={styles.inputContainer}>
-          <Icon name={'md-musical-notes-outline'} size={28} color={'rgba(255, 255, 255, 0.7)'} style={styles.inputIcon}/>
-          <TextInput
-              style={styles.input}
-              placeholder={'Spotify song id'}
-              placeholderTextColor={'rgba(255, 255, 255, 0.7)'}
-              underlineColorAndroid='transparent'
-          />
-        </View>
+        <Input iconName={'happy-outline'} placeholder={'Your mood'} />
+        <Input iconName={'md-musical-notes-outline'} placeholder={'Spotify song id'} />
         <TouchableOpacity style={styles.btnLogin}>
           <Text style={styles.text}>Login</Text>
         </TouchableOpacity>
