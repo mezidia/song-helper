@@ -13,11 +13,20 @@ const App = () => {
                  style={styles.logo}/>
           <Text style={styles.logoText}>Song helper</Text>
         </View>
-        <View>
+        <View style={styles.inputContainer}>
           <Icon name={'happy-outline'} size={28} color={'rgba(255, 255, 255, 0.7)'} style={styles.inputIcon}/>
           <TextInput
               style={styles.input}
               placeholder={'Your mood'}
+              placeholderTextColor={'rgba(255, 255, 255, 0.7)'}
+              underlineColorAndroid='transparent'
+          />
+        </View>
+        <View>
+          <Icon name={'md-musical-notes-outline'} size={28} color={'rgba(255, 255, 255, 0.7)'} style={styles.inputIcon}/>
+          <TextInput
+              style={styles.input}
+              placeholder={'Spotify song id'}
               placeholderTextColor={'rgba(255, 255, 255, 0.7)'}
               underlineColorAndroid='transparent'
           />
@@ -63,7 +72,8 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 8,
     left: 37
-  }
+  },
+  inputContainer: undefined
 })
 
 export default App;
