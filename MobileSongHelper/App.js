@@ -1,7 +1,6 @@
 import React from 'react';
 import {Text, View, StyleSheet, Image, ImageBackground, TextInput, Dimensions} from 'react-native';
-import Header from "./components/Header";
-import Input from "./components/Input";
+import Icon from "react-native-vector-icons/Ionicons";
 
 const {width: WIDTH} = Dimensions.get('window')
 
@@ -12,9 +11,10 @@ const App = () => {
         <View style={styles.logoContainer}>
           <Image source={{uri: 'https://raw.githubusercontent.com/mezgoodle/images/master/MezidiaLogoTransparent.png'}}
                  style={styles.logo}/>
-          <Text style={styles.logoText}>Another text</Text>
+          <Text style={styles.logoText}>Song helper</Text>
         </View>
         <View>
+          <Icon name={'ios-person-outline'} size={28} color={'rgba(255, 255, 255, 0.7)'} style={styles.inputIcon}/>
           <TextInput
               style={styles.input}
               placeholder={'Username'}
@@ -58,6 +58,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.35)',
     color: 'rgba(255, 255, 255, 0.7)',
     marginHorizontal: 25
+  },
+  inputIcon: {
+    
   }
 })
 
