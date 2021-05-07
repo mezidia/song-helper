@@ -87,6 +87,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#432577',
     justifyContent: 'center',
     marginTop: 20
+  },
+  text: {
+    color: 'rgba(255, 255, 255, 0.7)',
+    fontSize: 16,
+    textAlign: 'center'
   }
 })
 
