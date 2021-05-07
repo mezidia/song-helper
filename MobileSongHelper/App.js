@@ -1,16 +1,19 @@
 import React from 'react';
-import {Text, View, StyleSheet, Image, ImageBackground, Dimensions, TouchableOpacity} from 'react-native';
+import {Text, View, StyleSheet, Image, ImageBackground, Dimensions, TouchableOpacity, Alert} from 'react-native';
 import Input from "./components/Input";
 
 const {width: WIDTH} = Dimensions.get('window')
 
 const App = () => {
   const btnPress = () => {
-    console.log('Hello');
+    Alert.alert('Your result', 'Main message', [
+      {text: 'Ok', onPress: () => console.log('Yes button')},
+      {text: 'Cancel', onPress: () => console.log('No button')}
+    ]);
   };
   return (
       <ImageBackground source={{uri: 'https://i.pinimg.com/originals/b9/84/00/b98400eea2b884c8950c77d9072c6256.jpg'}}
-                       style={styles.backgroundContainer}>
+                       style={styles.backgroundContainer} blurRadius={4}>
         <View style={styles.logoContainer}>
           <Image
               source={{uri: 'https://raw.githubusercontent.com/mezgoodle/images/master/MezidiaLogoTransparent.png'}}
