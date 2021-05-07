@@ -1,12 +1,12 @@
 import React from 'react';
-import {View, StyleSheet, TextInput, Dimensions} from 'react-native';
+import {SafeAreaView, StyleSheet, TextInput, Dimensions} from 'react-native';
 import Icon from "react-native-vector-icons/Ionicons";
 
 const {width: WIDTH} = Dimensions.get('window')
 
 const Input = props => {
   return (
-      <View style={styles.inputContainer}>
+      <SafeAreaView style={styles.inputContainer}>
         <Icon name={props.iconName} size={28} color={'rgba(255, 255, 255, 0.7)'} style={styles.inputIcon}/>
         <TextInput
             style={styles.input}
@@ -14,7 +14,7 @@ const Input = props => {
             placeholderTextColor={'rgba(255, 255, 255, 0.7)'}
             underlineColorAndroid='transparent'
         />
-      </View>
+      </SafeAreaView>
   );
 }
 
@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
     left: 37
   },
   inputContainer: {
+    color: 'white',
     marginTop: 10
   }
 })
