@@ -14,10 +14,10 @@ const App = () => {
           <Text style={styles.logoText}>Song helper</Text>
         </View>
         <View>
-          <Icon name={'ios-person-outline'} size={28} color={'rgba(255, 255, 255, 0.7)'} style={styles.inputIcon}/>
+          <Icon name={'happy-outline'} size={28} color={'rgba(255, 255, 255, 0.7)'} style={styles.inputIcon}/>
           <TextInput
               style={styles.input}
-              placeholder={'Username'}
+              placeholder={'Your mood'}
               placeholderTextColor={'rgba(255, 255, 255, 0.7)'}
               underlineColorAndroid='transparent'
           />
@@ -60,7 +60,9 @@ const styles = StyleSheet.create({
     marginHorizontal: 25
   },
   inputIcon: {
-    
+    position: 'absolute',
+    top: 8,
+    left: 37
   }
 })
 
