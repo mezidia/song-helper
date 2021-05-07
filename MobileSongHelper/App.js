@@ -22,7 +22,7 @@ const App = () => {
               underlineColorAndroid='transparent'
           />
         </View>
-        <View>
+        <View style={styles.inputContainer}>
           <Icon name={'md-musical-notes-outline'} size={28} color={'rgba(255, 255, 255, 0.7)'} style={styles.inputIcon}/>
           <TextInput
               style={styles.input}
@@ -48,7 +48,8 @@ const styles = StyleSheet.create({
     height: 120
   },
   logoContainer: {
-    alignItems: 'center'
+    alignItems: 'center',
+    marginBottom: 50
   },
   logoText: {
     color: 'black',
@@ -73,7 +74,9 @@ const styles = StyleSheet.create({
     top: 8,
     left: 37
   },
-  inputContainer: undefined
+  inputContainer: {
+    marginTop: 10
+  }
 })
 
 export default App;
