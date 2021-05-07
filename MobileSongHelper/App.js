@@ -1,22 +1,25 @@
 import React from 'react';
-import {Text, View, StyleSheet, Image, ImageBackground, TextInput, Dimensions, TouchableOpacity} from 'react-native';
-import Icon from "react-native-vector-icons/Ionicons";
+import {Text, View, StyleSheet, Image, ImageBackground, Dimensions, TouchableOpacity} from 'react-native';
 import Input from "./components/Input";
 
 const {width: WIDTH} = Dimensions.get('window')
 
 const App = () => {
+  const btnPress = () => {
+    console.log('Hello');
+  };
   return (
       <ImageBackground source={{uri: 'https://i.pinimg.com/originals/b9/84/00/b98400eea2b884c8950c77d9072c6256.jpg'}}
                        style={styles.backgroundContainer}>
         <View style={styles.logoContainer}>
-          <Image source={{uri: 'https://raw.githubusercontent.com/mezgoodle/images/master/MezidiaLogoTransparent.png'}}
-                 style={styles.logo}/>
+          <Image
+              source={{uri: 'https://raw.githubusercontent.com/mezgoodle/images/master/MezidiaLogoTransparent.png'}}
+              style={styles.logo}/>
           <Text style={styles.logoText}>Song helper</Text>
         </View>
-        <Input iconName={'happy-outline'} placeholder={'Your mood'} />
-        <Input iconName={'md-musical-notes-outline'} placeholder={'Spotify song id'} />
-        <TouchableOpacity style={styles.btnLogin}>
+        <Input iconName={'happy-outline'} placeholder={'Your mood'}/>
+        <Input iconName={'md-musical-notes-outline'} placeholder={'Spotify song id'}/>
+        <TouchableOpacity style={styles.btnLogin} onPress={btnPress}>
           <Text style={styles.text}>Login</Text>
         </TouchableOpacity>
       </ImageBackground>
