@@ -6,4 +6,5 @@ app_name = 'mesite'
 urlpatterns = [
     path('', views.index, name='index'),
     path('add-song', views.add_song, name='add_song'),
+    path('get-song/<str:text>', views.get_song, name='get_song')
 ]

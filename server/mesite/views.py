@@ -1,5 +1,8 @@
 from django.shortcuts import render
+from django.http import JsonResponse
 from datetime import date
+import requests
+import json
 from .forms import MainForm, AddForm
 
 year = date.today().year
@@ -11,13 +14,9 @@ def index(request):
         form = MainForm(request.POST)
         if form.is_valid():
             mood = form.cleaned_data['text']
-            # TODO: go to song-helper/mood_from_words.py and get mood
-            # mood = predict_mood(text)
-            # TODO: go to Songs model and get random song with this mood
-            # song = Songs.query(mood)
-            # TODO: go to searcher.py and get link
-            # link = searcher(song)
-            result = mood.capitalize()
+            data = get_song(request, mood)
+            link = json.loads(data.content)['link']
+            result = link.capitalize()
     context = {
         'result': result,
         'form': MainForm(),
@@ -33,13 +32,15 @@ def add_song(request):
         if form.is_valid():
             song_id = form.cleaned_data['song_id']
             try:
+                r = requests.get('https://api.github.com/users/mezgoodle')
+                login = r.json()['login']
                 # TODO: go to song-helper/predict.py and get mood
                 # result = predict_mood(song_id)
                 # TODO: go to song-helper/utils.py and get song feature
                 # features = get_song_features(song_id)
                 # TODO: save new object to model
                 # Song.save(features)
-                result = f'Song with id "{song_id}" added as Happy'
+                result = f'Song with id "{song_id}" added as Happy {login}'
             except:
                 result = 'Cannot find your song'
     context = {
@@ -48,3 +49,19 @@ def add_song(request):
         'result': result,
     }
     return render(request, 'mesite/add_song.html', context)
+
+
+def get_song(request, text):
+    # TODO: go to song-helper/mood_from_words.py and get mood
+    # mood = predict_mood(text)
+    # TODO: go to Songs model and get random song with this mood
+    # song = Songs.query(mood)
+    # TODO: go to searcher.py and get link
+    # link = searcher(song)
+    song_name, link = 'Test name', 'Test link'
+    data = {
+        'mood': text,
+        'song': song_name,
+        'link': link
+    }
+    return JsonResponse(data)
