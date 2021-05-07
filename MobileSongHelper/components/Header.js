@@ -9,6 +9,10 @@ const Header = props => {
   );
 }
 
+Header.defaultProps = {
+  title: 'Song helper'
+}
+
 const styles = StyleSheet.create({
   header: {
     height: 60,
