@@ -10,6 +10,7 @@ class MoodModelTest(TestCase):
     """
     Test Mood model
     """
+
     @classmethod
     def setUpTestData(cls):
         Mood.objects.create(
@@ -28,6 +29,7 @@ class SongModelTest(TestCase):
     """
     Test Song model
     """
+
     @classmethod
     def setUpTestData(cls):
         Mood.objects.create(
@@ -71,6 +73,7 @@ class ViewsTests(TestCase):
     """
     Test app views
     """
+
     def test_get_index(self):
         """
         Test get method for mesite:index
@@ -87,11 +90,45 @@ class ViewsTests(TestCase):
         response = self.client.post(url, data={'text': 'test-case'})
         self.assertEqual(response.status_code, HTTPStatus.OK)
 
+    def test_get_add_song(self):
+        """
+        Test get method for mesite:add_song
+        """
+        url = reverse('mesite:add_song')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, HTTPStatus.OK)
+
+    def test_post_add_song(self):
+        """
+        Test post method for mesite:add_song
+        """
+        url = reverse('mesite:add_song')
+        response = self.client.post(url, data={'song_id': 'test-case'})
+        self.assertEqual(response.status_code, HTTPStatus.OK)
+
+    def test_get_get_song(self):
+        """
+        Test get method for mesite:get_song
+        """
+        url = reverse('mesite:get_song', kwargs={'text': 'test text'})
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, HTTPStatus.OK)
+
+    def test_get_add_song_resp(self):
+        """
+        Test get method for mesite:add_song_resp
+        """
+        url = reverse('mesite:add_song_resp', kwargs={'song_id': 'test id'})
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, HTTPStatus.OK)
+
+
 
 class MainFormTests(TestCase):
     """
     Test app forms
     """
+
     def test_valid_input_form(self):
         """
         Test valid form
@@ -113,6 +150,7 @@ class AddFormTests(TestCase):
     """
     Test app forms
     """
+
     def test_valid_input_form(self):
         """
         Test valid form
@@ -134,6 +172,7 @@ class SearcherTest(TestCase):
     """
     Test search on YouTube
     """
+
     def test_searcher(self):
         """
         Test the function output
