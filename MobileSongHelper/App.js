@@ -2,7 +2,7 @@ import {StatusBar} from 'expo-status-bar';
 import React from 'react';
 import {Text, View, StyleSheet, Image} from 'react-native';
 
-export default function App() {
+const App = () => {
   return (
       <View style={styles.container}>
         <Text style={styles.text}>Hello world!</Text>
@@ -29,3 +29,5 @@ const styles = StyleSheet.create({
     height: 100
   }
 })
+
+export default App;
