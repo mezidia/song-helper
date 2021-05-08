@@ -8,14 +8,18 @@ const {width: WIDTH} = Dimensions.get('window')
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {myState: 'This is a text component, created using state data. It will change or updated on clicking it.'}
+    this.state = {
+      moodText: '',
+      songId: '',
+      myState: 'This is a text component, created using state data. It will change or updated on clicking it.',
+    }
   }
   updateState = (text, type) => {
-    if (type === 'first') this.setState({myState: text})
-    else this.setState({myState: text + 'true'})
+    if (type === 'first') this.setState({moodText: text})
+    else if (type === 'second') this.setState({songId: text})
   }
   btnPress = async () => {
-    await fetch('https://api.github.com/users/mezgoodle')
+    await fetch(`https://api.github.com/users/${this.state.moodText}`)
         .then(res => res.json())
         .then(json => console.log(json))
     Alert.alert('Your result', 'Main message', [
@@ -34,9 +38,9 @@ class App extends Component {
                 style={styles.logo}/>
             <Text style={styles.logoText}>Song helper</Text>
           </View>
-          <Input iconName={'happy-outline'} placeholder={this.state.myState} method={this.updateState} id={'first'}/>
+          <Input iconName={'happy-outline'} placeholder={'Your mood'} method={this.updateState} id={'first'}/>
           <Input iconName={'md-musical-notes-outline'} placeholder={'Spotify song id'} method={this.updateState} id={'second'}/>
-          <Button text={this.state.myState} method={this.btnPress} />
+          <Button text={'Search song'} method={this.btnPress} />
           <Button text={'Add song'} method={this.btnPress} />
         </ImageBackground>
     )
