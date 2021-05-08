@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Text, View, StyleSheet, Image, ImageBackground, Dimensions, TouchableOpacity, Alert} from 'react-native';
 import Input from "./components/Input";
+import Button from "./components/Button";
 
 const {width: WIDTH} = Dimensions.get('window')
 
@@ -30,9 +31,10 @@ class App extends Component {
           </View>
           <Input iconName={'happy-outline'} placeholder={this.state.myState}/>
           <Input iconName={'md-musical-notes-outline'} placeholder={'Spotify song id'}/>
-          <TouchableOpacity style={styles.btnLogin} onPress={this.btnPress}>
-            <Text style={styles.text}>Login</Text>
-          </TouchableOpacity>
+          <Button text={'Login'} method={this.btnPress} />
+          {/*<TouchableOpacity style={styles.btnLogin} onPress={this.btnPress}>*/}
+          {/*  <Text style={styles.text}>Login</Text>*/}
+          {/*</TouchableOpacity>*/}
         </ImageBackground>
     )
   };
