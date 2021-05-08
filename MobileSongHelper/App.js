@@ -6,10 +6,14 @@ import Button from "./components/Button";
 const {width: WIDTH} = Dimensions.get('window')
 
 class App extends Component {
-  state = {
-    myState: 'This is a text component, created using state data. It will change or updated on clicking it.'
+  constructor(props) {
+    super(props);
+    this.state = {myState: 'This is a text component, created using state data. It will change or updated on clicking it.'}
   }
-  updateState = (text) => this.setState({myState: text})
+  updateState = (text, type) => {
+    if (type === 'first') this.setState({myState: text})
+    else this.setState({myState: text + 'true'})
+  }
   btnPress = async () => {
     await fetch('https://api.github.com/users/mezgoodle')
         .then(res => res.json())
@@ -30,8 +34,8 @@ class App extends Component {
                 style={styles.logo}/>
             <Text style={styles.logoText}>Song helper</Text>
           </View>
-          <Input iconName={'happy-outline'} placeholder={this.state.myState} method={this.updateState} />
-          <Input iconName={'md-musical-notes-outline'} placeholder={'Spotify song id'} />
+          <Input iconName={'happy-outline'} placeholder={this.state.myState} method={this.updateState} id={'first'}/>
+          <Input iconName={'md-musical-notes-outline'} placeholder={'Spotify song id'} method={this.updateState} id={'second'}/>
           <Button text={this.state.myState} method={this.btnPress} />
           <Button text={'Add song'} method={this.btnPress} />
         </ImageBackground>
