@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text, View, StyleSheet, Image, ImageBackground, Dimensions, Alert} from 'react-native';
+import {Text, View, StyleSheet, Image, ImageBackground, Alert} from 'react-native';
 import Input from "./components/Input";
 import Button from "./components/Button";
 class App extends Component {
