@@ -1,11 +1,14 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {Text, View, StyleSheet, Image, ImageBackground, Dimensions, TouchableOpacity, Alert} from 'react-native';
 import Input from "./components/Input";
 
 const {width: WIDTH} = Dimensions.get('window')
 
-const App = () => {
-  const btnPress = async () => {
+class App extends Component {
+  state = {
+    myState: 'This is a text component, created using state data. It will change or updated on clicking it.'
+  }
+  btnPress = async () => {
     await fetch('https://api.github.com/users/mezgoodle')
         .then(res => res.json())
         .then(json => console.log(json))
@@ -14,22 +17,25 @@ const App = () => {
       {text: 'Cancel', onPress: () => console.log('No button')}
     ]);
   };
-  return (
-      <ImageBackground source={{uri: 'https://i.pinimg.com/originals/b9/84/00/b98400eea2b884c8950c77d9072c6256.jpg'}}
-                       style={styles.backgroundContainer} blurRadius={4}>
-        <View style={styles.logoContainer}>
-          <Image
-              source={{uri: 'https://raw.githubusercontent.com/mezgoodle/images/master/MezidiaLogoTransparent.png'}}
-              style={styles.logo}/>
-          <Text style={styles.logoText}>Song helper</Text>
-        </View>
-        <Input iconName={'happy-outline'} placeholder={'Your mood'}/>
-        <Input iconName={'md-musical-notes-outline'} placeholder={'Spotify song id'}/>
-        <TouchableOpacity style={styles.btnLogin} onPress={btnPress}>
-          <Text style={styles.text}>Login</Text>
-        </TouchableOpacity>
-      </ImageBackground>
-  );
+
+  render() {
+    return (
+        <ImageBackground source={{uri: 'https://i.pinimg.com/originals/b9/84/00/b98400eea2b884c8950c77d9072c6256.jpg'}}
+                         style={styles.backgroundContainer} blurRadius={4}>
+          <View style={styles.logoContainer}>
+            <Image
+                source={{uri: 'https://raw.githubusercontent.com/mezgoodle/images/master/MezidiaLogoTransparent.png'}}
+                style={styles.logo}/>
+            <Text style={styles.logoText}>Song helper</Text>
+          </View>
+          <Input iconName={'happy-outline'} placeholder={this.state.myState}/>
+          <Input iconName={'md-musical-notes-outline'} placeholder={'Spotify song id'}/>
+          <TouchableOpacity style={styles.btnLogin} onPress={this.btnPress}>
+            <Text style={styles.text}>Login</Text>
+          </TouchableOpacity>
+        </ImageBackground>
+    )
+  };
 }
 
 const styles = StyleSheet.create({
