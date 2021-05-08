@@ -9,6 +9,7 @@ class App extends Component {
   state = {
     myState: 'This is a text component, created using state data. It will change or updated on clicking it.'
   }
+  updateState = (text) => this.setState({myState: text})
   btnPress = async () => {
     await fetch('https://api.github.com/users/mezgoodle')
         .then(res => res.json())
@@ -29,9 +30,9 @@ class App extends Component {
                 style={styles.logo}/>
             <Text style={styles.logoText}>Song helper</Text>
           </View>
-          <Input iconName={'happy-outline'} placeholder={this.state.myState}/>
-          <Input iconName={'md-musical-notes-outline'} placeholder={'Spotify song id'}/>
-          <Button text={'Search song'} method={this.btnPress} />
+          <Input iconName={'happy-outline'} placeholder={this.state.myState} method={this.updateState} />
+          <Input iconName={'md-musical-notes-outline'} placeholder={'Spotify song id'} />
+          <Button text={this.state.myState} method={this.btnPress} />
           <Button text={'Add song'} method={this.btnPress} />
         </ImageBackground>
     )
