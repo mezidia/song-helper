@@ -13,6 +13,7 @@ const Input = props => {
             placeholder={props.placeholder}
             placeholderTextColor={'rgba(255, 255, 255, 0.7)'}
             underlineColorAndroid='transparent'
+            multiline
         />
       </SafeAreaView>
   );
