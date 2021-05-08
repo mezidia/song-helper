@@ -16,9 +16,11 @@ class App extends Component {
     else if (type === 'second') this.setState({songId: text})
   }
   btnPress = async () => {
+    let result;
     await fetch(`https://api.github.com/users/${this.state.moodText}`)
         .then(res => res.json())
-        .then(json => console.log(json))
+        .then(json => result = json)
+    console.log(result)
     Alert.alert('Your result', 'Main message', [
       {text: 'Ok', onPress: () => console.log('Yes button')},
       {text: 'Cancel', onPress: () => console.log('No button')}
