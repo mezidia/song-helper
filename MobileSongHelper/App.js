@@ -2,9 +2,6 @@ import React, {Component} from 'react';
 import {Text, View, StyleSheet, Image, ImageBackground, Dimensions, Alert} from 'react-native';
 import Input from "./components/Input";
 import Button from "./components/Button";
-
-const {width: WIDTH} = Dimensions.get('window')
-
 class App extends Component {
   constructor(props) {
     super(props);
