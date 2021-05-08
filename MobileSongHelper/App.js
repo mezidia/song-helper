@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text, View, StyleSheet, Image, ImageBackground, Dimensions, TouchableOpacity, Alert} from 'react-native';
+import {Text, View, StyleSheet, Image, ImageBackground, Dimensions, Alert} from 'react-native';
 import Input from "./components/Input";
 import Button from "./components/Button";
 
@@ -70,37 +70,6 @@ const styles = StyleSheet.create({
     marginTop: 10,
     opacity: 0.5,
     textTransform: 'uppercase'
-  },
-  input: {
-    width: WIDTH - 55,
-    height: 45,
-    borderRadius: 25,
-    fontSize: 16,
-    paddingLeft: 45,
-    backgroundColor: 'rgba(0, 0, 0, 0.35)',
-    color: 'rgba(255, 255, 255, 0.7)',
-    marginHorizontal: 25
-  },
-  inputIcon: {
-    position: 'absolute',
-    top: 8,
-    left: 37
-  },
-  inputContainer: {
-    marginTop: 10
-  },
-  btnLogin: {
-    width: WIDTH - 55,
-    height: 45,
-    borderRadius: 25,
-    backgroundColor: '#432577',
-    justifyContent: 'center',
-    marginTop: 20
-  },
-  text: {
-    color: 'rgba(255, 255, 255, 0.7)',
-    fontSize: 16,
-    textAlign: 'center'
   }
 })
 
