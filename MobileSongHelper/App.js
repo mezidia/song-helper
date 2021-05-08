@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import {Text, View, StyleSheet, Image, ImageBackground, Alert} from 'react-native';
+import {Text, View, StyleSheet, Image, ImageBackground, Alert, Linking} from 'react-native';
 import Input from "./components/Input";
 import Button from "./components/Button";
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -11,6 +12,7 @@ class App extends Component {
       myState: 'This is a text component, created using state data. It will change or updated on clicking it.',
     }
   }
+
   updateState = (text, type) => {
     if (type === 'first') this.setState({moodText: text})
     else if (type === 'second') this.setState({songId: text})
@@ -21,6 +23,7 @@ class App extends Component {
         .then(res => res.json())
         .then(json => result = json)
     console.log(result)
+    await Linking.openURL(result.html_url);
     Alert.alert('Your result', 'Main message', [
       {text: 'Ok', onPress: () => console.log('Yes button')},
       {text: 'Cancel', onPress: () => console.log('No button')}
@@ -35,12 +38,14 @@ class App extends Component {
             <Image
                 source={{uri: 'https://raw.githubusercontent.com/mezgoodle/images/master/MezidiaLogoTransparent.png'}}
                 style={styles.logo}/>
-            <Text style={styles.logoText}>Song helper</Text>
+            <Text style={styles.logoText} onPress={() => Linking.openURL('https://github.com/mezidia/song-helper')}>Song
+              helper</Text>
           </View>
           <Input iconName={'happy-outline'} placeholder={'Your mood'} method={this.updateState} id={'first'}/>
-          <Input iconName={'md-musical-notes-outline'} placeholder={'Spotify song id'} method={this.updateState} id={'second'}/>
-          <Button text={'Search song'} method={this.btnPress} />
-          <Button text={'Add song'} method={this.btnPress} />
+          <Input iconName={'md-musical-notes-outline'} placeholder={'Spotify song id'} method={this.updateState}
+                 id={'second'}/>
+          <Button text={'Search song'} method={this.btnPress}/>
+          <Button text={'Add song'} method={this.btnPress}/>
         </ImageBackground>
     )
   };
