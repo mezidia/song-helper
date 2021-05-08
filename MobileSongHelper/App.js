@@ -31,10 +31,8 @@ class App extends Component {
           </View>
           <Input iconName={'happy-outline'} placeholder={this.state.myState}/>
           <Input iconName={'md-musical-notes-outline'} placeholder={'Spotify song id'}/>
-          <Button text={'Login'} method={this.btnPress} />
-          {/*<TouchableOpacity style={styles.btnLogin} onPress={this.btnPress}>*/}
-          {/*  <Text style={styles.text}>Login</Text>*/}
-          {/*</TouchableOpacity>*/}
+          <Button text={'Search song'} method={this.btnPress} />
+          <Button text={'Add song'} method={this.btnPress} />
         </ImageBackground>
     )
   };
