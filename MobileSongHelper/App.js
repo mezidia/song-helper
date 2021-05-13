@@ -22,12 +22,12 @@ class App extends Component {
     await fetch(`https://api.github.com/users/${this.state.moodText}`)
         .then(res => res.json())
         .then(json => result = json)
-    console.log(result)
-    await Linking.openURL(result.html_url);
-    Alert.alert('Your result', 'Main message', [
-      {text: 'Ok', onPress: () => console.log('Yes button')},
+    Alert.alert('Your result', 'Press OK to open', [
+      {text: 'Ok', onPress: async () => await Linking.openURL(result.html_url)},
       {text: 'Cancel', onPress: () => console.log('No button')}
     ]);
+    this.setState({moodText: ''})
+    this.setState({songId: ''})
   };
 
   render() {
