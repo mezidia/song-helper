@@ -9,7 +9,6 @@ class App extends Component {
     this.state = {
       moodText: '',
       songId: '',
-      myState: 'This is a text component, created using state data. It will change or updated on clicking it.',
     }
   }
 
@@ -17,17 +16,55 @@ class App extends Component {
     if (type === 'first') this.setState({moodText: text})
     else if (type === 'second') this.setState({songId: text})
   }
-  btnPress = async () => {
-    let result;
-    await fetch(`https://api.github.com/users/${this.state.moodText}`)
-        .then(res => res.json())
-        .then(json => result = json)
-    Alert.alert('Your result', 'Press OK to open', [
-      {text: 'Ok', onPress: async () => await Linking.openURL(result.html_url)},
-      {text: 'Cancel', onPress: () => console.log('No button')}
-    ]);
-    this.setState({moodText: ''})
-    this.setState({songId: ''})
+  searchBtnPress = async () => {
+    if (this.state.moodText) {
+      let result;
+      try {
+        await fetch(`https://api.github.com/users/${this.state.moodText}`)
+            .then(res => res.json())
+            .then(json => result = json)
+      } catch (e) {
+        Alert.alert('No result', 'Press any button to continue', [
+          {text: 'Ok', onPress: () => console.log('Yes button')},
+          {text: 'Cancel', onPress: () => console.log('No button')}
+        ]);
+      }
+      Alert.alert('Your result', 'Press OK to open', [
+        {text: 'Ok', onPress: async () => await Linking.openURL(result.html_url)},
+        {text: 'Cancel', onPress: () => console.log('No button')}
+      ]);
+      this.setState({moodText: ''})
+    } else {
+      Alert.alert('Empty message', 'Enter the text', [
+        {text: 'Ok', onPress: () => console.log('Yes button')},
+        {text: 'Cancel', onPress: () => console.log('No button')}
+      ]);
+    }
+  };
+  addBtnPress = async () => {
+    if (this.state.songId) {
+      let result;
+      try {
+        await fetch(`https://jsonplaceholder.typicode.com/posts/${this.state.songId}`)
+            .then(res => res.json())
+            .then(json => result = json)
+      } catch (e) {
+        Alert.alert('No result', 'Press any button to continue', [
+          {text: 'Ok', onPress: () => console.log('Yes button')},
+          {text: 'Cancel', onPress: () => console.log('No button')}
+        ]);
+      }
+      Alert.alert('Your result', 'Press OK to open', [
+        {text: 'Ok', onPress: async () => await Linking.openURL(result.id)},
+        {text: 'Cancel', onPress: () => console.log('No button')}
+      ]);
+      this.setState({songId: ''})
+    } else {
+      Alert.alert('Empty message', 'Enter the text', [
+        {text: 'Ok', onPress: () => console.log('Yes button')},
+        {text: 'Cancel', onPress: () => console.log('No button')}
+      ]);
+    }
   };
 
   render() {
@@ -44,8 +81,8 @@ class App extends Component {
           <Input iconName={'happy-outline'} placeholder={'Your mood'} method={this.updateState} id={'first'}/>
           <Input iconName={'md-musical-notes-outline'} placeholder={'Spotify song id'} method={this.updateState}
                  id={'second'}/>
-          <Button text={'Search song'} method={this.btnPress}/>
-          <Button text={'Add song'} method={this.btnPress}/>
+          <Button text={'Search song'} method={this.searchBtnPress}/>
+          <Button text={'Add song'} method={this.addBtnPress}/>
         </ImageBackground>
     )
   };
