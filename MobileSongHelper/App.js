@@ -16,19 +16,27 @@ class App extends Component {
     if (type === 'first') this.setState({moodText: text})
     else if (type === 'second') this.setState({songId: text})
   }
+  makeRequest = async (link) => {
+    let result = '';
+    try {
+      await fetch(link)
+          .then(res => res.json())
+          .then(json => result = json)
+    } catch (e) {
+      this.alertNoResult();
+    }
+    return result;
+  }
+  alertNoResult = () => {
+    Alert.alert('No result', 'Press any button to continue', [
+      {text: 'Ok', onPress: () => console.log('Yes button')},
+      {text: 'Cancel', onPress: () => console.log('No button')}
+    ]);
+  }
   searchBtnPress = async () => {
     if (this.state.moodText) {
-      let result;
-      try {
-        await fetch(`https://api.github.com/users/${this.state.moodText}`)
-            .then(res => res.json())
-            .then(json => result = json)
-      } catch (e) {
-        Alert.alert('No result', 'Press any button to continue', [
-          {text: 'Ok', onPress: () => console.log('Yes button')},
-          {text: 'Cancel', onPress: () => console.log('No button')}
-        ]);
-      }
+      let result = await this.makeRequest(`https://api.github.com/users/${this.state.moodText}`)
+      console.log(result);
       Alert.alert('Your result', 'Press OK to open', [
         {text: 'Ok', onPress: async () => await Linking.openURL(result.html_url)},
         {text: 'Cancel', onPress: () => console.log('No button')}
@@ -43,17 +51,8 @@ class App extends Component {
   };
   addBtnPress = async () => {
     if (this.state.songId) {
-      let result;
-      try {
-        await fetch(`https://jsonplaceholder.typicode.com/posts/${this.state.songId}`)
-            .then(res => res.json())
-            .then(json => result = json)
-      } catch (e) {
-        Alert.alert('No result', 'Press any button to continue', [
-          {text: 'Ok', onPress: () => console.log('Yes button')},
-          {text: 'Cancel', onPress: () => console.log('No button')}
-        ]);
-      }
+      let result = await this.makeRequest(`https://jsonplaceholder.typicode.com/posts/${this.state.songId}`);
+      console.log(result);
       Alert.alert('Your result', 'Press OK to open', [
         {text: 'Ok', onPress: async () => await Linking.openURL(result.id)},
         {text: 'Cancel', onPress: () => console.log('No button')}
