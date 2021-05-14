@@ -33,6 +33,12 @@ class App extends Component {
       {text: 'Cancel', onPress: () => console.log('No button')}
     ]);
   }
+  alertEmptyMessage = () => {
+    Alert.alert('Empty message', 'Enter the text', [
+      {text: 'Ok', onPress: () => console.log('Yes button')},
+      {text: 'Cancel', onPress: () => console.log('No button')}
+    ]);
+  }
   searchBtnPress = async () => {
     if (this.state.moodText) {
       let result = await this.makeRequest(`https://api.github.com/users/${this.state.moodText}`)
@@ -41,12 +47,8 @@ class App extends Component {
         {text: 'Ok', onPress: async () => await Linking.openURL(result.html_url)},
         {text: 'Cancel', onPress: () => console.log('No button')}
       ]);
-      this.setState({moodText: ''})
     } else {
-      Alert.alert('Empty message', 'Enter the text', [
-        {text: 'Ok', onPress: () => console.log('Yes button')},
-        {text: 'Cancel', onPress: () => console.log('No button')}
-      ]);
+      this.alertEmptyMessage();
     }
   };
   addBtnPress = async () => {
@@ -57,12 +59,8 @@ class App extends Component {
         {text: 'Ok', onPress: async () => await Linking.openURL(result.id)},
         {text: 'Cancel', onPress: () => console.log('No button')}
       ]);
-      this.setState({songId: ''})
     } else {
-      Alert.alert('Empty message', 'Enter the text', [
-        {text: 'Ok', onPress: () => console.log('Yes button')},
-        {text: 'Cancel', onPress: () => console.log('No button')}
-      ]);
+      this.alertEmptyMessage();
     }
   };
 
