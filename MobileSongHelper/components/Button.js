@@ -1,20 +1,20 @@
-import React from 'react';
-import {StyleSheet, Dimensions, TouchableOpacity, Text} from 'react-native';
+import React from 'react'
+import {StyleSheet, Dimensions, TouchableOpacity, Text} from 'react-native'
 
 const {width: WIDTH} = Dimensions.get('window')
 
 const Button = props => {
   return (
-      <TouchableOpacity style={styles.btnLogin} onPress={props.method}>
-        <Text style={styles.text}>{props.text}</Text>
-      </TouchableOpacity>
-  );
+    <TouchableOpacity style={styles.btnLogin} onPress={props.method}>
+      <Text style={styles.text}>{props.text}</Text>
+    </TouchableOpacity>
+  )
 }
 
 Button.defaultProps = {
   text: 'happy-outline',
   method: () => console.log('Default property')
-};
+}
 
 const styles = StyleSheet.create({
   btnLogin: {
@@ -32,4 +32,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default Button;
+export default Button

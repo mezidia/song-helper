@@ -20,7 +20,7 @@
     "rules": {
         "indent": [
             "error",
-            4
+            2
         ],
         "linebreak-style": [
             "error",
@@ -34,5 +34,6 @@
             "error",
             "never"
         ]
-    }
+    },
+    "parser": "babel-eslint"
 }
