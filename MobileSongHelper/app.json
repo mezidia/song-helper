@@ -1,13 +1,13 @@
 {
   "expo": {
-    "name": "SongHelper",
+    "name": "Song Helper",
     "slug": "SongHelper",
     "description": "Song Helper mobile application",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/MezidiaLogoTransparent.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/MezidiaLogoTransparent.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -22,13 +22,13 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/MezidiaLogoTransparent.png",
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.mezidia.songhelper"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/MezidiaLogoTransparent.png"
     }
   }
 }
