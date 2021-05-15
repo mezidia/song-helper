@@ -1,6 +1,7 @@
 import React from 'react'
 import {SafeAreaView, StyleSheet, TextInput, Dimensions} from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
+import PropTypes from 'prop-types'
 
 const {width: WIDTH} = Dimensions.get('window')
 
@@ -23,6 +24,13 @@ const Input = props => {
 Input.defaultProps = {
   iconName: 'happy-outline',
   placeholder: 'Your mood'
+}
+
+Input.propTypes = {
+  iconName: PropTypes.any,
+  placeholder: PropTypes.any,
+  method: PropTypes.func,
+  id: PropTypes.any
 }
 
 const styles = StyleSheet.create({

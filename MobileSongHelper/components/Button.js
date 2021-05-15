@@ -1,5 +1,6 @@
 import React from 'react'
 import {StyleSheet, Dimensions, TouchableOpacity, Text} from 'react-native'
+import PropTypes from 'prop-types'
 
 const {width: WIDTH} = Dimensions.get('window')
 
@@ -14,6 +15,11 @@ const Button = props => {
 Button.defaultProps = {
   text: 'happy-outline',
   method: () => console.log('Default property')
+}
+
+Button.propTypes = {
+  method: PropTypes.func,
+  text: PropTypes.any,
 }
 
 const styles = StyleSheet.create({
