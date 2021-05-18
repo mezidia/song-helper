@@ -18,5 +18,5 @@ jobs:
         with:
           node-version: 15.x
       - run: cd MobileSongHelper
-      - run: npm i
+      - run: npm ci
       - run: npm test
