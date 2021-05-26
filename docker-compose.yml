@@ -19,3 +19,10 @@ services:
     restart: always
     environment:
       TOKEN: ${TOKEN}
+  mobile:
+    container_name: mobile
+    build:
+      context: .
+      dockerfile: ./Dockerfile.mobile
+    command: ["/bin/bash", "-c", "npm start"]
+    restart: always
