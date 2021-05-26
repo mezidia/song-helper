@@ -3,5 +3,6 @@ FROM node:buster-slim
 
 COPY mobileApp/package.json /app/package.json
 WORKDIR /app
+RUN npm install -g expo-cli
 RUN npm i
 COPY mobileApp /app
