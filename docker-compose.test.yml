@@ -16,3 +16,10 @@ services:
     environment:
       TG_TOKEN: ${TG_TOKEN}
       CHAT_ID: ${CHAT_ID}
+  mobile:
+    container_name: mobile
+    build:
+      context: .
+      dockerfile: ./Dockerfile.mobile
+    command: ["/bin/bash", "-c", "npm run test"]
+    restart: always
