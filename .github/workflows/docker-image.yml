@@ -19,3 +19,6 @@ jobs:
 
     - name: Build Docker Image for Bot
       run: docker build . --file Dockerfile.bot --tag songhelper_bot:$(date +%s)
+
+    - name: Build Docker Image for Mobile
+      run: docker build . --file Dockerfile.mobile --tag songhelper_mobile:$(date +%s)
