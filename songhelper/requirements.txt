@@ -65,7 +65,7 @@ tensorboard-plugin-wit==1.8.0
 tensorflow==2.4.1
 tensorflow-estimator==2.4.0
 termcolor==1.1.0
-thinc==8.0.3
+thinc==8.0.7
 threadpoolctl==2.1.0
 tokenizers==0.10.2
 torch==1.8.1
