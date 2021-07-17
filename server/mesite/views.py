@@ -3,7 +3,7 @@ from django.http import JsonResponse
 from datetime import date
 import json
 from .forms import MainForm, AddForm
-from songhelper import predict, mood_from_words
+from songhelper import predict, mood_from_words, utils
 from .models import Song
 from random import randint
 from searcher import search_youtube
@@ -67,13 +67,21 @@ def get_song(request, text):
 
 
 def add_song_resp(request, song_id):
-    # TODO: go to song-helper/predict.py and get mood
-    # result = predict_mood(song_id)
-    # TODO: go to song-helper/utils.py and get song feature
-    # features = get_song_features(song_id)
-    # TODO: save new object to model
-    # Song.save(features)
-    song_name, result = 'Test name', 'Test mood'
+    util = utils.SpotifyUtils()
+
+    url_with_data = 'https://raw.githubusercontent.com/mezgoodle/images/master/data_moods.csv'
+    predictor = predict.PredictMood()
+    mood = predictor.predict_mood(song_id, url_with_data)
+
+    meta_info = util.get_song_meta(song_id)
+
+    features = util.get_song_features(song_id)
+    features['name'] = meta_info['name']
+    features['artists'] = meta_info['artists']
+    features['song_id'] = song_id
+
+    Song.save(**features)
+
     data = {
         'success': 'true',
         'song': song_name,
