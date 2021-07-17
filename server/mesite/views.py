@@ -6,7 +6,7 @@ from .forms import MainForm, AddForm
 from songhelper import predict, mood_from_words, utils
 from .models import Song
 from random import randint
-from searcher import search_youtube
+from .searcher import search_youtube
 
 
 year = date.today().year
@@ -39,7 +39,8 @@ def add_song(request):
                 data = add_song_resp(request, song_id)
                 mood = json.loads(data.content)['mood']
                 result = f'Song with id "{song_id}" added as {mood}'
-            except:
+            except Exception as error:
+                print(error)
                 result = 'Cannot find your song'
     context = {
         'form': AddForm(),
@@ -71,7 +72,7 @@ def add_song_resp(request, song_id):
 
     url_with_data = 'https://raw.githubusercontent.com/mezgoodle/images/master/data_moods.csv'
     predictor = predict.PredictMood()
-    mood = predictor.predict_mood(song_id, url_with_data)
+    mood = predictor.predict_mood(song_id, url_with_data)['mood']
 
     meta_info = util.get_song_meta(song_id)
 
@@ -81,7 +82,8 @@ def add_song_resp(request, song_id):
     features['song_id'] = song_id
     features['mood'] = mood
 
-    Song.save(**features)
+    song = Song(**features)
+    song.save()
 
     data = {
         'success': 'true',

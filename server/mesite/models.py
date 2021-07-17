@@ -1,27 +1,6 @@
 from django.db import models
 
 
-class Mood(models.Model):
-    """
-    Class that represents Mood characteristic of song
-    fields: mood
-    """
-    MOODS = (
-        ('H', 'Happy'),
-        ('E', 'Energetic'),
-        ('C', 'Calm'),
-        ('S', 'Sad'),
-    )
-    mood = models.CharField(max_length=1, choices=MOODS, blank=False)
-
-    def __str__(self) -> str:
-        return self.mood
-
-    class Meta:
-        verbose_name = 'Mood'
-        verbose_name_plural = 'Moods'
-
-
 class Song(models.Model):
     """
     Class that represents Song object
@@ -42,7 +21,7 @@ class Song(models.Model):
     tempo = models.FloatField()
     key = models.FloatField()
     time_signature = models.FloatField()
-    mood = models.ForeignKey(Mood, on_delete=models.CASCADE)
+    mood = models.CharField('Mood', blank=False, max_length=15)
 
     def __str__(self) -> str:
         return f'"{self.name}" is a {self.mood} song'
