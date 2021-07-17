@@ -79,12 +79,13 @@ def add_song_resp(request, song_id):
     features['name'] = meta_info['name']
     features['artists'] = meta_info['artists']
     features['song_id'] = song_id
+    features['mood'] = mood
 
     Song.save(**features)
 
     data = {
         'success': 'true',
-        'song': song_name,
-        'mood': result
+        'song': meta_info['name'],
+        'mood': mood
     }
     return JsonResponse(data)
