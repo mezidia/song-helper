@@ -3,7 +3,7 @@ import os
 import asyncio
 import aiohttp
 # import requests
-from audiodownloader import audio_downloader
+from .audiodownloader import audio_downloader
 
 from aiogram import Bot, Dispatcher, executor, types
 
