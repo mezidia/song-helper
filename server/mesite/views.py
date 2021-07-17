@@ -3,7 +3,11 @@ from django.http import JsonResponse
 from datetime import date
 import json
 from .forms import MainForm, AddForm
-import songhelper
+from songhelper import predict, mood_from_words
+from .models import Song
+from random import randint
+from searcher import search_youtube
+
 
 year = date.today().year
 
@@ -46,13 +50,14 @@ def add_song(request):
 
 
 def get_song(request, text):
-    # TODO: go to song-helper/mood_from_words.py and get mood
-    # mood = predict_mood(text)
-    # TODO: go to Songs model and get random song with this mood
-    # song = Songs.query(mood)
-    # TODO: go to searcher.py and get link
-    # link = searcher(song)
-    song_name, link = 'Test name', 'Test link'
+    predictor = mood_from_words.PredictMood()
+    mood = predictor.predict(text)
+
+    songs = Song.objects.filter(mood=mood)
+    random_number = randint(0, len(songs))
+    song = songs[random_number]
+
+    song_name, link = song.name, search_youtube(song.name)
     data = {
         'mood': text,
         'song': song_name,
