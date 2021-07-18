@@ -20,9 +20,8 @@ def index(request):
             mood = form.cleaned_data['text']
             data = get_song(request, mood)
             link = json.loads(data.content)['link']
-            result = link.capitalize()
     context = {
-        'result': result,
+        'result': link,
         'form': MainForm(),
         'year': year,
     }
@@ -38,7 +37,8 @@ def add_song(request):
             try:
                 data = add_song_resp(request, song_id)
                 mood = json.loads(data.content)['mood']
-                result = f'Song with id "{song_id}" added as {mood}'
+                name = json.loads(data.content)['song']
+                result = f'Song {name} added as {mood}'
             except Exception as error:
                 print(error)
                 result = 'Cannot find your song'
@@ -52,17 +52,20 @@ def add_song(request):
 
 def get_song(request, text):
     predictor = mood_from_words.PredictMood()
-    mood = predictor.predict(text)
+    mood = predictor.predict(text)[0].capitalize()
 
     songs = Song.objects.filter(mood=mood)
-    random_number = randint(0, len(songs))
+    random_number = randint(0, len(songs)-1)
+
+    print(random_number)
+
     song = songs[random_number]
 
     song_name, link = song.name, search_youtube(song.name)
     data = {
         'mood': text,
         'song': song_name,
-        'link': link
+        'link': link['link']
     }
     return JsonResponse(data)
 
