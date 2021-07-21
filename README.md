@@ -21,18 +21,11 @@
 
 - [Project title](#project-title)
 - [Specification](#specification)
-- [Build status :hammer:](#build-status-hammer)
-- [Code style :scroll:](#code-style-scroll)
-- [Screenshots :camera:](#screenshots-camera)
 - [Tech/framework used :wrench:](#techframework-used-wrench)
-- [Code Example :pushpin:](#code-example-pushpin)
 - [Installation :computer:](#installation-computer)
-- [Fast usage :dash:](#fast-usage-dash)
-- [API Reference :fireworks:](#api-reference-fireworks)
 - [Tests :microscope:](#tests-microscope)
 - [Contribute :running:](#contribute-running)
 - [Credits :cat::handshake:](#credits-cathandshake)
-- [FAQ :speech_balloon:](#faq)
 - [License :bookmark:](#license-bookmark)
 
 ## Specification
@@ -65,23 +58,11 @@ The only functional requirement is to give a song
 - We get a description of the mood in _different ways_: through a **bot** (Telegram, Discord) in the form of a text message, through a form on the **site** (Django) , through a form on the **mobile app** (Kivy App). Next, the text is converted to a vector, compared with the mood vectors, getting a random song with this mood from databae and the result is returned as a song reference (in each cases).
 - The site will have one more page with a form for entering a song id from _Spotify_. This is for making database bigger. Also you can do it from bots in Telegram and Discord.
 
-## Build status :hammer:
-
-[![Bot CI](https://github.com/mezidia/song-helper/actions/workflows/bot.yml/badge.svg)](https://github.com/mezidia/song-helper/actions/workflows/bot.yml)
-[![Docker](https://github.com/mezidia/song-helper/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/mezidia/song-helper/actions/workflows/docker-publish.yml)
-[![Docker Image CI](https://github.com/mezidia/song-helper/actions/workflows/docker-image.yml/badge.svg)](https://github.com/mezidia/song-helper/actions/workflows/docker-image.yml)
-[![song-helper CI](https://github.com/mezidia/song-helper/actions/workflows/song-helper.yml/badge.svg)](https://github.com/mezidia/song-helper/actions/workflows/song-helper.yml)
-[![Django CI](https://github.com/mezidia/song-helper/actions/workflows/django.yml/badge.svg)](https://github.com/mezidia/song-helper/actions/workflows/django.yml)
-
 ## Code style :scroll:
 
 We are using [Codacy](https://www.codacy.com/) to automate Our code quality.
 
 <img alt="Codacy" src="https://app.codacy.com/project/badge/Grade/b1f4285457634589a2703fc159f2f0ee" />
- 
-## Screenshots :camera:
-
-> Currently in progress
 
 ## Tech/framework used :wrench:
 
@@ -97,21 +78,9 @@ We are using [Codacy](https://www.codacy.com/) to automate Our code quality.
 - [discord.py](https://discordpy.readthedocs.io/en/stable/)
 - [Docker](https://www.docker.com/)
 
-## Code Example :pushpin:
-
-> Currently in progress
-
 ## Installation :computer:
 
 To install our project and use it, enter the following command: docker-compose up.
-
-## Fast usage :dash:
-
-> Currently in progress
-
-## API Reference :fireworks:
-
-> Currently in progress
 
 ## Tests :microscope:
 
@@ -127,11 +96,6 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 | :---: |:---:| :---:| :---: |
 | [![Mezgoodle](https://avatars.githubusercontent.com/u/41520940?s=400&u=530e013f3714e81792fc6b99399c7a6eda6ea63d&v=4)](https://github.com/mezgoodle) | [![Dmytrenko-Roman](https://avatars.githubusercontent.com/u/54878089?s=400&u=075796965fc5db27cc5b6b179b9325bf312ce0b9&v=4)](https://github.com/Dmytrenko-Roman) | [![Fhrr-Sht](https://avatars.githubusercontent.com/u/54956154?s=400&v=4)](https://github.com/fhrr-sht) | [![VsIG](https://avatars0.githubusercontent.com/u/50269023?s=400&u=522283a8fce57866b73427f94a742fb83e0b1b40&v=4)](https://github.com/VsIG-official)  |
 | <a href="https://github.com/mezgoodle" target="_blank">`github.com/mezgoodle`</a> | <a href="https://github.com/Dmytrenko-Roman" target="_blank">`github.com/Dmytrenko-Roman`</a> | <a href="https://github.com/fhrr-sht" target="_blank">`github.com/fhrr-sht`</a> | <a href="https://github.com/VsIG-official" target="_blank">`github.com/VsIG-official`</a> |
-
-## FAQ
-
-> *Nothing to answer*
-> Currently in progress
 
 ## License :bookmark:
 
