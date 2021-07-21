@@ -15,19 +15,6 @@
  🌟Hello everyone! This is Our repository about project on Python "Song-Helper"🌟
 </p>
 
-<h2 align="center">
-  <i>Table of contents</i>
-</h2>
-
-- [Project title](#project-title)
-- [Specification](#specification)
-- [Tech/framework used :wrench:](#techframework-used-wrench)
-- [Installation :computer:](#installation-computer)
-- [Tests :microscope:](#tests-microscope)
-- [Contribute :running:](#contribute-running)
-- [Credits :cat::handshake:](#credits-cathandshake)
-- [License :bookmark:](#license-bookmark)
-
 ## Specification
 
 ### Context
@@ -57,12 +44,6 @@ The only functional requirement is to give a song
 
 - We get a description of the mood in _different ways_: through a **bot** (Telegram, Discord) in the form of a text message, through a form on the **site** (Django) , through a form on the **mobile app** (Kivy App). Next, the text is converted to a vector, compared with the mood vectors, getting a random song with this mood from databae and the result is returned as a song reference (in each cases).
 - The site will have one more page with a form for entering a song id from _Spotify_. This is for making database bigger. Also you can do it from bots in Telegram and Discord.
-
-## Code style :scroll:
-
-We are using [Codacy](https://www.codacy.com/) to automate Our code quality.
-
-<img alt="Codacy" src="https://app.codacy.com/project/badge/Grade/b1f4285457634589a2703fc159f2f0ee" />
 
 ## Tech/framework used :wrench:
 
