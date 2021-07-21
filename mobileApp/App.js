@@ -41,10 +41,9 @@ class App extends Component {
   }
   searchBtnPress = async () => {
     if (this.state.moodText) {
-      let result = await this.makeRequest(`https://api.github.com/users/${this.state.moodText}`)
-      console.log(result)
+      let result = await this.makeRequest(`server.com/add-song-resp/${this.state.moodText}`)
       Alert.alert('Your result', 'Press OK to open', [
-        {text: 'Ok', onPress: async () => await Linking.openURL(result.html_url)},
+        {text: 'Ok', onPress: async () => await Linking.openURL(`http://youtube.com/${result.song_id}`)},
         {text: 'Cancel', onPress: () => console.log('No button')}
       ])
     } else {
@@ -53,12 +52,9 @@ class App extends Component {
   };
   addBtnPress = async () => {
     if (this.state.songId) {
-      let result = await this.makeRequest(`https://jsonplaceholder.typicode.com/posts/${this.state.songId}`)
+      let result = await this.makeRequest(`server.com/add-song-resp/${this.state.songId}`)
       console.log(result)
-      Alert.alert('Your result', 'Press OK to open', [
-        {text: 'Ok', onPress: async () => await Linking.openURL(result.id)},
-        {text: 'Cancel', onPress: () => console.log('No button')}
-      ])
+      Alert.alert('Your result:', `Song with ${result.song_name} added as ${result.mood}`)
     } else {
       this.alertEmptyMessage()
     }
