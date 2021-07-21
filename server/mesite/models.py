@@ -24,7 +24,7 @@ class Song(models.Model):
     mood = models.CharField('Mood', blank=False, max_length=15)
 
     def __str__(self) -> str:
-        return f'"{self.name}" is a {self.mood} song'
+        return self.name
 
     class Meta:
         verbose_name = 'Song'

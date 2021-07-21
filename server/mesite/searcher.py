@@ -16,7 +16,6 @@ def search_youtube(value: str, parameters={'limit': 1}) -> dict:
         'duration': result['duration'],
         'views': result['viewCount']['short'],
         'song_id': result['link'].split('https://www.youtube.com/watch?v=')[-1],
-        'link': result['link'],
     }
 
 
