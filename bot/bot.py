@@ -2,8 +2,8 @@ import logging
 import os
 import asyncio
 import aiohttp
-# import requests
-from .audiodownloader import audio_downloader
+import requests
+from audiodownloader import audio_downloader
 
 from aiogram import Bot, Dispatcher, executor, types
 
@@ -14,7 +14,7 @@ load_dotenv()
 
 logging.basicConfig(level=logging.INFO)
 
-Token = os.getenv('TOKEN')
+Token = os.getenv('TOKEN', '1658675580:AAGCIt4GGcG2k3H4R_jtBWM5G2oVawNbGqo')
 bot = Bot(token=Token)
 dp = Dispatcher(bot)
 
@@ -26,9 +26,13 @@ async def send_welcome(message: types.Message):
 
 @dp.message_handler()
 async def echo(message: types.Message):
-    # msg_to_server = {'msg': message.text}
-    # song = make_request(msg_to_server).text
-    path = audio_downloader('https://www.youtube.com/watch?v=jdGe4w4LADM')
+    url = f'server.com/get-song/{message.text}'
+
+    resp = requests.get(url)
+    song_id = json.loads(resp.content)['song_id']
+    link = f'https://youtube.com/{song_id}'
+
+    path = audio_downloader('https://www.youtube.com/watch?v={song_id}')
     audio = open(path, 'rb')
     message = await bot.send_audio(message['chat']['id'], audio)
     os.remove(path)
@@ -36,18 +40,13 @@ async def echo(message: types.Message):
 
 @dp.message_handler()
 async def add(message: types.Message):
-    # msg_to_server = {'msg': 'add_new/' + message.text}
-    # song = make_request(msg_to_server).text
-    path = audio_downloader('https://www.youtube.com/watch?v=jdGe4w4LADM')
-    audio = open(path, 'rb')
-    message = await bot.send_audio(message['chat']['id'], audio)
-    os.remove(path)
+    url = f'server.com/add-song-resp/{message.text}'
 
+    resp = requests.get(url)
+    song_name = json.loads(resp.content)['song']
+    mood = json.loads(resp.content)['mood']
 
-async def make_request(mood_text: str) -> dict:
-    async with aiohttp.ClientSession() as session:
-        async with session.post(f'https://api.github.com/users/{mood_text}') as response:
-            return await response.json()
+    await message.answer(f'Song with {song_name} added as {mood}')
 
 if __name__ == '__main__':
     executor.start_polling(dp, skip_updates=True)
