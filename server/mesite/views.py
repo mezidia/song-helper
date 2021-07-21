@@ -39,7 +39,7 @@ def add_song(request):
                 data = add_song_resp(request, song_id)
                 mood = json.loads(data.content)['mood']
                 name = json.loads(data.content)['song']
-                result = f'Song {name} added as {mood}'
+                result = f'Song "{name}" added as {mood}'
             except Exception as error:
                 print(error)
                 result = 'Cannot find your song'
