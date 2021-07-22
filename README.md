@@ -15,6 +15,10 @@
  🌟Hello everyone! This is Our repository about project on Python "Song-Helper"🌟
 </p>
 
+## Overview
+
+This project isn't deployed, and some parts of code could don't work...but main idea is realised. Here you can see work server on _Django_, bot on _Aiogram_, AI on _Keras_ and _Tensorflow_, mobile app on _React Native_.
+
 ## Specification
 
 ### Context
@@ -37,13 +41,22 @@ AI won't create any sort of music depending on Your mood
 ### Functional requirements
 -----------------------
 
-The only functional requirement is to give a song
+The only functional requirement is to give a song. In additional anyone can add new songs in the database of AI model.
 
 ### Scenarios
 -----------
 
-- We get a description of the mood in _different ways_: through a **bot** (Telegram, Discord) in the form of a text message, through a form on the **site** (Django) , through a form on the **mobile app** (Kivy App). Next, the text is converted to a vector, compared with the mood vectors, getting a random song with this mood from databae and the result is returned as a song reference (in each cases).
+- We get a description of the mood in _different ways_: through a **bot** (Telegram, Discord) in the form of a text message, through a form on the **site** (Django) , through a form on the **mobile app** (React Native). Next, the text is converted to a vector, compared with the mood vectors, getting a random song with this mood from databae and the result is returned as a song reference (in each cases).
 - The site will have one more page with a form for entering a song id from _Spotify_. This is for making database bigger. Also you can do it from bots in Telegram and Discord.
+
+## Build status :hammer:
+
+[![Bot CI](https://github.com/mezidia/song-helper/actions/workflows/bot.yml/badge.svg)](https://github.com/mezidia/song-helper/actions/workflows/bot.yml)
+[![Docker](https://github.com/mezidia/song-helper/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/mezidia/song-helper/actions/workflows/docker-publish.yml)
+[![Docker Image CI](https://github.com/mezidia/song-helper/actions/workflows/docker-image.yml/badge.svg)](https://github.com/mezidia/song-helper/actions/workflows/docker-image.yml)
+[![song-helper CI](https://github.com/mezidia/song-helper/actions/workflows/song-helper.yml/badge.svg)](https://github.com/mezidia/song-helper/actions/workflows/song-helper.yml)
+[![Django CI](https://github.com/mezidia/song-helper/actions/workflows/django.yml/badge.svg)](https://github.com/mezidia/song-helper/actions/workflows/django.yml)
+[![Mobile App CI](https://github.com/mezidia/song-helper/actions/workflows/mobile-app.yml/badge.svg)](https://github.com/mezidia/song-helper/actions/workflows/mobile-app.yml)
 
 ## Tech/framework used :wrench:
 
@@ -54,7 +67,7 @@ The only functional requirement is to give a song
 - [TensorFlow](https://www.tensorflow.org/)
 - [aiogram](https://github.com/aiogram/aiogram)
 - [python-dotenv](https://pypi.org/project/python-dotenv/)
-- [Kivy](https://kivy.org/#home)
+- [React Native](https://reactnative.dev/)
 - [pandas](https://pandas.pydata.org/)
 - [discord.py](https://discordpy.readthedocs.io/en/stable/)
 - [Docker](https://www.docker.com/)
