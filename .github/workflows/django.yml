@@ -32,3 +32,8 @@ jobs:
     - name: Run Tests
       run: |
         python server/manage.py test mesite.tests
+      env:
+        CLIENT_ID: ${{ secrets.CLIENT_ID }}
+        CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+        USERNAME: ${{ secrets.USERNAME }}
+        REDIRECT_URI: ${{ secrets.REDIRECT_URI }}
