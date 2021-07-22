@@ -79,7 +79,7 @@ class ViewsTests(TestCase):
         Test post method for mesite:add_song
         """
         url = reverse('mesite:add_song')
-        response = self.client.post(url, data={'song_id': 'test-case'})
+        response = self.client.post(url, data={'song_id': '0mel2N9Ws9r4yLQn5QE21Y'})
         self.assertEqual(response.status_code, HTTPStatus.OK)
 
     def test_get_get_song(self):
@@ -94,9 +94,9 @@ class ViewsTests(TestCase):
         """
         Test get method for mesite:add_song_resp
         """
-        url = reverse('mesite:add_song_resp', kwargs={'song_id': 'test id'})
+        url = reverse('mesite:add_song_resp', kwargs={'song_id': '0mel2N9Ws9r4yLQn5QE21Y'})
         response = self.client.get(url)
-        self.assertEqual(response.status_code, HTTPStatus.BAD_REQUEST)
+        self.assertEqual(response.status_code, HTTPStatus.OK)
 
 
 
