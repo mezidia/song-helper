@@ -36,7 +36,7 @@ class SongModelTest(TestCase):
         Test fields on equality and instance of some types
         """
         song = Song.objects.get(id=1)
-        self.assertEquals(song.mood, Mood.objects.get(id=1))
+        self.assertEquals(song.mood, 'Happy')
         self.assertIsInstance(song.song_id, str)
         self.assertEquals(song.name, 'Test name')
         self.assertIsInstance(song.energy, float)
