@@ -3,21 +3,26 @@ from django.http import JsonResponse
 from datetime import date
 import json
 from .forms import MainForm, AddForm
+from songhelper import predict, mood_from_words, utils
+from .models import Song
+from random import randint
+from .searcher import search_youtube
+
 
 year = date.today().year
 
 
 def index(request):
-    result = ''
+    song_id = ''
     if request.method == 'POST':
         form = MainForm(request.POST)
         if form.is_valid():
             mood = form.cleaned_data['text']
             data = get_song(request, mood)
-            link = json.loads(data.content)['link']
-            result = link.capitalize()
+            song_id = json.loads(data.content)['song_id']
+            print(song_id)
     context = {
-        'result': result,
+        'song_id': song_id,
         'form': MainForm(),
         'year': year,
     }
@@ -33,8 +38,10 @@ def add_song(request):
             try:
                 data = add_song_resp(request, song_id)
                 mood = json.loads(data.content)['mood']
-                result = f'Song with id "{song_id}" added as {mood}'
-            except:
+                name = json.loads(data.content)['song']
+                result = f'Song "{name}" added as {mood}'
+            except Exception as error:
+                print(error)
                 result = 'Cannot find your song'
     context = {
         'form': AddForm(),
@@ -45,32 +52,47 @@ def add_song(request):
 
 
 def get_song(request, text):
-    # TODO: go to song-helper/mood_from_words.py and get mood
-    # mood = predict_mood(text)
-    # TODO: go to Songs model and get random song with this mood
-    # song = Songs.query(mood)
-    # TODO: go to searcher.py and get link
-    # link = searcher(song)
-    song_name, link = 'Test name', 'Test link'
-    data = {
-        'mood': text,
-        'song': song_name,
-        'link': link
-    }
-    return JsonResponse(data)
+    predictor = mood_from_words.PredictMood()
+    mood = predictor.predict(text)[0].capitalize()
+
+    songs = Song.objects.filter(mood=mood)
+    if len(songs):
+        random_number = randint(0, len(songs)-1)
+
+        song = songs[random_number]
+
+        song_name, link = song.name, search_youtube(song.name)
+        print(link)
+        data = {
+            'mood': text,
+            'song': song_name,
+            'song_id': link['song_id']
+        }
+        return JsonResponse(data)
+    return JsonResponse({'song_id':''})
 
 
 def add_song_resp(request, song_id):
-    # TODO: go to song-helper/predict.py and get mood
-    # result = predict_mood(song_id)
-    # TODO: go to song-helper/utils.py and get song feature
-    # features = get_song_features(song_id)
-    # TODO: save new object to model
-    # Song.save(features)
-    song_name, result = 'Test name', 'Test mood'
+    util = utils.SpotifyUtils()
+
+    url_with_data = 'https://raw.githubusercontent.com/mezgoodle/images/master/data_moods.csv'
+    predictor = predict.PredictMood()
+    mood = predictor.predict_mood(song_id, url_with_data)['mood']
+
+    meta_info = util.get_song_meta(song_id)
+
+    features = util.get_song_features(song_id)
+    features['name'] = meta_info['name']
+    features['artists'] = meta_info['artists']
+    features['song_id'] = song_id
+    features['mood'] = mood
+
+    song = Song(**features)
+    song.save()
+
     data = {
         'success': 'true',
-        'song': song_name,
-        'mood': result
+        'song': meta_info['name'],
+        'mood': mood
     }
     return JsonResponse(data)

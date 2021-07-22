@@ -8,7 +8,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.svm import LinearSVC
 # Splitting Data Set
 from sklearn.model_selection import train_test_split
-from mood_predictors import Predictors
+from .mood_predictors import Predictors
 
 
 class Consts:

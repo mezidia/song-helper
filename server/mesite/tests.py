@@ -1,28 +1,9 @@
 from django.test import TestCase
 from django.urls import reverse
 from http import HTTPStatus
-from .models import Mood, Song
+from .models import Song
 from .forms import MainForm, AddForm
 from .searcher import search_youtube
-
-
-class MoodModelTest(TestCase):
-    """
-    Test Mood model
-    """
-
-    @classmethod
-    def setUpTestData(cls):
-        Mood.objects.create(
-            mood='Happy',
-        )
-
-    def test_mood_content(self):
-        """
-        Test only one field
-        """
-        mood = Mood.objects.get(id=1)
-        self.assertEquals(mood.mood, 'Happy')
 
 
 class SongModelTest(TestCase):
@@ -32,11 +13,6 @@ class SongModelTest(TestCase):
 
     @classmethod
     def setUpTestData(cls):
-        Mood.objects.create(
-            mood='Happy',
-        )
-        mood = Mood.objects.get(id=1)
-
         Song.objects.create(
             name='Test name',
             artists='Test artist',
@@ -52,7 +28,7 @@ class SongModelTest(TestCase):
             tempo=123.1,
             key=3123.0,
             time_signature=0.0,
-            mood=mood,
+            mood='Happy',
         )
 
     def test_song_content(self):
@@ -60,7 +36,7 @@ class SongModelTest(TestCase):
         Test fields on equality and instance of some types
         """
         song = Song.objects.get(id=1)
-        self.assertEquals(song.mood, Mood.objects.get(id=1))
+        self.assertEquals(song.mood, 'Happy')
         self.assertIsInstance(song.song_id, str)
         self.assertEquals(song.name, 'Test name')
         self.assertIsInstance(song.energy, float)
@@ -103,7 +79,7 @@ class ViewsTests(TestCase):
         Test post method for mesite:add_song
         """
         url = reverse('mesite:add_song')
-        response = self.client.post(url, data={'song_id': 'test-case'})
+        response = self.client.post(url, data={'song_id': '0mel2N9Ws9r4yLQn5QE21Y'})
         self.assertEqual(response.status_code, HTTPStatus.OK)
 
     def test_get_get_song(self):
@@ -118,7 +94,7 @@ class ViewsTests(TestCase):
         """
         Test get method for mesite:add_song_resp
         """
-        url = reverse('mesite:add_song_resp', kwargs={'song_id': 'test id'})
+        url = reverse('mesite:add_song_resp', kwargs={'song_id': '0mel2N9Ws9r4yLQn5QE21Y'})
         response = self.client.get(url)
         self.assertEqual(response.status_code, HTTPStatus.OK)
 

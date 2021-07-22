@@ -2,7 +2,7 @@
 from youtubesearchpython import VideosSearch
 
 
-def search_youtube(value: str, parameters=None) -> dict:
+def search_youtube(value: str, parameters={'limit': 1}) -> dict:
     """
     Function to search only first video on YouTube
     :param value: what we need to search
