@@ -96,7 +96,7 @@ class ViewsTests(TestCase):
         """
         url = reverse('mesite:add_song_resp', kwargs={'song_id': 'test id'})
         response = self.client.get(url)
-        self.assertEqual(response.status_code, HTTPStatus.OK)
+        self.assertEqual(response.status_code, HTTPStatus.BAD_REQUEST)
 
 
 
