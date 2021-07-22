@@ -1,28 +1,9 @@
 from django.test import TestCase
 from django.urls import reverse
 from http import HTTPStatus
-from .models import Mood, Song
+from .models import Song
 from .forms import MainForm, AddForm
 from .searcher import search_youtube
-
-
-class MoodModelTest(TestCase):
-    """
-    Test Mood model
-    """
-
-    @classmethod
-    def setUpTestData(cls):
-        Mood.objects.create(
-            mood='Happy',
-        )
-
-    def test_mood_content(self):
-        """
-        Test only one field
-        """
-        mood = Mood.objects.get(id=1)
-        self.assertEquals(mood.mood, 'Happy')
 
 
 class SongModelTest(TestCase):
@@ -32,11 +13,6 @@ class SongModelTest(TestCase):
 
     @classmethod
     def setUpTestData(cls):
-        Mood.objects.create(
-            mood='Happy',
-        )
-        mood = Mood.objects.get(id=1)
-
         Song.objects.create(
             name='Test name',
             artists='Test artist',
@@ -52,7 +28,7 @@ class SongModelTest(TestCase):
             tempo=123.1,
             key=3123.0,
             time_signature=0.0,
-            mood=mood,
+            mood='Happy',
         )
 
     def test_song_content(self):
