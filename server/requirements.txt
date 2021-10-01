@@ -9,5 +9,5 @@ idna==3.1
 pytz==2021.1
 rfc3986==1.4.0
 sniffio==1.2.0
-sqlparse==0.4.1
+sqlparse==0.4.2
 youtube-search-python==1.4.2
