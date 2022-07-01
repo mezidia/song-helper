@@ -2,7 +2,7 @@ aiogram==2.11.2
 aiohttp==3.7.3
 async-timeout==3.0.1
 attrs==20.3.0
-Babel==2.9.0
+Babel==2.10.3
 certifi==2020.12.5
 chardet==3.0.4
 idna==2.10
