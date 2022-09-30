@@ -20,7 +20,7 @@ httpcore==0.12.3
 httpx==0.17.1
 idna==2.10
 Jinja2==2.11.3
-joblib==1.0.1
+joblib==1.2.0
 Keras==2.4.3
 Keras-Preprocessing==1.1.2
 Markdown==3.3.4
