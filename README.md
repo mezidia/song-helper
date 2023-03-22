@@ -49,6 +49,10 @@ The only functional requirement is to give a song. In additional anyone can add 
 - We get a description of the mood in _different ways_: through a **bot** (Telegram, Discord) in the form of a text message, through a form on the **site** (Django) , through a form on the **mobile app** (React Native). Next, the text is converted to a vector, compared with the mood vectors, getting a random song with this mood from databae and the result is returned as a song reference (in each cases).
 - The site will have one more page with a form for entering a song id from _Spotify_. This is for making database bigger. Also you can do it from bots in Telegram and Discord.
 
+### Use case diagram
+-----------
+![Use case diagram](https://user-images.githubusercontent.com/54878089/226972900-7c445e7f-54bf-4352-97f3-f80e4021592a.png)
+
 ## Build status :hammer:
 
 [![Bot CI](https://github.com/mezidia/song-helper/actions/workflows/bot.yml/badge.svg)](https://github.com/mezidia/song-helper/actions/workflows/bot.yml)
