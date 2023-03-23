@@ -4,7 +4,7 @@ import unittest
 
 import requests
 
-from . import audiodownloader
+from .tgbot.misc import audiodownloader
 
 
 class Parent:
