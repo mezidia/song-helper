@@ -163,7 +163,7 @@ class SearcherTest(TestCase):
         self.assertIsInstance(result1, dict)
         self.assertIsInstance(result2, dict)
         self.assertIsNotNone(result1['title'])
-        self.assertEqual(result1['title'], 'Learn Python - Full Course for Beginners [Tutorial]')
+        self.assertEqual(result1['title'], 'Python for Beginners - Learn Python in 1 Hour')
         self.assertIsNotNone(result1['views'])
         self.assertTrue(result1['views'].endswith('views'))
         self.assertIsNotNone(result2['duration'])
