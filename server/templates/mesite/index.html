@@ -12,11 +12,7 @@
             <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto text-center p-4 pt-5">
                 {% include 'includes/main_form.html' %}
                 {% if song_id %}
-                    <h3 class="white-color">Your song is:</h3>
-                    <iframe width="420" height="315" src="http://www.youtube.com/embed/{{ song_id }}"
-                            title="YouTube video player" frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen></iframe>
+                    <h3 class="white-color">Your song is: {{song_name}}</h3>
                 {% else %}
                     <h3 class="white-color">Song with this mood isn't in Database</h3>
                 {% endif %}
