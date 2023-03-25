@@ -5,6 +5,7 @@ from tgbot.misc.audiodownloader import audio_downloader
 
 import os
 import requests
+import json
 
 
 @dp.message_handler()
@@ -17,6 +18,6 @@ async def echo(message: Message) -> Message:
 
     path = audio_downloader('https://www.youtube.com/watch?v={song_id}')
     audio = open(path, 'rb')
-    message = await bot.send_audio(message['chat']['id'], audio)
+    message = await message.answer_audio(audio)
     os.remove(path)
 

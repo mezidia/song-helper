@@ -4,6 +4,7 @@ from aiogram.types import Message
 from loader import dp
 from tgbot.middlewares.throttling import rate_limit
 import json
+import requests
 
 
 @dp.message_handler(CommandStart(), state="*")
