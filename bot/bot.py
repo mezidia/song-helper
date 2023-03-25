@@ -1,15 +1,13 @@
-import logging
 import os
 
 from aiogram import Dispatcher
 from aiogram.utils.executor import start_polling, start_webhook
+from loader import dp
 from loguru import logger
-
 from tgbot.config import config
 from tgbot.middlewares.throttling import ThrottlingMiddleware
-from tgbot.services.setting_commands import set_default_commands
 from tgbot.services.admins_notify import on_startup_notify
-from loader import dp
+from tgbot.services.setting_commands import set_default_commands
 
 
 def register_all_middlewares(dispatcher: Dispatcher) -> None:

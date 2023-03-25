@@ -10,6 +10,6 @@ def audio_downloader(url: str) -> str:
     video = pafy.new(url)
     audiostreams = video.audiostreams
     for i in range(len(audiostreams)):
-        if 'm4a' in str(audiostreams[i]):
-            audiostreams[i].download(filepath='./bot/')
-            return f'bot/{video.title}.{audiostreams[i].extension}'
+        if "m4a" in str(audiostreams[i]):
+            audiostreams[i].download(filepath="./bot/")
+            return f"bot/{video.title}.{audiostreams[i].extension}"
