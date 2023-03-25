@@ -1,15 +1,14 @@
-import pafy
+from moviepy.editor import AudioFileClip
+from pytube import YouTube
 
 
-def audio_downloader(url: str) -> str:
-    """
-    Download music by url and return path to the downloaded file
-    :param url: url address of the song
-    :return: path to the downloaded path
-    """
-    video = pafy.new(url)
-    audiostreams = video.audiostreams
-    for i in range(len(audiostreams)):
-        if "m4a" in str(audiostreams[i]):
-            audiostreams[i].download(filepath="./bot/")
-            return f"bot/{video.title}.{audiostreams[i].extension}"
+def download(link):
+    youtubeObject = YouTube(link)
+    youtubeObject = youtubeObject.streams.get_highest_resolution()
+    return youtubeObject.download()
+
+
+def convert_to_mp3(mp4, mp3):
+    file = AudioFileClip(mp4)
+    file.write_audiofile(mp3)
+    file.close()

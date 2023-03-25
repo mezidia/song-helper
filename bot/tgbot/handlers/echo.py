@@ -4,7 +4,7 @@ import os
 import requests
 from aiogram.types import Message
 from loader import dp
-from tgbot.misc.audiodownloader import audio_downloader
+from tgbot.misc.audiodownloader import convert_to_mp3, download
 
 
 @dp.message_handler()
@@ -14,9 +14,11 @@ async def echo(message: Message) -> Message:
     # resp = requests.get(url)
     # song_id = json.loads(resp.content)["song_id"]
     song_id = "EOA1wBw_Jt4"
-    link = f"https://youtube.com/{song_id}"
 
-    path = audio_downloader(f"https://www.youtube.com/watch?v={song_id}")
-    audio = open(path, "rb")
+    video_path = download(f"https://www.youtube.com/watch?v={song_id}")
+    audio_path = f"{video_path.rsplit('.', maxsplit=1)[0]}.mp3"
+    convert_to_mp3(video_path, audio_path)
+    audio = open(audio_path, "rb")
     message = await message.answer_audio(audio)
-    os.remove(path)
+    os.remove(video_path)
+    os.remove(audio_path)
