@@ -9,11 +9,10 @@ from tgbot.misc.audiodownloader import convert_to_mp3, download
 
 @dp.message_handler()
 async def echo(message: Message) -> Message:
-    # url = f"server.com/get-song/{message.text}"
+    url = f"https://8000-mezidia-songhelper-1spk7gnsc88.ws-eu92.gitpod.io/get-song/{message.text}"
 
-    # resp = requests.get(url)
-    # song_id = json.loads(resp.content)["song_id"]
-    song_id = "EOA1wBw_Jt4"
+    resp = requests.get(url)
+    song_id = json.loads(resp.content)["song_id"]
 
     video_path = download(f"https://www.youtube.com/watch?v={song_id}")
     audio_path = f"{video_path.rsplit('.', maxsplit=1)[0]}.mp3"
