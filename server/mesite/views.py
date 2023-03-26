@@ -71,7 +71,7 @@ def get_song(request, text):
             'song_id': link['song_id']
         }
         return JsonResponse(data)
-    return JsonResponse({'song_id':''})
+    return JsonResponse({'song_id':'', 'song': ''})
 
 
 def add_song_resp(request, song_id):
