@@ -26,7 +26,7 @@ This project isn't deployed, and some parts of code could don't work...but main 
 
 This project is developing by 4 members of Mezidia: 
 - Zavalniuk Maxim and Dominskyi Valentyn - AI
-- Sichkar Tetiana - Site
+- Sichkar Tetiana - Website
 - Dmytrenko Roman - Telegram Bot
 
 It is planned to deploy the project in the form of a server on the Django web framework
