@@ -24,7 +24,7 @@ SECRET_KEY = 'x(zpqqypuiwejxy9=rlz@12xsz+1c0z@$)l!ifrr*2ls9g4806'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['8000-mezidia-songhelper-1spk7gnsc88.ws-eu92.gitpod.io', 'localhost']
 
 
 # Application definition

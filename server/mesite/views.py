@@ -14,15 +14,18 @@ year = date.today().year
 
 def index(request):
     song_id = ''
+    song_name = ''
     if request.method == 'POST':
         form = MainForm(request.POST)
         if form.is_valid():
             mood = form.cleaned_data['text']
             data = get_song(request, mood)
-            song_id = json.loads(data.content)['song_id']
-            print(song_id)
+            json_data = json.loads(data.content)
+            song_id = json_data['song_id']
+            song_name = json_data['song']
     context = {
         'song_id': song_id,
+        'song_name': song_name,
         'form': MainForm(),
         'year': year,
     }
@@ -54,7 +57,6 @@ def add_song(request):
 def get_song(request, text):
     predictor = mood_from_words.PredictMood()
     mood = predictor.predict(text)[0].capitalize()
-
     songs = Song.objects.filter(mood=mood)
     if len(songs):
         random_number = randint(0, len(songs)-1)
@@ -69,7 +71,7 @@ def get_song(request, text):
             'song_id': link['song_id']
         }
         return JsonResponse(data)
-    return JsonResponse({'song_id':''})
+    return JsonResponse({'song_id':'', 'song': ''})
 
 
 def add_song_resp(request, song_id):
