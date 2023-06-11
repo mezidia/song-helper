@@ -26,11 +26,11 @@ jobs:
       - name: Lint with ruff
         run: |
           pip install ruff
-          ruff server
+          ruff .
       - name: Lint with pylint
         run: |
           pip install pylint
-          pylint server
+          pylint .
       - name: Test with pytest
         run: |
           pytest
