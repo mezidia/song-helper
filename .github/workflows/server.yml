@@ -7,8 +7,11 @@ on:
     branches: [master, rebuild]
 
 jobs:
-  deploy:
+  check-code-quality:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: server
 
     steps:
       - uses: actions/checkout@v3
