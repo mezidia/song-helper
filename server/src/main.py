@@ -1,14 +1,14 @@
 from datetime import timedelta
 from typing import Annotated
 
+from authentication import create_access_token
 from config import settings
+from database import get_user
+from dependencies import get_current_active_user
 from fastapi import Depends, FastAPI, HTTPException, status
 from fastapi.security import OAuth2PasswordRequestForm
 from schemas import Token, User
-from utils.authentication import create_access_token
-from utils.database import get_user
-from utils.dependencies import get_current_active_user
-from utils.utils import verify_password
+from utils import verify_password
 
 app = FastAPI()
 
