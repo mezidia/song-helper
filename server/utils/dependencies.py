@@ -1,11 +1,12 @@
 from typing import Annotated
 
 from config import settings
-from database import get_user
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from jose import JWTError, jwt
 from schemas import TokenData, User
+
+from .database import get_user
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
@@ -37,4 +38,5 @@ async def get_current_active_user(
 ):
     if current_user.disabled:
         raise HTTPException(status_code=400, detail="Inactive user")
+    return current_user
     return current_user
