@@ -47,9 +47,7 @@ def test_get_current_user(client: TestClient, token: str):
 def test_fail_get_current_user(client: TestClient):
     response = client.get(
         "/users/me",
-        headers={
-            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"  # noqa: E501
-        },
+        headers={"Authorization": "Bearer tokenJWTtoken"},
     )
     assert response.status_code == 401
     assert response.json() == {"detail": "Could not validate credentials"}
