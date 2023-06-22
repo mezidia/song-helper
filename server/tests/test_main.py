@@ -5,7 +5,7 @@ from fastapi.testclient import TestClient
 @pytest.fixture(scope="module")
 def token(client: TestClient) -> str:
     response = client.post(
-        "/token", data={"username": "johndoe", "password": "secret"}
+        "/login", data={"username": "johndoe", "password": "secret"}
     )
     token = response.json()["access_token"]
     return token
@@ -13,7 +13,7 @@ def token(client: TestClient) -> str:
 
 def test_fail_login(client: TestClient):
     response = client.post(
-        "/token", data={"username": "john", "password": "changeme"}
+        "/login", data={"username": "john", "password": "changeme"}
     )
     assert response.json() == {"detail": "Incorrect username or password"}
     assert response.status_code == 401
@@ -21,7 +21,7 @@ def test_fail_login(client: TestClient):
 
 def test_login(client: TestClient):
     response = client.post(
-        "/token", data={"username": "johndoe", "password": "secret"}
+        "/login", data={"username": "johndoe", "password": "secret"}
     )
     assert response.status_code == 200
     assert "access_token" in response.json()
@@ -54,7 +54,6 @@ def test_fail_get_current_user(client: TestClient):
 
 
 def test_get_current_user_items(client: TestClient, token: str):
-    print(token)
     response = client.get(
         "/users/me/items",
         headers={"Authorization": f"Bearer {token}"},
