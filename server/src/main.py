@@ -7,10 +7,12 @@ from database import get_user
 from dependencies import get_current_active_user
 from fastapi import Depends, FastAPI, HTTPException, status
 from fastapi.security import OAuth2PasswordRequestForm
+from routers import users
 from schemas import Token, User
 from utils import verify_password
 
 app = FastAPI()
+app.include_router(users.router)
 
 
 def authenticate_user(username: str, password: str):
