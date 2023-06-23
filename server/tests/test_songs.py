@@ -15,7 +15,7 @@ def test_create_prompt(client: TestClient, token: str):
     response = client.post(
         "/prompt/new/",
         headers={"Authorization": f"Bearer {token}"},
-        params={"prompt": "Test Prompt"},
+        json={"prompt": "Test Prompt"},
     )
     assert response.status_code == 200
-    assert response.json() == "Test Prompt"
+    assert response.json() == {"result": "Test Prompt"}
