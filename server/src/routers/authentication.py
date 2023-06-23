@@ -6,7 +6,7 @@ from config import settings
 from database import get_user
 from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordRequestForm
-from schemas import Token
+from schemas import Token, User, UserInDB
 from utils import verify_password
 
 router = APIRouter(tags=["authentication"])
@@ -18,6 +18,11 @@ def authenticate_user(username: str, password: str):
         return False
     if not verify_password(password, user.hashed_password):
         return False
+    return user
+
+
+@router.post("/register", response_model=User)
+async def create_user(user: UserInDB):
     return user
 
 
