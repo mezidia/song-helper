@@ -38,7 +38,7 @@ def test_create_access_token_with_expiration():
     assert decoded_token["sub"] == data["sub"]
     assert "exp" in decoded_token
     expiration = datetime.fromtimestamp(decoded_token["exp"])
-    date_now = datetime.utcnow() + timedelta(hours=3)
+    date_now = datetime.utcnow()
     assert (expiration - date_now).total_seconds() == approx(
         expires_delta.total_seconds(), abs=1
     )
