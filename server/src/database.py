@@ -1,4 +1,5 @@
-from sqlmodel import Session, SQLModel, create_engine
+from schemas import User
+from sqlmodel import Session, SQLModel, create_engine, select
 
 sqlite_file_name = "database.db"
 sqlite_url = f"sqlite:///{sqlite_file_name}"
@@ -14,3 +15,9 @@ def create_db_and_tables():
 def get_session():
     with Session(engine) as session:
         yield session
+
+
+def get_user(name: str):
+    with Session(engine) as session:
+        user = session.exec(select(User).where(User.name == name)).first()
+        return user

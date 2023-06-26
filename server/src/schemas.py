@@ -15,12 +15,12 @@ class TokenData(BaseModel):
 
 class RequestBase(SQLModel):
     text: str
-    user_id: Optional[int] = Field(default=None, foreign_key="user.id")
 
 
 class Request(RequestBase, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
-    user: Optional["User"] = Relationship(back_populates="requests")
+    user: "User" = Relationship(back_populates="requests")
+    user_id: int = Field(default=None, foreign_key="user.id")
 
 
 class RequestCreate(RequestBase):
@@ -29,6 +29,7 @@ class RequestCreate(RequestBase):
 
 class RequestRead(RequestBase):
     id: int
+    user_id: int
 
 
 class RequestUpdate(SQLModel):
@@ -37,8 +38,9 @@ class RequestUpdate(SQLModel):
 
 
 class UserBase(SQLModel):
-    name: str = Field(index=True)
+    name: str = Field(index=True, unique=True)
     email: str
+    disabled: bool = False
 
 
 class User(UserBase, table=True):
