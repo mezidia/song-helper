@@ -1,14 +1,17 @@
 from datetime import timedelta
 from typing import Annotated
 
-from authentication import create_access_token, verify_password
+from authentication import (
+    create_access_token,
+    get_password_hash,
+    verify_password,
+)
 from config import settings
 from database import get_session, get_user
 from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordRequestForm
 from schemas import Token, User, UserCreate, UserRead
 from sqlmodel import Session
-from utils import get_hashed_password, verify_password
 
 router = APIRouter(tags=["authentication"])
 
@@ -29,7 +32,7 @@ async def create_user(
     db_user = User(
         email=user.email,
         name=user.name,
-        password=get_hashed_password(user.password),
+        password=get_password_hash(user.password),
     )
     session.add(db_user)
     session.commit()
