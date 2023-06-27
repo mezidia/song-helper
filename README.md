@@ -75,6 +75,7 @@ The only functional requirement is to give a song. In additional anyone can add 
 - [pandas](https://pandas.pydata.org/)
 - [discord.py](https://discordpy.readthedocs.io/en/stable/)
 - [Docker](https://www.docker.com/)
+- [Next.js](https://nextjs.org/)
 
 ## Installation :computer:
 
