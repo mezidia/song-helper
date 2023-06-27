@@ -85,6 +85,16 @@ def test_update_request_by_another_author(client: TestClient, token: str):
     assert response.json() == {"detail": "Not enough permissions"}
 
 
+def test_update_request_not_found(client: TestClient, token: str):
+    response = client.patch(
+        "/requests/2",
+        headers={"Authorization": f"Bearer {token}"},
+        json={"text": "updated request"},
+    )
+    assert response.status_code == 404
+    assert response.json() == {"detail": "Request not found"}
+
+
 def test_delete_request(client: TestClient, token: str):
     _ = client.post(
         "/requests/",
