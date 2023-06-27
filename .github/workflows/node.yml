@@ -1,17 +1,16 @@
-# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
-
-name: Node.js CI
+name: Client part CI
 
 on:
   pull_request:
-    branches: [ "rebuild" ]
+    branches: [rebuild]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
+    defaults:
+      run:
+        working-directory: client
+        
     strategy:
       matrix:
         node-version: [18.x]
@@ -28,6 +27,8 @@ jobs:
         cache: 'yarn'
         cache-dependency-path: ./client/yarn.lock
       
-    - name: Check Lint & test
-      working-directory: ./client
-      run: echo Hello
+    - name: Lint with ESLint
+      run: yarn lint
+      
+    - name: Test with Jest
+      run: yarn test --coverage
