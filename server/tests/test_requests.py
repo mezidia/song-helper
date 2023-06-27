@@ -21,6 +21,20 @@ def test_create_request(client: TestClient, token: str):
     assert response.json() == {"text": "test request", "id": 1, "user_id": 1}
 
 
+def test_get_requests(client: TestClient):
+    response = client.get(
+        "/requests/",
+    )
+    assert response.status_code == 200
+    assert response.json() == [
+        {
+            "text": "test request",
+            "id": 1,
+            "user_id": 1,
+        }
+    ]
+
+
 def test_get_requests_by_id(client: TestClient):
     response = client.get(
         "/requests/1/",
@@ -39,9 +53,38 @@ def test_get_requests_by_id(client: TestClient):
     }
 
 
-def test_delete_request(client: TestClient, token: str):
-    response = client.delete(
+def test_update_request(client: TestClient, token: str):
+    response = client.patch(
         "/requests/1",
+        headers={"Authorization": f"Bearer {token}"},
+        json={"text": "updated request", "user_id": 2},
+    )
+    assert response.status_code == 200
+    assert response.json() == {
+        "text": "updated request",
+        "id": 1,
+        "user_id": 2,
+    }
+
+
+def test_update_request_by_another_author(client: TestClient, token: str):
+    response = client.patch(
+        "/requests/1",
+        headers={"Authorization": f"Bearer {token}"},
+        json={"text": "updated request"},
+    )
+    assert response.status_code == 403
+    assert response.json() == {"detail": "Not enough permissions"}
+
+
+def test_delete_request(client: TestClient, token: str):
+    _ = client.post(
+        "/requests/",
+        headers={"Authorization": f"Bearer {token}"},
+        json={"text": "test request"},
+    )
+    response = client.delete(
+        "/requests/2",
         headers={"Authorization": f"Bearer {token}"},
     )
     assert response.status_code == 200
