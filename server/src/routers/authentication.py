@@ -1,7 +1,7 @@
 from datetime import timedelta
 from typing import Annotated
 
-from authentication import create_access_token
+from authentication import create_access_token, verify_password
 from config import settings
 from database import get_session, get_user
 from fastapi import APIRouter, Depends, HTTPException, status
