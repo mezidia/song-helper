@@ -68,6 +68,14 @@ def test_get_user(client: TestClient, token: str):
     }
 
 
+def test_fail_get_user(client: TestClient):
+    response = client.get(
+        "/users/100",
+    )
+    assert response.status_code == 404
+    assert response.json() == {"detail": "User not found"}
+
+
 def test_update_user(client: TestClient, token: str):
     response = client.patch(
         "/users/update/",

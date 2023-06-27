@@ -53,6 +53,14 @@ def test_get_requests_by_id(client: TestClient):
     }
 
 
+def test_get_requests_by_id_not_found(client: TestClient):
+    response = client.get(
+        "/requests/2/",
+    )
+    assert response.status_code == 404
+    assert response.json() == {"detail": "Request not found"}
+
+
 def test_update_request(client: TestClient, token: str):
     response = client.patch(
         "/requests/1",
@@ -89,3 +97,21 @@ def test_delete_request(client: TestClient, token: str):
     )
     assert response.status_code == 200
     assert response.json() == {"message": "Request deleted"}
+
+
+def test_delete_request_by_another_author(client: TestClient, token: str):
+    response = client.delete(
+        "/requests/1",
+        headers={"Authorization": f"Bearer {token}"},
+    )
+    assert response.status_code == 403
+    assert response.json() == {"detail": "Not enough permissions"}
+
+
+def test_delete_request_not_found(client: TestClient, token: str):
+    response = client.delete(
+        "/requests/2",
+        headers={"Authorization": f"Bearer {token}"},
+    )
+    assert response.status_code == 404
+    assert response.json() == {"detail": "Request not found"}

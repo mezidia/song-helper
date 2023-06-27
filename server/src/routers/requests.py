@@ -23,13 +23,10 @@ def create_request(
     current_user: Annotated[User, Depends(get_current_active_user)],
     request: RequestCreate,
 ):
-    if user := session.get(User, current_user.id):
-        db_request = Request(
-            text=request.text,
-            user_id=user.id,
-        )
-    else:
-        raise HTTPException(status_code=404, detail="User not found")
+    db_request = Request(
+        text=request.text,
+        user_id=current_user.id,
+    )
     session.add(db_request)
     session.commit()
     session.refresh(db_request)

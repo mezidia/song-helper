@@ -25,8 +25,6 @@ async def update_user_me(
 ):
     user_id = current_user.id
     db_user = session.get(User, user_id)
-    if not db_user:
-        raise HTTPException(status_code=404, detail="User not found")
     user_data = user.dict(exclude_unset=True)
     for key, value in user_data.items():
         setattr(db_user, key, value)
@@ -44,8 +42,6 @@ async def delete_user(
 ):
     user_id = current_user.id
     db_user = session.get(User, user_id)
-    if not db_user:
-        raise HTTPException(status_code=404, detail="User not found")
     session.delete(db_user)
     session.commit()
     return {"message": "User deleted"}
