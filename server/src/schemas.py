@@ -10,7 +10,7 @@ class Token(BaseModel):
 
 
 class TokenData(BaseModel):
-    username: str | None = None
+    name: str | None = None
 
 
 class RequestBase(SQLModel):
