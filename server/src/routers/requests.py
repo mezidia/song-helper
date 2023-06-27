@@ -23,10 +23,13 @@ def create_request(
     current_user: Annotated[User, Depends(get_current_active_user)],
     request: RequestCreate,
 ):
-    db_request = Request(
-        text=request.text,
-        user_id=current_user.id,
-    )
+    if user := session.get(User, current_user.id):
+        db_request = Request(
+            text=request.text,
+            user_id=user.id,
+        )
+    else:
+        raise HTTPException(status_code=404, detail="User not found")
     session.add(db_request)
     session.commit()
     session.refresh(db_request)
@@ -58,10 +61,13 @@ def update_request(
     session: Session = Depends(get_session),
     request_id: int,
     request: RequestUpdate,
+    current_user: Annotated[User, Depends(get_current_active_user)],
 ):
     db_request = session.get(Request, request_id)
     if not db_request:
         raise HTTPException(status_code=404, detail="Request not found")
+    if db_request.user_id != current_user.id:
+        raise HTTPException(status_code=403, detail="Not enough permissions")
     request_data = request.dict(exclude_unset=True)
     for key, value in request_data.items():
         setattr(db_request, key, value)
@@ -73,17 +79,16 @@ def update_request(
 
 @router.delete("/{request_id}")
 def delete_request(
-    *, session: Session = Depends(get_session), request_id: int
+    *,
+    session: Session = Depends(get_session),
+    current_user: Annotated[User, Depends(get_current_active_user)],
+    request_id: int,
 ):
     request = session.get(Request, request_id)
     if not request:
         raise HTTPException(status_code=404, detail="Request not found")
-    session.delete(request)
-    session.commit()
-    return {"message": "Request deleted"}
-    request = session.get(Request, request_id)
-    if not request:
-        raise HTTPException(status_code=404, detail="Request not found")
+    if request.user_id != current_user.id:
+        raise HTTPException(status_code=403, detail="Not enough permissions")
     session.delete(request)
     session.commit()
     return {"message": "Request deleted"}

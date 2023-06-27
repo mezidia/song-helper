@@ -15,21 +15,24 @@ def test_register(client: TestClient):
     response = client.post(
         "/register",
         json={
-            "username": "johndoe",
-            "hashed_password": "string",
+            "name": "johndoe",
+            "password": "secret",
+            "email": "string",
+            "disabled": False,
         },
     )
     assert response.status_code == 200
     data = response.json()
-    assert data["username"] == "johndoe"
-    assert data["email"] is None
-    assert data["full_name"] is None
+    assert data["name"] == "johndoe"
+    assert data["email"] == "string"
+    assert "password" not in data
+    assert "id" in data
 
 
 def test_fail_register(client: TestClient):
     response = client.post(
         "/register",
-        json={"username": "johndoe"},
+        json={"name": "johndoe"},
     )
     assert response.status_code == 422
 
