@@ -21,6 +21,7 @@ class Request(RequestBase, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
     user: "User" = Relationship(back_populates="requests")
     user_id: int = Field(default=None, foreign_key="user.id")
+    answer: str
 
 
 class RequestCreate(RequestBase):
@@ -30,6 +31,7 @@ class RequestCreate(RequestBase):
 class RequestRead(RequestBase):
     id: int
     user_id: int
+    answer: str
 
 
 class RequestUpdate(SQLModel):

@@ -26,6 +26,7 @@ def create_request(
     db_request = Request(
         text=request.text,
         user_id=current_user.id,
+        answer="Your request has been received",
     )
     session.add(db_request)
     session.commit()

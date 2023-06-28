@@ -63,6 +63,7 @@ def test_get_user(client: TestClient, token: str):
                 "id": request["id"],
                 "text": request["text"],
                 "user_id": request["user_id"],
+                "answer": request["answer"],
             }
         ],
     }

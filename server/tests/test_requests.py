@@ -18,7 +18,12 @@ def test_create_request(client: TestClient, token: str):
         json={"text": "test request"},
     )
     assert response.status_code == 200
-    assert response.json() == {"text": "test request", "id": 1, "user_id": 1}
+    assert response.json() == {
+        "text": "test request",
+        "id": 1,
+        "user_id": 1,
+        "answer": "Your request has been received",
+    }
 
 
 def test_get_requests(client: TestClient):
@@ -31,6 +36,7 @@ def test_get_requests(client: TestClient):
             "text": "test request",
             "id": 1,
             "user_id": 1,
+            "answer": "Your request has been received",
         }
     ]
 
@@ -44,6 +50,7 @@ def test_get_requests_by_id(client: TestClient):
         "text": "test request",
         "id": 1,
         "user_id": 1,
+        "answer": "Your request has been received",
         "user": {
             "name": "johndoe",
             "email": "string",
@@ -72,6 +79,7 @@ def test_update_request(client: TestClient, token: str):
         "text": "updated request",
         "id": 1,
         "user_id": 2,
+        "answer": "Your request has been received",
     }
 
 
