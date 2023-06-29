@@ -1,17 +1,23 @@
-from schemas import UserInDB
+from schemas import User
+from sqlmodel import Session, SQLModel, create_engine, select
 
-fake_users_db = {
-    "johndoe": {
-        "username": "johndoe",
-        "full_name": "John Doe",
-        "email": "johndoe@example.com",
-        "hashed_password": "$2b$12$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQoeG6Lruj3vjPGga31lW",  # noqa: E501
-        "disabled": False,
-    }
-}
+sqlite_file_name = "database.db"
+sqlite_url = f"sqlite:///{sqlite_file_name}"
+
+connect_args = {"check_same_thread": False}
+engine = create_engine(sqlite_url, echo=True, connect_args=connect_args)
 
 
-def get_user(username: str, db=fake_users_db):
-    if username in db:
-        user_dict = db[username]
-        return UserInDB(**user_dict)
+def create_db_and_tables():
+    SQLModel.metadata.create_all(engine)
+
+
+def get_session():
+    with Session(engine) as session:
+        yield session
+
+
+def get_user(name: str):
+    with Session(engine) as session:
+        user = session.exec(select(User).where(User.name == name)).first()
+        return user
