@@ -6,7 +6,7 @@ from routers import authentication, requests, users
 app = FastAPI(
     title="SongHelper API",
     description="API for SongHelper",
-    version="0.1.0",
+    version="0.1.1",
     contact={
         "name": "mezgoodle",
         "url": "https://github.com/mezgoodle",
