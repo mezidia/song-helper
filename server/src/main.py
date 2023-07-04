@@ -3,7 +3,20 @@ from fastapi import FastAPI
 from fastapi.responses import RedirectResponse
 from routers import authentication, requests, users
 
-app = FastAPI()
+app = FastAPI(
+    title="SongHelper API",
+    description="API for SongHelper",
+    version="0.1.0",
+    contact={
+        "name": "mezgoodle",
+        "url": "https://github.com/mezgoodle",
+        "email": "mezgoodle@gmail.com",
+    },
+    license_info={
+        "name": "MIT License",
+        "url": "https://github.com/mezidia/song-helper/blob/master/LICENSE",
+    },
+)
 app.include_router(users.router)
 app.include_router(authentication.router)
 app.include_router(requests.router)
