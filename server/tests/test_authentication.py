@@ -21,7 +21,7 @@ def test_register(client: TestClient):
             "disabled": False,
         },
     )
-    assert response.status_code == 200
+    assert response.status_code == 201
     data = response.json()
     assert data["name"] == "johndoe"
     assert data["email"] == "string"

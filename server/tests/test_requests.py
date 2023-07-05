@@ -17,7 +17,7 @@ def test_create_request(client: TestClient, token: str):
         headers={"Authorization": f"Bearer {token}"},
         json={"text": "test request"},
     )
-    assert response.status_code == 200
+    assert response.status_code == 201
     assert response.json() == {
         "text": "test request",
         "id": 1,
@@ -113,8 +113,7 @@ def test_delete_request(client: TestClient, token: str):
         "/requests/2",
         headers={"Authorization": f"Bearer {token}"},
     )
-    assert response.status_code == 200
-    assert response.json() == {"message": "Request deleted"}
+    assert response.status_code == 204
 
 
 def test_delete_request_by_another_author(client: TestClient, token: str):
