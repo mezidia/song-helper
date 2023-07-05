@@ -100,4 +100,3 @@ def test_delete_user(client: TestClient, token: str):
         headers={"Authorization": f"Bearer {token}"},
     )
     assert response.status_code == 204
-    assert response.json() == {"message": "User deleted"}

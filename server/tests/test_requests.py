@@ -114,7 +114,6 @@ def test_delete_request(client: TestClient, token: str):
         headers={"Authorization": f"Bearer {token}"},
     )
     assert response.status_code == 204
-    assert response.json() == {"message": "Request deleted"}
 
 
 def test_delete_request_by_another_author(client: TestClient, token: str):

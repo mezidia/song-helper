@@ -46,7 +46,7 @@ async def delete_user(
     db_user = session.get(User, user_id)
     session.delete(db_user)
     session.commit()
-    return {"message": "User deleted"}
+    return
 
 
 @router.get(

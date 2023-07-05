@@ -99,4 +99,4 @@ def delete_request(
         raise HTTPException(status_code=403, detail="Not enough permissions")
     session.delete(request)
     session.commit()
-    return {"message": "Request deleted"}
+    return
