@@ -25,7 +25,9 @@ def authenticate_user(username: str, password: str):
     return user
 
 
-@router.post("/register", response_model=UserRead)
+@router.post(
+    "/register", response_model=UserRead, status_code=status.HTTP_201_CREATED
+)
 async def create_user(
     *, session: Session = Depends(get_session), user: UserCreate
 ):
@@ -40,7 +42,7 @@ async def create_user(
     return db_user
 
 
-@router.post("/login", response_model=Token)
+@router.post("/login", response_model=Token, status_code=status.HTTP_200_OK)
 async def login_for_access_token(
     form_data: Annotated[OAuth2PasswordRequestForm, Depends()]
 ):

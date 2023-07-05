@@ -12,12 +12,12 @@ def create_db_and_tables():
     SQLModel.metadata.create_all(engine)
 
 
-def get_session():
+def get_session() -> Session:
     with Session(engine) as session:
         yield session
 
 
-def get_user(name: str):
+def get_user(name: str) -> User | None:
     with Session(engine) as session:
         user = session.exec(select(User).where(User.name == name)).first()
         return user

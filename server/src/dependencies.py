@@ -10,7 +10,9 @@ from schemas import TokenData, User
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
 
 
-async def get_current_user(token: Annotated[str, Depends(oauth2_scheme)]):
+async def get_current_user(
+    token: Annotated[str, Depends(oauth2_scheme)]
+) -> User:
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="Could not validate credentials",
@@ -34,7 +36,7 @@ async def get_current_user(token: Annotated[str, Depends(oauth2_scheme)]):
 
 async def get_current_active_user(
     current_user: Annotated[User, Depends(get_current_user)]
-):
+) -> User:
     if current_user.disabled:
         raise HTTPException(status_code=400, detail="Inactive user")
     return current_user
