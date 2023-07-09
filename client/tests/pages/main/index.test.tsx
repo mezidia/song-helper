@@ -4,7 +4,7 @@ import { render, screen } from '@testing-library/react';
 import Home from '@/app/page';
 
 describe('Home page (temp test)', () => {
-  it ('Should render Home stub correct', () => {
+  it('Should render Home stub correct', () => {
     render(<Home />);
 
     const navHeaders = screen.getAllByRole('heading');

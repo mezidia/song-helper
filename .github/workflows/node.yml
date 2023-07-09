@@ -31,7 +31,7 @@ jobs:
       run: yarn install --frozen-lockfile
       
     - name: Lint with ESLint
-      run: yarn lint
+      run: yarn lint:check
       
     - name: Test with Jest
       run: yarn test --coverage
