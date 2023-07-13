@@ -32,7 +32,7 @@ jobs:
           pylint .
       - name: Test with pytest
         run: |
-          pytest --cov=./coverage.xml --cov-report=xml
+          pytest --cov=./ --cov-report=xml
       - name: Show list of files
         run: |
           ls -R
