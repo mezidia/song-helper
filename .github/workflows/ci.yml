@@ -33,9 +33,6 @@ jobs:
       - name: Test with pytest
         run: |
           pytest --cov=./ --cov-report=xml
-      - name: Show list of files
-        run: |
-          ls -R
       - name: Save coverage report artifact
         uses: actions/upload-artifact@v2
         with:
@@ -62,6 +59,9 @@ jobs:
         run: yarn lint
       - name: Test with Jest
         run: yarn test --coverage
+      - name: Show list of files
+        run: |
+          ls -R
 
   upload-report:
     needs: [python, javascript]
