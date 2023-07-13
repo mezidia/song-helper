@@ -85,4 +85,4 @@ jobs:
       - name: Upload coverage report to Codecov
         uses: codecov/codecov-action@v3
         with:
-          files: coverage-report-server/coverage.xml, coverage-report-client/lcov.info
+          files: coverage-report-server/coverage.xml, coverage-report-client/coverage-final.json
