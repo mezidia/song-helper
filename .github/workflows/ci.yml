@@ -36,7 +36,7 @@ jobs:
       - name: Save coverage report artifact
         uses: actions/upload-artifact@v2
         with:
-          name: coverage-report
+          name: coverage-report-server
           path: ./server/coverage.xml
 
   javascript:
@@ -59,9 +59,11 @@ jobs:
         run: yarn lint
       - name: Test with Jest
         run: yarn test --coverage
-      - name: Show list of files
-        run: |
-          ls -R
+      - name: Save coverage report artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: coverage-report-client
+          path: ./client/coverage
 
   upload-report:
     needs: [python, javascript]
@@ -70,12 +72,19 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Download coverage report artifact
+      - name: Download coverage report artifact from server
         uses: actions/download-artifact@v2
         with:
-          name: coverage-report
-          path: coverage-report
+          name: coverage-report-server
+          path: coverage-report-server
+      - name: Download coverage report artifact from client
+        uses: actions/download-artifact@v2
+        with:
+          name: coverage-report-client
+          path: coverage-report-client
       - name: Upload coverage report to Codecov
         uses: codecov/codecov-action@v3
         with:
-          files: coverage-report/coverage.xml
+          files: |
+            coverage-report-server/coverage.xml
+            coverage-report-client/lcov.info
