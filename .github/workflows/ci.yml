@@ -33,6 +33,9 @@ jobs:
       - name: Test with pytest
         run: |
           pytest --cov=./coverage.xml --cov-report=xml
+      - name: Show list of files
+        run: |
+          ls -R
       - name: Save coverage report artifact
         uses: actions/upload-artifact@v2
         with:
