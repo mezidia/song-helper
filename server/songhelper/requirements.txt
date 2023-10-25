@@ -75,6 +75,6 @@ typer==0.3.2
 typing-extensions==3.7.4.3
 urllib3==1.26.4
 wasabi==0.8.2
-Werkzeug==1.0.1
+Werkzeug==3.0.1
 wrapt==1.12.1
 en-core-web-trf @ https://github.com/explosion/spacy-models/releases/download/en_core_web_trf-3.0.0/en_core_web_trf-3.0.0-py3-none-any.whl
